@@ -3,7 +3,7 @@ import Navbar from "../components/shared/navbar/Navbar";
 
 const layout = ({ children }: { children: ReactNode }) => {
   return (
-    <div>
+    <div className="bg-background">
       <Navbar />
       {children}
     </div>

@@ -47,7 +47,7 @@ const Navbar = () => {
           isSticky ? "shadow-md py-2" : "py-4"
         }`}
       >
-        <div className="max-w-[1700px] mx-auto px-4">
+        <div className="max-w-[1700px] mx-auto px-4   items-center justify-between w-full ">
           <div className="flex items-center justify-between">
             <Link href="/" className="text-xl font-bold">
               Skillhive
@@ -69,12 +69,7 @@ const Navbar = () => {
               <Button variant="ghost" size="icon" aria-label="User account">
                 <User className="h-5 w-5" />
               </Button>
-              <Link
-                href="/dashboard"
-                className="text-gray-600 hover:text-gray-900"
-              >
-                Dashboard
-              </Link>
+
               <Button className="bg-lemon hover:bg-lemon/80 text-gray-800">
                 Sign up-it&apos;s free
               </Button>
@@ -91,7 +86,10 @@ const Navbar = () => {
               </Button>
             </div>
 
-            <Mobile navLinks={navLinks} />
+            <div className="w-full md:hidden">
+              {" "}
+              <Mobile navLinks={navLinks} />
+            </div>
           </div>
         </div>
       </div>
