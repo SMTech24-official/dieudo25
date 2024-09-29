@@ -2,9 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
+:root {
+  --font-body: var(--font-poppins);
 }
+
+body {
+  font-family: var(--font-body);
+}
+
+
 
 @layer utilities {
   .text-balance {

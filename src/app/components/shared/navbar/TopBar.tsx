@@ -9,7 +9,7 @@ import { ChevronDown, Briefcase } from "lucide-react";
 
 const TopBar = () => {
   return (
-    <div className="bg-gray-800">
+    <div className="bg-coal">
       <div className=" text-white max-w-6xl mx-auto px-4 py-2 flex justify-between items-center">
         <div className="flex items-center space-x-2">
           <Briefcase className="h-5 w-5" />
@@ -23,7 +23,10 @@ const TopBar = () => {
           </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="text-white text-sm h-auto p-1">
+              <Button
+                variant="ghost"
+                className="text-white text-sm outline-none focus:outline-none focus:border-none h-auto p-1"
+              >
                 EN <ChevronDown className="ml-1 h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
