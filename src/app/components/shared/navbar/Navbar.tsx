@@ -47,7 +47,7 @@ const Navbar = () => {
           isSticky ? "shadow-md py-2" : "py-4"
         }`}
       >
-        <div className="max-w-[1700px] mx-auto px-4   items-center justify-between w-full ">
+        <div className="max-w-[1700px] mx-auto px-4    items-center justify-between w-full ">
           <div className="flex items-center justify-between">
             <Link href="/" className="text-xl font-bold">
               Skillhive
@@ -86,7 +86,7 @@ const Navbar = () => {
               </Button>
             </div>
 
-            <div className="w-full md:hidden">
+            <div className="w-full flex justify-end md:hidden">
               {" "}
               <Mobile navLinks={navLinks} />
             </div>

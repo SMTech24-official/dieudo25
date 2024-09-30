@@ -4,6 +4,7 @@ import FreelancerSlider from "../components/home/FreelancherSlider";
 import ServicesSection from "../components/home/ServiceSection";
 import HowItWorks from "../components/home/HowItWorks";
 import PopularFreelancers from "../components/home/PopularFreelancers";
+import SuccessStories from "../components/home/SuccessStories";
 
 const page = () => {
   return (
@@ -13,6 +14,7 @@ const page = () => {
       <ServicesSection />
       <HowItWorks />
       <PopularFreelancers />
+      <SuccessStories />
     </>
   );
 };
