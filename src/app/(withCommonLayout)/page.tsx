@@ -5,6 +5,41 @@ import ServicesSection from "../components/home/ServiceSection";
 import HowItWorks from "../components/home/HowItWorks";
 import PopularFreelancers from "../components/home/PopularFreelancers";
 import SuccessStories from "../components/home/SuccessStories";
+// import BlogPostGrid from "../components/home/BlogPostGrid";
+import JoinCommunity from "../components/home/JoinCommunity";
+import avatarImage from "@/assets/portrait-smiling-blonde-woman.jpg";
+
+const iamges = [
+  avatarImage,
+  avatarImage,
+  avatarImage,
+  avatarImage,
+  avatarImage,
+  avatarImage,
+  avatarImage,
+  avatarImage,
+  avatarImage,
+  avatarImage,
+  avatarImage,
+  avatarImage,
+  avatarImage,
+  avatarImage,
+  avatarImage,
+  avatarImage,
+  avatarImage,
+  avatarImage,
+  avatarImage,
+  avatarImage,
+  avatarImage,
+  avatarImage,
+  avatarImage,
+  avatarImage,
+  avatarImage,
+  avatarImage,
+  avatarImage,
+  avatarImage,
+  avatarImage,
+];
 
 const page = () => {
   return (
@@ -15,6 +50,8 @@ const page = () => {
       <HowItWorks />
       <PopularFreelancers />
       <SuccessStories />
+      {/* <BlogPostGrid /> */}
+      <JoinCommunity images={iamges} />
     </>
   );
 };

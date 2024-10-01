@@ -6,6 +6,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import image1 from "@/assets/slider-image-1.jpg";
+import image2 from "@/assets/slider-image-2.jpg";
+import image3 from "@/assets/slider-image-3.jpg";
+import image4 from "@/assets/slider-image-4.jpg";
+import image5 from "@/assets/slider-image-4.jpg";
 
 const freelancers = [
   {
@@ -14,7 +19,7 @@ const freelancers = [
     title: "Content Writer",
     description:
       "A wordsmith with a flair for creating compelling content. From blog posts to SEO-optimized articles, I'm your go-to writer for all things wordy.",
-    image: "/placeholder.svg?height=400&width=400",
+    image: image1,
     skills: ["Content Writing", "SEO", "Copywriting"],
   },
   {
@@ -23,7 +28,7 @@ const freelancers = [
     title: "Front-end Developer",
     description:
       "A passionate web developer with years of experience in creating sleek and user-friendly websites. Let's turn your digital vision into a reality!",
-    image: "/placeholder.svg?height=400&width=400",
+    image: image2,
     skills: ["React", "JavaScript", "CSS", "Responsive Web Design"],
   },
   {
@@ -32,7 +37,7 @@ const freelancers = [
     title: "Illustrator",
     description:
       "Hello, I'm Keisha, a creative graphic designer. My designs are all about telling a story through visuals. Whether it's branding, illustrations, or marketing materials, I'm here to make your vision pop!",
-    image: "/placeholder.svg?height=400&width=400",
+    image: image3,
     skills: [
       "Adobe Creative Suite",
       "Branding",
@@ -47,7 +52,7 @@ const freelancers = [
     title: "Social Media Manager",
     description:
       "Social media guru. I specialize in growing and engaging audiences across platforms to build a thriving online community. Let's boost your brand's presence and connect with your audience on a whole new level!",
-    image: "/placeholder.svg?height=400&width=400",
+    image: image4,
     skills: [
       "Social Media Strategy",
       "Content Planning",
@@ -61,7 +66,7 @@ const freelancers = [
     title: "Video Editor",
     description:
       "Passionate about visual storytelling and editing wizard. Whether it's a promotional video, documentary, or YouTube highlight reel, I bring your footage to life with captivating visuals that tell your story.",
-    image: "/placeholder.svg?height=400&width=400",
+    image: image5,
     skills: [
       "Video Editing",
       "Motion Graphics",
@@ -86,6 +91,28 @@ export default function FreelancerSlider() {
 
     return () => clearInterval(autoPlayRef.current as NodeJS.Timeout);
   }, [currentIndex]);
+
+  // Touch events for mobile
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    setIsDragging(true);
+    setStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    const moveX = e.touches[0].clientX - startX;
+    if (moveX > 100) {
+      prevSlide();
+      setIsDragging(false);
+    } else if (moveX < -100) {
+      nextSlide();
+      setIsDragging(false);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+  };
 
   // Mouse drag functionality
   const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -121,14 +148,17 @@ export default function FreelancerSlider() {
 
   return (
     <div
-      className="relative w-full h-[60vh]   px-4 py-12"
+      className="relative w-full h-[100vh] lg:h-[60vh] px-4 py-12 overflow-hidden"
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp} // To handle when the mouse leaves the slider area
+      onMouseLeave={handleMouseUp}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
       ref={sliderRef}
     >
-      <div className="flex items-center h-full justify-center">
+      <div className="flex items-center justify-center h-full relative">
         {[-2, -1, 0, 1, 2].map((offset) => {
           const index =
             (currentIndex + offset + freelancers.length) % freelancers.length;
@@ -150,7 +180,7 @@ export default function FreelancerSlider() {
                   : ""
               }`}
             >
-              <CardContent className="p-6 xl:w-[800px] w-[300px]">
+              <CardContent className="p-6 xl:w-[800px] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[300px]">
                 <div className="relative w-full h-48 mb-4">
                   <Image
                     src={freelancer.image}

@@ -1,28 +1,35 @@
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
+import image1 from "@/assets/popular-freelancer-1.jpg";
+import image2 from "@/assets/popular-freelancer-2.jpg";
+import image3 from "@/assets/popular-freelancer-3.jpg";
 
-const freelancers = [
+type freelancersDataTypes = {
+  name: string;
+  title: string;
+  rate: string;
+  image: StaticImageData;
+};
+
+const freelancers: freelancersDataTypes[] = [
   {
     name: "Oluwa Tosin Adeyemi",
     title: "Web Developer",
     rate: "32USD/ Hr",
-    image: "/placeholder.svg?height=400&width=400",
-    bgColor: "bg-teal-100",
+    image: image1,
   },
   {
     name: "Malik Johnson",
     title: "Digital Marketing Strategist",
     rate: "32USD/ Hr",
-    image: "/placeholder.svg?height=400&width=400",
-    bgColor: "bg-blue-100",
+    image: image2,
   },
   {
     name: "Kwame Osei",
-    title: "Video and Animation Specialist",
+    title: "Video and Animation",
     rate: "32USD/ Hr",
-    image: "/placeholder.svg?height=400&width=400",
-    bgColor: "bg-pink-100",
+    image: image3,
   },
 ];
 
@@ -38,11 +45,11 @@ export default function PopularFreelancers() {
             <Card
               style={{ backgroundImage: `url("${freelancer.image?.src}")` }}
               key={index}
-              className={`overflow-hidden h-[400px] flex items-end`}
+              className={`overflow-hidden h-[400px] flex items-end bg-center bg-cover`}
             >
               <CardContent className="p-0 w-full">
                 <div className="w-full p-3">
-                  <div className="p-6 bg-red-500 rounded-md">
+                  <div className="p-6 bg-light/50 backdrop-blur-sm rounded-md">
                     <h3 className="text-xl font-semibold mb-1">
                       {freelancer.name}
                     </h3>
