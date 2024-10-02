@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import SectionHeader from "../section/SectionHeader";
 
 const testimonials = [
   {
@@ -36,10 +37,10 @@ export default function SuccessStories() {
         transition={{ duration: 0.5 }}
         className="max-w-4xl mx-auto text-center"
       >
-        <h2 className="text-3xl font-bold mb-2">Success Stories</h2>
-        <p className="text-gray-600 mb-8">
-          Fruitcake wafer liquorice jelly shortbread.
-        </p>
+        <SectionHeader
+          title="Success Stories"
+          description="Fruitcake wafer liquorice jelly shortbread."
+        />
       </motion.div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {testimonials.map((testimonial, index) => (

@@ -25,7 +25,7 @@ const Navbar = () => {
       name: "Home",
     },
     {
-      path: "/about",
+      path: "/about-us",
       name: "About Us",
     },
 
@@ -49,14 +49,14 @@ const Navbar = () => {
         <div className="max-w-[1700px] mx-auto px-4    items-center justify-between w-full ">
           <div className="flex items-center justify-between">
             <Link href="/" className="text-xl font-bold">
-              Skillhive
+              LOGO
             </Link>
 
             <nav className="hidden md:flex items-center space-x-6 font-medium">
               {navLinks?.map((item) => (
                 <Link
                   key={item.path}
-                  href="/home"
+                  href={item.path}
                   className="text-gray-600 hover:text-gray-900"
                 >
                   {item.name}

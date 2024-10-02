@@ -9,6 +9,16 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      container: {
+        center: true, // Centers the container by default
+        padding: "2rem", // Adds padding around the container
+        screens: {
+          sm: "100%", // Customize container width on small screens
+          md: "100%", // Customize container width on medium screens
+          lg: "1024px", // Set custom width for large screens
+          xl: "1280px", // Set custom width for extra-large screens
+        },
+      },
       colors: {
         foreground: "var(--foreground)",
         coal: "#353535",

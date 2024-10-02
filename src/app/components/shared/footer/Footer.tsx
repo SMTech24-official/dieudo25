@@ -35,10 +35,10 @@ const socialLinks = [
 export default function Footer() {
   return (
     <footer className="bg-coal text-white ">
-      <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto  py-12 sm:px-6 lg:px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
-            <h2 className="text-2xl font-bold text-white mb-4">Skillhive.</h2>
+            <h2 className="text-2xl font-bold text-white mb-4">LOGO</h2>
             <p className="mb-4">
               <strong>Location</strong>
               <br />
