@@ -8,7 +8,7 @@ import { FaLinkedinIn } from "react-icons/fa6";
 
 export default function MeetTheTeam() {
   const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
+  const sectionRef = useRef<HTMLDivElement | null>(null);
 
   const teamMembers = [
     {
@@ -54,17 +54,18 @@ export default function MeetTheTeam() {
       { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    const currentRef = sectionRef.current; // Store the ref in a variable
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
+      if (currentRef) observer.unobserve(currentRef); // Use the variable here
     };
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-16 ">
+    <section ref={sectionRef} className="py-16">
       <div className="container mx-auto px-4">
         {/* Header Section */}
         <motion.div
@@ -86,7 +87,7 @@ export default function MeetTheTeam() {
           {teamMembers.map((member, index) => (
             <motion.div
               key={index}
-              className="flex gap-6 items-center lg:h-auto sm:h-[350px] sm:flex-row flex-col  lg:text-left bg-white shadow-lg rounded-lg p-6"
+              className="flex gap-6 items-center lg:h-auto sm:h-[350px] sm:flex-row flex-col lg:text-left bg-white shadow-lg rounded-lg p-6"
               initial={{ opacity: 0, y: 50 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.2 * index, duration: 0.6 }}
