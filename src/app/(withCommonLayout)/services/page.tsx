@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import { useState, useEffect } from "react";
 
@@ -5,6 +6,9 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import ServiceCard from "@/app/components/services/ServiceCard";
 import { servicesData } from "@/utils/servicesData";
+import SearchBar from "@/app/components/services/SearchBarProps";
+import FilterOptions from "@/app/components/services/FilterOptions";
+import { PaginationPage } from "@/app/components/services/PaginationPage";
 
 export default function ServicesPage() {
   const [services, setServices] = useState([]);
@@ -25,27 +29,19 @@ export default function ServicesPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       {/* Service Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <SearchBar onSearch={setQuery} />
+      <FilterOptions />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {servicesData?.services.map((service) => (
           <div key={service.id}>
-            <ServiceCard
-              title={service.title}
-              sellerName={service.sellerName}
-              rating={service.rating}
-              price={service.price}
-              imageUrl={service.imageUrl}
-            />
+            <ServiceCard {...service} />
           </div>
         ))}
       </div>
 
       {/* Pagination */}
-      <div className="flex justify-between items-center mt-6">
-        <Button onClick={() => setPage(page - 1)} disabled={page === 1}>
-          Previous
-        </Button>
-        <span>Page {page}</span>
-        <Button onClick={() => setPage(page + 1)}>Next</Button>
+      <div className="flex justify-center items-center mt-6 container px-5">
+        <PaginationPage />
       </div>
     </div>
   );

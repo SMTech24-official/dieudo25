@@ -22,7 +22,9 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
         placeholder="Search services..."
         className="flex-1"
       />
-      <Button type="submit">Search</Button>
+      <Button type="submit" className="bg-lemon/80 hover:bg-lemon text-coal">
+        Search
+      </Button>
     </form>
   );
 }

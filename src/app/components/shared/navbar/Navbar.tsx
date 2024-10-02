@@ -6,9 +6,12 @@ import { Button } from "@/components/ui/button";
 import { ShoppingCart, User } from "lucide-react";
 import TopBar from "./TopBar";
 import Mobile from "./Mobile";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
+  const pathName = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,7 +60,10 @@ const Navbar = () => {
                 <Link
                   key={item.path}
                   href={item.path}
-                  className="text-gray-600 hover:text-gray-900"
+                  className={cn(
+                    "text-gray-600 transition",
+                    item.path === pathName ? "text-lilac" : "hover:text-lilac "
+                  )}
                 >
                   {item.name}
                 </Link>
