@@ -12,7 +12,7 @@ export default function SkillhiveSection() {
         transition={{ duration: 0.5 }}
         className="md:text-5xl text-4xl font-semibold text-center text-gray-900 mb-16 text-coal"
       >
-        What’s <span className="text-lilac">Skillhive</span> All About?
+        What’s <span className="text-lilac">Brand Name</span> All About?
       </motion.h2>
       <div className="flex-col gap-9 flex lg:flex-row-reverse items-center justify-center">
         {/* Text Section */}

@@ -1,7 +1,7 @@
 export default function GuidingPrinciplesSection() {
   return (
     <section className="bg-coal text-white py-16">
-      <div className="container mx-auto px-4 lg:px-12">
+      <div className="container mx-auto ">
         {/* Main Heading Section */}
         <div className="lg:w-1/2 mb-12">
           <h4 className="text-lime-400 uppercase text-sm mb-2">— our values</h4>

@@ -64,7 +64,7 @@ export default function MeetTheTeam() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-16 bg-white">
+    <section ref={sectionRef} className="py-16 ">
       <div className="container mx-auto px-4">
         {/* Header Section */}
         <motion.div
