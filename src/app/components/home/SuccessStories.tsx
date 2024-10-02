@@ -53,9 +53,9 @@ export default function SuccessStories() {
               rotate: 2,
               boxShadow: "0 8px 20px rgba(0, 0, 0, 0.2)",
             }}
-            className="cursor-pointer"
+            className="cursor-pointer overflow-hidden"
           >
-            <Card className="h-full">
+            <Card className="h-full overflow-hidden">
               <CardContent className="p-6 flex flex-col items-center text-center">
                 <Avatar className="w-24 h-24 mb-4">
                   <AvatarImage src={testimonial.image} alt={testimonial.name} />

@@ -148,7 +148,7 @@ export default function FreelancerSlider() {
 
   return (
     <div
-      className="relative w-full h-[100vh] lg:h-[60vh] px-4 py-12 overflow-hidden"
+      className="relative w-full h-[70vh] lg:h-[60vh] px-4 py-12 overflow-hidden"
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}

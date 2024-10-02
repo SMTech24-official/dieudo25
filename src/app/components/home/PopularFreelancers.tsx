@@ -1,9 +1,10 @@
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import Image, { StaticImageData } from "next/image";
+import { StaticImageData } from "next/image";
 import image1 from "@/assets/popular-freelancer-1.jpg";
 import image2 from "@/assets/popular-freelancer-2.jpg";
 import image3 from "@/assets/popular-freelancer-3.jpg";
+import SectionHeader from "../section/SectionHeader";
 
 type freelancersDataTypes = {
   name: string;
@@ -37,15 +38,14 @@ export default function PopularFreelancers() {
   return (
     <section className="py-12 px-4">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-12">
-          Popular Freelancers
-        </h2>
+        <SectionHeader title="Popular Freelancers" />
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {freelancers.map((freelancer, index) => (
             <Card
               style={{ backgroundImage: `url("${freelancer.image?.src}")` }}
               key={index}
-              className={`overflow-hidden h-[400px] flex items-end bg-center bg-cover`}
+              className={`overflow-hidden  h-[400px] flex items-end bg-center bg-cover`}
             >
               <CardContent className="p-0 w-full">
                 <div className="w-full p-3">

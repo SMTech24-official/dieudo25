@@ -54,7 +54,7 @@ export default function JoinCommunity({
         </div>
 
         {/* Outer Large Bubble with smaller bubbles inside */}
-        <div className="relative flex items-center justify-center w-[400px] h-[400px] md:w-[500px] md:h-[500px] rounded-full bg-lime-400 overflow-hidden mt-12 md:mt-0">
+        <div className="relative flex items-center justify-center w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] rounded-full bg-lime-400 overflow-hidden mt-12 md:mt-0">
           {/* Nested smaller bubbles */}
           <div className="grid grid-cols-5 gap-3 w-full h-full items-center justify-center">
             {bubbles.map((bubble) => (

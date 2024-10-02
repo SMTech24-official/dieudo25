@@ -1,5 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
+import howItWorkImage from "@/assets/how-it-works.jpg";
+import SectionHeader from "../section/SectionHeader";
 
 const steps = [
   {
@@ -28,18 +30,12 @@ export default function HowItWorks() {
   return (
     <section className="py-12 px-4">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <p className="text-sm text-blue-600 mb-2">
-            Find short-term work with 4 simple steps
-          </p>
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            How it works
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Soufflé powder halvah cake candy. Jelly-o croissant pie shortbread
-            brownie sweet cookie.
-          </p>
-        </div>
+        <SectionHeader
+          className="text-left items-start"
+          subTitle="Find short-term work with 4 simple steps"
+          title="How it works"
+          description="Soufflé powder halvah cake candy. Jelly-o croissant pie shortbread brownie sweet cookie."
+        />
 
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div className="space-y-8">
@@ -58,7 +54,7 @@ export default function HowItWorks() {
           <Card className="overflow-hidden">
             <CardContent className="p-0">
               <Image
-                src="/placeholder.svg?height=400&width=600"
+                src={howItWorkImage}
                 alt="Person working on a laptop"
                 width={600}
                 height={400}
