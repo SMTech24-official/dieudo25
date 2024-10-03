@@ -1,10 +1,11 @@
-import DigitalWorkSection from "@/app/components/about/DigitalWorkSection";
-import GuidingPrinciplesSection from "@/app/components/about/GuidingPrinciplesSection";
-import MeetTheTeam from "@/app/components/about/MeetTheTeam";
-import SkillhiveSection from "@/app/components/about/SkillhiveSection";
-import JoinCommunity from "@/app/components/home/JoinCommunity";
+import DigitalWorkSection from "@/components/about/DigitalWorkSection";
+import GuidingPrinciplesSection from "@/components/about/GuidingPrinciplesSection";
+import MeetTheTeam from "@/components/about/MeetTheTeam";
+import SkillhiveSection from "@/components/about/SkillhiveSection";
+
 import React from "react";
 import avatarImage from "@/assets/portrait-smiling-blonde-woman.jpg";
+import JoinCommunity from "@/components/home/JoinCommunity";
 
 const iamges = [
   avatarImage,

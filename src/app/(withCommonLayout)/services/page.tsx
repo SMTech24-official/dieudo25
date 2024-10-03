@@ -4,11 +4,11 @@ import { useState, useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import ServiceCard from "@/app/components/services/ServiceCard";
 import { servicesData } from "@/utils/servicesData";
-import SearchBar from "@/app/components/services/SearchBarProps";
-import FilterOptions from "@/app/components/services/FilterOptions";
-import { PaginationPage } from "@/app/components/services/PaginationPage";
+import SearchBar from "@/components/services/SearchBarProps";
+import FilterOptions from "@/components/services/FilterOptions";
+import { PaginationPage } from "@/components/services/PaginationPage";
+import ServiceCard from "@/components/services/ServiceCard";
 
 export default function ServicesPage() {
   const [services, setServices] = useState([]);
