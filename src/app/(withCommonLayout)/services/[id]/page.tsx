@@ -11,9 +11,9 @@ export default function Page({ params }: { params: { slug: string } }) {
   return (
     <main className="container  py-20">
       <h2 className="mb-6 text-2xl font-medium">Title</h2>
-      <div className="grid grid-cols-3 gap-6 w-full">
+      <div className="flex md:flex-row flex-col-reverse gap-6 w-full">
         {/* Left Side (Sticky Content) */}
-        <div className="col-span-1 sticky top-20 h-[70vh]">
+        <div className="md:w-[30%] w-full sticky top-20 h-[70vh]">
           <div className="bg-white h-full w-full p-4 shadow-md">
             <div className="mb-5">
               <Button
@@ -32,7 +32,7 @@ export default function Page({ params }: { params: { slug: string } }) {
         </div>
 
         {/* Right Side (Scrollable Content) */}
-        <div className="col-span-2 h-[70vh] overflow-y-auto">
+        <div className="flex-1 h-[70vh] overflow-y-auto">
           <Video />
           <div className="mt-5">
             <h4 className="text-coal font-bold text-lg">BIO</h4>

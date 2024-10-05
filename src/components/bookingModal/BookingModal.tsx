@@ -34,8 +34,12 @@ const BookingModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     "09:00 AM", // Mock booked time for testing
   ]);
   const [error, setError] = useState<string>("");
-  const [locationCoords, setLocationCoords] = useState<{ latitude: number; longitude: number } | null>(null);
-  const [humanReadableLocation, setHumanReadableLocation] = useState<string>("");
+  const [locationCoords, setLocationCoords] = useState<{
+    latitude: number;
+    longitude: number;
+  } | null>(null);
+  const [humanReadableLocation, setHumanReadableLocation] =
+    useState<string>("");
 
   const timeSlots = [
     "09:00 AM",
@@ -59,12 +63,16 @@ const BookingModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   useEffect(() => {
     const checkAvailability = () => {
       if (date) {
-        const available = timeSlots.filter((slot) => !bookedTimes.includes(slot));
+        const available = timeSlots.filter(
+          (slot) => !bookedTimes.includes(slot)
+        );
         setAvailableTimes(available);
         setError(""); // Clear error message when date is selected
 
         if (available.length === 0) {
-          setError("No available times for this date. Please select another date.");
+          setError(
+            "No available times for this date. Please select another date."
+          );
           setValue("time", ""); // Clear time selection if no slots available
         }
       } else {
@@ -87,9 +95,14 @@ const BookingModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     }
   };
 
-  const fetchHumanReadableLocation = async (latitude: number, longitude: number) => {
+  const fetchHumanReadableLocation = async (
+    latitude: number,
+    longitude: number
+  ) => {
     try {
-      const response = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`);
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+      );
       const data = await response.json();
       setHumanReadableLocation(data.display_name); // Set the human-readable address
       setValue("location", data.display_name); // Store location in the form
@@ -122,7 +135,12 @@ const BookingModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   };
 
   return (
-    <Modal className="max-w-5xl" title="Book Now" isOpen={isOpen} onClose={onClose}>
+    <Modal
+      className="max-w-5xl "
+      title="Book Now"
+      isOpen={isOpen}
+      onClose={onClose}
+    >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto p-4">
         {/* Left Side: Calendar */}
         <div className="flex justify-center">
@@ -159,7 +177,9 @@ const BookingModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                 </Select>
               )}
             />
-            {!date && <p className="text-red-500">Please select a date first.</p>}
+            {!date && (
+              <p className="text-red-500">Please select a date first.</p>
+            )}
           </div>
 
           <div>
