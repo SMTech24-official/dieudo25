@@ -1,10 +1,10 @@
 "use client";
 import { SubmitHandler, useForm } from "react-hook-form";
-import Image from "next/image";
+
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import googleLogo from "@/assets/google.png";
 import authImage from "@/assets/auth.jpg";
+import Link from "next/link";
 
 // Define types for form data
 type LoginFormInputs = {
@@ -44,8 +44,8 @@ const SignInFrom = () => {
       </div>
 
       {/* Right Section (Login Form) */}
-      <div className="flex-1 flex justify-center items-center bg-white lg:px-0 px-5">
-        <div className="w-full lg:max-w-md border border-slate-200 shadow-sm p-4 lg:border-0 lg:p-0 lg:shadow-none">
+      <div className="flex-1 flex justify-center items-center lg:px-0 px-5">
+        <div className="w-full lg:max-w-md border border-slate-200 shadow p-4  ">
           <h2 className="text-2xl font-bold  mb-6">Login</h2>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>
@@ -92,7 +92,7 @@ const SignInFrom = () => {
 
             <Button
               type="submit"
-              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2"
+              className="w-full bg-lemon/80 hover:bg-lemon text-coal font-bold py-2"
             >
               Login
             </Button>
@@ -100,34 +100,13 @@ const SignInFrom = () => {
             <div className="text-center mt-4">
               <p className="text-sm">
                 Don&apos;t have an account?{" "}
-                <a href="#" className="text-blue-500">
+                <Link href="/sign-up" className="text-blue-500">
                   Sign up
-                </a>
+                </Link>
               </p>
             </div>
 
-            <div className="text-center mt-4">
-              <div className="relative">
-                <span className="absolute inset-x-0 top-2/4 text-center transform -translate-y-1/2 bg-white px-2">
-                  or
-                </span>
-                <hr className="border-t" />
-              </div>
-            </div>
-
-            <Button
-              type="button"
-              className="w-full bg-white border border-gray-300 hover:bg-gray-100 text-gray-500 font-bold py-2 flex items-center justify-center"
-            >
-              <Image
-                width={20}
-                height={20}
-                src={googleLogo}
-                alt="Google Icon"
-                className="w-5 h-5 mr-2"
-              />
-              Authorize with Google
-            </Button>
+            
           </form>
         </div>
       </div>

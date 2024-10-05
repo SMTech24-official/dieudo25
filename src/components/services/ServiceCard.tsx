@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 interface ServiceCardProps {
   title: string;
@@ -19,7 +20,10 @@ export default function ServiceCard({
 }: ServiceCardProps) {
   console.log(bannerImage);
   return (
-    <div className="border border-lemon p-4 rounded-lg shadow-md">
+    <Link
+      href={`/services/${encodeURIComponent(sellerName)}`}
+      className="border border-lemon p-4 rounded-lg shadow-md block"
+    >
       <Image
         src={bannerImage}
         alt={title}
@@ -46,6 +50,6 @@ export default function ServiceCard({
           <span className="text-sm font-medium">{price}</span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
