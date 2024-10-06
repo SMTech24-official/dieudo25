@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // /components/BookingModal.tsx
 
 "use client"; // Ensure this component is client-side
@@ -145,7 +146,11 @@ const BookingModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         {/* Left Side: Calendar */}
         <div className="flex justify-center">
           <Calendar
-            onChange={(date: Date) => setDate(date)} // Ensure this matches the expected type
+            onChange={(value, event) => {
+              if (value instanceof Date) {
+                setDate(value); // Only set the date if it's a valid Date object
+              }
+            }}
             value={date}
             className="rounded-lg border border-gray-300 shadow-lg overflow-hidden"
             minDate={new Date()} // Disable previous dates
@@ -163,7 +168,12 @@ const BookingModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
               name="time"
               control={control}
               render={({ field }) => (
-                <Select {...field} disabled={!date}>
+                <Select
+                  {...field}
+                  onValueChange={(value) => field.onChange(value)} // Ensure the selected value is set
+                  disabled={!date}
+                  value={field.value || ""}
+                >
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder="Select a time" />
                   </SelectTrigger>
@@ -177,6 +187,7 @@ const BookingModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                 </Select>
               )}
             />
+
             {!date && (
               <p className="text-red-500">Please select a date first.</p>
             )}
