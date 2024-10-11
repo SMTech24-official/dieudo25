@@ -17,8 +17,8 @@ const Mobile = ({
   navLinks: { name: string; path: string }[];
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); 
 
-  // Dropdown items for Contact + Blog
   const dropdownLinks = [
     { path: "/contact-us", name: "Contact" },
     { path: "/blog", name: "Blog" },
@@ -53,23 +53,27 @@ const Mobile = ({
             ))}
 
             {/* Dropdown for Contact + Blog */}
-            <div className="relative group">
-              <div className="group relative">
-                <button className="text-gray-600 hover:text-lilac">
-                  More
-                </button>
-                <div className="mt-2 group-hover:block bg-white shadow-lg rounded-md w-full">
+            <div className="relative">
+              <button
+                className="text-gray-600 hover:text-lilac"
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)} 
+              >
+                More
+              </button>
+              {isDropdownOpen && ( // Render dropdown only if open
+                <div className="absolute mt-2 bg-white shadow-lg rounded-md w-full">
                   {dropdownLinks.map((item) => (
                     <Link
                       key={item.path}
                       href={item.path}
                       className="block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-lilac"
+                      onClick={() => setIsDropdownOpen(false)} 
                     >
                       {item.name}
                     </Link>
                   ))}
                 </div>
-              </div>
+              )}
             </div>
 
             {/* Dashboard Link */}
@@ -77,11 +81,10 @@ const Mobile = ({
               Dashboard
             </Link>
 
-            {/* Call-to-Action Button */}
+            {/* Call-to-Action Buttons */}
             <Button className="bg-[#FF6600] hover:bg-[#FF6600]/80 text-white">
               Login / Sign Up
             </Button>
-
             <Button className="bg-[#FF6600] hover:bg-[#FF6600]/80 text-white">
               Request a Quote
             </Button>
