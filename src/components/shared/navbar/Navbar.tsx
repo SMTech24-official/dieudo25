@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const pathName = usePathname();
 
   useEffect(() => {
@@ -22,22 +23,10 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    {
-      path: "/",
-      name: "Home",
-    },
-    {
-      path: "/how-it-works",
-      name: "How it works",
-    },
-    {
-      path: "/find-garages",
-      name: "Find Garages",
-    },
-    {
-      path: "/register-garage",
-      name: "Register Your Garage",
-    },
+    { path: "/", name: "Home" },
+    { path: "/how-it-works", name: "How it works" },
+    { path: "/find-garages", name: "Find Garages" },
+    { path: "/register-garage", name: "Register Your Garage" },
   ];
 
   const dropdownLinks = [
@@ -62,7 +51,7 @@ const Navbar = () => {
           {/* Navigation Menu */}
           <nav className="hidden md:flex items-center space-x-6 font-medium">
             {/* Nav links */}
-            {navLinks?.map((item) => (
+            {navLinks.map((item) => (
               <Link
                 key={item.path}
                 href={item.path}
@@ -76,24 +65,29 @@ const Navbar = () => {
             ))}
 
             {/* Dropdown Menu */}
-            <div className="relative group">
-              <div className="group relative">
+              <div
+                className="relative"
+                onMouseEnter={() => setIsDropdownOpen(true)} 
+                onMouseLeave={() => setIsDropdownOpen(false)} 
+              >
                 <button className="text-gray-600 hover:text-lilac">
                   More
                 </button>
-                <div className="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-2 w-40">
-                  {dropdownLinks.map((item) => (
-                    <Link
-                      key={item.path}
-                      href={item.path}
-                      className="block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-lilac"
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
-                </div>
+                {isDropdownOpen && ( 
+                  <div className="absolute bg-white shadow-lg rounded-md mt-2 w-40">
+                    {dropdownLinks.map((item) => (
+                      <Link
+                        key={item.path}
+                        href={item.path}
+                        className="block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-lilac"
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
               </div>
-            </div>
+
 
             {/* Login / Sign Up Button */}
             <Link href="/sign-in">
