@@ -71,7 +71,7 @@ export default function Page({ params }: { params: { slug: string } }) {
         </div>
 
         {/* Right Side (Scrollable Content) */}
-        <div className="flex-1 h-[70vh] overflow-y-auto">
+        <div className="flex-1 h-[70vh] overflow-y-auto service_Details">
           <Video />
 
           {/* bio  */}
@@ -87,7 +87,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 
             {/* swiper  */}
 
-            <Swiper pagination={true} modules={[Pagination]} className="mySwiper w-full h-80">
+            <Swiper pagination={true} modules={[Pagination]} className="mySwiper w-full h-[30vh]">
               {
                 gallery?.map((data, idx) => <SwiperSlide key={idx}>
                   <Image
