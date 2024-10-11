@@ -1,9 +1,48 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import BookingModal from "@/components/bookingModal/BookingModal";
 import Video from "@/components/services/serviceDetailsPage/Video";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+
+
+// import required modules
+import { Pagination } from 'swiper/modules';
+
+
+import image1 from "../../../../assets/slider-image-1.jpg";
+import image2 from "../../../../assets/slider-image-2.jpg";
+import image3 from "../../../../assets/slider-image-3.jpg";
+import image4 from "../../../../assets/slider-image-4.jpg";
+import Image from "next/image";
+
+
+const gallery = [
+  {
+    image: image1,
+  },
+  {
+    image: image2,
+  },
+  {
+
+    image: image3,
+
+  },
+  {
+
+    image: image4,
+
+  },
+];
 
 export default function Page({ params }: { params: { slug: string } }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,11 +73,36 @@ export default function Page({ params }: { params: { slug: string } }) {
         {/* Right Side (Scrollable Content) */}
         <div className="flex-1 h-[70vh] overflow-y-auto">
           <Video />
-          <div className="mt-5 space-y-2">
+
+          {/* bio  */}
+          <div className="lg:mt-10 md:mt-7 mt-5 space-y-2 md:space-y-4">
             <h4 className="text-coal font-bold text-lg">BIO</h4>
             <p>At Smith's Auto Garage, we believe in keeping your ride running smoothly, no matter the make or model. With over 20 years of experience, our team of certified mechanics is dedicated to providing top-notch service, from routine maintenance to major repairs. Whether you need a quick oil change or a complete engine overhaul, we’ve got you covered. We pride ourselves on honest assessments, fair pricing, and getting you back on the road as soon as possible.
 
               When your car deserves the best, think Smith's Auto Garage — your trusted neighborhood mechanics.</p>
+          </div>
+          {/* bio  */}
+          <div className="lg:mt-10 md:mt-7 mt-5 space-y-2 md:space-y-4">
+            <h3 className="text-coal font-bold text-lg">Workshop Gallery</h3>
+
+            {/* swiper  */}
+
+            <Swiper pagination={true} modules={[Pagination]} className="mySwiper w-full h-80">
+              {
+                gallery?.map((data, idx) => <SwiperSlide key={idx}>
+                  <Image
+                  src={data.image}
+                  alt="wsdjiaod"
+                  layout="fill"
+                  objectFit="cover"
+                  className="lg:brightness-75 brightness-50 lg:group-hover:brightness-50 transition duration-500 group-hover:scale-105 "
+                />
+                </SwiperSlide>
+                )
+              }
+
+            </Swiper>
+
           </div>
         </div>
       </div>
