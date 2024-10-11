@@ -17,9 +17,8 @@ const Mobile = ({
   navLinks: { name: string; path: string }[];
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State for dropdown visibility
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); 
 
-  // Dropdown items for Contact + Blog
   const dropdownLinks = [
     { path: "/contact-us", name: "Contact" },
     { path: "/blog", name: "Blog" },
@@ -57,7 +56,7 @@ const Mobile = ({
             <div className="relative">
               <button
                 className="text-gray-600 hover:text-lilac"
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)} // Toggle dropdown visibility
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)} 
               >
                 More
               </button>
@@ -68,7 +67,7 @@ const Mobile = ({
                       key={item.path}
                       href={item.path}
                       className="block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-lilac"
-                      onClick={() => setIsDropdownOpen(false)} // Close dropdown on link click
+                      onClick={() => setIsDropdownOpen(false)} 
                     >
                       {item.name}
                     </Link>
