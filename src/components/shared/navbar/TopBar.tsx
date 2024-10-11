@@ -20,7 +20,7 @@ const TopBar = () => {
         </div>
         <div className="flex items-center space-x-3">
           <Button className="bg-lime-400 hover:bg-lime-500 text-gray-800 text-sm py-1 px-3 h-auto">
-            Post a job
+            Book Now
           </Button>
           <div className="flex items-center gap-1">
             <TfiWorld />
