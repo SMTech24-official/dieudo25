@@ -92,10 +92,10 @@ export default function Page({ params }: { params: { slug: string } }) {
                 gallery?.map((data, idx) => <SwiperSlide key={idx}>
                   <Image
                   src={data.image}
-                  alt="wsdjiaod"
+                  alt="Garage Image"
                   layout="fill"
                   objectFit="cover"
-                  className="lg:brightness-75 brightness-50 lg:group-hover:brightness-50 transition duration-500 group-hover:scale-105 "
+                  className=""
                 />
                 </SwiperSlide>
                 )

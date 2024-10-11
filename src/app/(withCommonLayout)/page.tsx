@@ -8,6 +8,7 @@ import HowItWorks from "@/components/home/HowItWorks";
 import PopularFreelancers from "@/components/home/PopularFreelancers";
 import SuccessStories from "@/components/home/SuccessStories";
 import JoinCommunity from "@/components/home/JoinCommunity";
+import Hero from "@/components/home/Hero";
 
 const iamges = [
   avatarImage,
@@ -44,6 +45,7 @@ const iamges = [
 const page = () => {
   return (
     <>
+      <Hero />
       <ActionBtnSection />
       <FreelancerSlider />
       <ServicesSection />
