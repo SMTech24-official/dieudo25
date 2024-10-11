@@ -17,6 +17,13 @@ const Mobile = ({
   navLinks: { name: string; path: string }[];
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Dropdown items for Contact + Blog
+  const dropdownLinks = [
+    { path: "/contact-us", name: "Contact" },
+    { path: "/blog", name: "Blog" },
+  ];
+
   return (
     <div className="grid grid-cols-2 gap-2">
       <Sheet>
@@ -25,36 +32,64 @@ const Mobile = ({
             asChild
             variant="ghost"
             size="icon"
-            className="md:hidden "
+            className="md:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle mobile menu"
           >
             <Menu className="h-6 w-6" />
           </Button>
         </SheetTrigger>
-        <SheetContent side={"left"} className=" ">
+        <SheetContent side={"left"}>
+          {/* Mobile Menu Content */}
           <div className="grid gap-4 py-4 grow">
             {navLinks?.map((item) => (
               <Link
                 key={item.path}
-                href="/home"
+                href={item.path}
                 className="text-gray-600 hover:text-gray-900"
               >
                 {item.name}
               </Link>
             ))}
-            <Link
-              href="/dashboard"
-              className="text-gray-600 hover:text-gray-900"
-            >
+
+            {/* Dropdown for Contact + Blog */}
+            <div className="relative group">
+              <div className="group relative">
+                <button className="text-gray-600 hover:text-lilac">
+                  More
+                </button>
+                <div className="mt-2 group-hover:block bg-white shadow-lg rounded-md w-full">
+                  {dropdownLinks.map((item) => (
+                    <Link
+                      key={item.path}
+                      href={item.path}
+                      className="block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-lilac"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Dashboard Link */}
+            <Link href="/dashboard" className="text-gray-600 hover:text-gray-900">
               Dashboard
             </Link>
-            <Button className="bg-lemon hover:bg-lemon/80 text-gray-800">
-              Sign up-it&apos;s free
+
+            {/* Call-to-Action Button */}
+            <Button className="bg-[#FF6600] hover:bg-[#FF6600]/80 text-white">
+              Login / Sign Up
+            </Button>
+
+            <Button className="bg-[#FF6600] hover:bg-[#FF6600]/80 text-white">
+              Request a Quote
             </Button>
           </div>
+
+          {/* Shopping Cart */}
           <SheetFooter className="grid gap-2">
-            <div className=" ">
+            <div className="relative">
               <Button
                 className="relative"
                 variant="ghost"

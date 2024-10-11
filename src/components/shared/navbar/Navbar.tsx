@@ -27,19 +27,24 @@ const Navbar = () => {
       name: "Home",
     },
     {
-      path: "/about-us",
-      name: "About Us",
-    },
-
-    {
-      path: "/services",
-      name: "Services",
+      path: "/how-it-works",
+      name: "How it works",
     },
     {
-      path: "/contact-us",
-      name: "Contact US",
+      path: "/find-garages",
+      name: "Find Garages",
+    },
+    {
+      path: "/register-garage",
+      name: "Register Your Garage",
     },
   ];
+
+  const dropdownLinks = [
+    { path: "/contact-us", name: "Contact" },
+    { path: "/blog", name: "Blog" },
+  ];
+
   return (
     <nav>
       <TopBar />
@@ -48,39 +53,66 @@ const Navbar = () => {
           isSticky ? "shadow-md py-2" : "py-4"
         }`}
       >
-        <div className="max-w-[1700px] mx-auto px-4    items-center justify-between w-full ">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="text-xl font-bold">
-              LOGO
+        <div className="max-w-[1700px] mx-auto px-4 flex items-center justify-between w-full">
+          {/* Logo */}
+          <Link href="/" className="text-xl font-bold">
+            LOGO
+          </Link>
+
+          {/* Navigation Menu */}
+          <nav className="hidden md:flex items-center space-x-6 font-medium">
+            {/* Nav links */}
+            {navLinks?.map((item) => (
+              <Link
+                key={item.path}
+                href={item.path}
+                className={cn(
+                  "text-gray-600 transition",
+                  item.path === pathName ? "text-lilac" : "hover:text-lilac"
+                )}
+              >
+                {item.name}
+              </Link>
+            ))}
+
+            {/* Dropdown Menu */}
+            <div className="relative group">
+              <div className="group relative">
+                <button className="text-gray-600 hover:text-lilac">
+                  More
+                </button>
+                <div className="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-2 w-40">
+                  {dropdownLinks.map((item) => (
+                    <Link
+                      key={item.path}
+                      href={item.path}
+                      className="block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-lilac"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Login / Sign Up Button */}
+            <Link href="/sign-in">
+              <Button className="bg-[#FF6600] px-8 hover:bg-[#FF6600]/80 text-white">
+                Login / Sign Up
+              </Button>
             </Link>
 
-            <nav className="hidden md:flex items-center space-x-6 font-medium">
-              {navLinks?.map((item) => (
-                <Link
-                  key={item.path}
-                  href={item.path}
-                  className={cn(
-                    "text-gray-600 transition",
-                    item.path === pathName ? "text-lilac" : "hover:text-lilac "
-                  )}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </nav>
+            {/* CTA Button */}
+            <Link href="/request-quote">
+              <Button className="bg-[#FF6600] px-8 hover:bg-[#FF6600]/80 text-white">
+                Request a Quote
+              </Button>
+            </Link>
+          </nav>
 
-            <div className="hidden md:flex items-center space-x-4">
-              <Link href={"/sign-in"}>
-                <Button className="bg-lemon px-8 hover:bg-lemon/80 text-gray-800">
-                  SignIn
-                </Button>
-              </Link>
-            </div>
-
-            <div className="w-full flex justify-end md:hidden">
-              {" "}
-              <Mobile navLinks={navLinks} />
-            </div>
+          {/* Mobile Menu */}
+          <div className="w-full flex justify-end md:hidden">
+            <Mobile navLinks={navLinks} />
           </div>
         </div>
       </div>
