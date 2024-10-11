@@ -10,6 +10,8 @@ import JoinCommunity from "@/components/home/JoinCommunity";
 import Hero from "@/components/home/Hero";
 import ProblemAndSolution from "@/components/home/ProblemAndSolution";
 import TestimonialsSlider from "@/components/home/TestimonialsSlider";
+import WhyChooseLiftWork from "@/components/home/WhyChooseLiftWork";
+import FeaturedGarages from "@/components/home/FeaturedGarages";
 
 const iamges = [
   avatarImage,
@@ -49,8 +51,11 @@ const page = () => {
       <Hero />
       <ProblemAndSolution/>
       <TestimonialsSlider />
+      <ActionBtnSection />
+      <WhyChooseLiftWork />
       <ServicesSection />
       <HowItWorks />
+      <FeaturedGarages />
       <PopularFreelancers />
       <ActionBtnSection />
       <SuccessStories />
