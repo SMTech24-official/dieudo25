@@ -1,25 +1,19 @@
+"use client";
+
+
 import { Facebook, Instagram, Twitter, Linkedin, Youtube } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 
 const footerLinks = [
   {
-    title: "Company",
+    title: "Quick Links",
     links: [
-      { name: "Freelancer Dashboard", href: "/freelancer-dashboard" },
-      { name: "Client Dashboard", href: "/client-dashboard" },
-      { name: "Freelancer Directory", href: "/freelancer-directory" },
-      { name: "About us", href: "/about" },
-    ],
-  },
-  {
-    title: "Resources",
-    links: [
-      { name: "Help & Support", href: "/help-support" },
+      { name: "Home", href: "/" },
+      { name: "Services", href: "/services" },
+      { name: "Contact", href: "/contact" },
       { name: "Blog", href: "/blog" },
-      { name: "Styleguide", href: "/styleguide" },
-      { name: "Licenses", href: "/licenses" },
-      { name: "Instructions", href: "/instructions" },
-      { name: "Changelog", href: "/changelog" },
+      { name: "Privacy Policy", href: "/privacy-policy" },
     ],
   },
 ];
@@ -33,11 +27,20 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const [email, setEmail] = useState("");
+
+  const handleNewsletterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // handle form submission logic here
+    alert(`Subscribed with: ${email}`);
+  };
+
   return (
-    <footer className="bg-coal text-white ">
-      <div className="container mx-auto  py-12 sm:px-6 lg:px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="col-span-1 md:col-span-2">
+    <footer className="bg-[#003366] text-white">
+      <div className="container mx-auto py-12 sm:px-6 lg:px-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* First Column: Logo and Social Links */}
+          <div className="col-span-1">
             <h2 className="text-2xl font-bold text-white mb-4">LOGO</h2>
             <p className="mb-4">
               <strong>Location</strong>
@@ -57,26 +60,60 @@ export default function Footer() {
               ))}
             </div>
           </div>
-          {footerLinks.map((column) => (
-            <div key={column.title}>
+
+          {/* Second Column: Quick Links */}
+          <div>
+            <h3 className="text-sm font-semibold text-white tracking-wider uppercase mb-4">
+              Quick Links
+            </h3>
+            <ul className="space-y-2">
+              {footerLinks[0].links.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="hover:text-white transition-colors duration-300"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Third Column: Contact Info and Newsletter */}
+          <div>
+            <h3 className="text-sm font-semibold text-white tracking-wider uppercase mb-4">
+              Contact Info
+            </h3>
+            <ul className="space-y-2">
+              <li>Email: info@liftwork.com</li>
+              <li>Phone: +264 81 234 5678</li>
+            </ul>
+            <div className="mt-6">
               <h3 className="text-sm font-semibold text-white tracking-wider uppercase mb-4">
-                {column.title}
+                Stay Updated!
               </h3>
-              <ul className="space-y-2">
-                {column.links.map((link) => (
-                  <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className="hover:text-white transition-colors duration-300"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              <form onSubmit={handleNewsletterSubmit}>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
+                  className="w-full px-4 py-2 rounded bg-gray-800 text-white placeholder-gray-400"
+                  required
+                />
+                <button
+                  type="submit"
+                  className="mt-4 bg-[#FF6600] hover:bg-[#FF6600]/80 text-white w-full py-2 rounded"
+                >
+                  Subscribe
+                </button>
+              </form>
             </div>
-          ))}
+          </div>
         </div>
+
+        {/* Footer Bottom */}
         <div className="mt-12 pt-8 border-t border-gray-700">
           <p className="text-base text-gray-400 text-center">
             Copyright © Skillhive
