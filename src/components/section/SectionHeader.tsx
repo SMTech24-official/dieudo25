@@ -21,7 +21,7 @@ export default function SectionHeader({
       )}
     >
       {subTitle && (
-        <p className="text-base font-medium text-lilac mb-2">{subTitle}</p>
+        <p className="text-base font-medium text-lilac mb-2">{subTitle && subTitle}</p>
       )}
       <h2 className="text-5xl font-medium text-gray-900 mb-4">{title}</h2>
       {description && <p className="text-gray-600 text-base">{description}</p>}

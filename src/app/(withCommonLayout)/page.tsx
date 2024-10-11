@@ -2,7 +2,6 @@ import React from "react";
 
 import avatarImage from "@/assets/portrait-smiling-blonde-woman.jpg";
 import ActionBtnSection from "@/components/home/ActionBtnSection";
-import FreelancerSlider from "@/components/home/FreelancherSlider";
 import ServicesSection from "@/components/home/ServiceSection";
 import HowItWorks from "@/components/home/HowItWorks";
 import PopularFreelancers from "@/components/home/PopularFreelancers";
@@ -10,6 +9,7 @@ import SuccessStories from "@/components/home/SuccessStories";
 import JoinCommunity from "@/components/home/JoinCommunity";
 import Hero from "@/components/home/Hero";
 import ProblemAndSolution from "@/components/home/ProblemAndSolution";
+import TestimonialsSlider from "@/components/home/TestimonialsSlider";
 
 const iamges = [
   avatarImage,
@@ -48,11 +48,11 @@ const page = () => {
     <>
       <Hero />
       <ProblemAndSolution/>
-      <ActionBtnSection />
-      <FreelancerSlider />
+      <TestimonialsSlider />
       <ServicesSection />
       <HowItWorks />
       <PopularFreelancers />
+      <ActionBtnSection />
       <SuccessStories />
       {/* <BlogPostGrid /> */}
       <JoinCommunity images={iamges} />
