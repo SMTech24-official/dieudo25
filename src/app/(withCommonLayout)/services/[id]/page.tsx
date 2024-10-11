@@ -34,8 +34,11 @@ export default function Page({ params }: { params: { slug: string } }) {
         {/* Right Side (Scrollable Content) */}
         <div className="flex-1 h-[70vh] overflow-y-auto">
           <Video />
-          <div className="mt-5">
+          <div className="mt-5 space-y-2">
             <h4 className="text-coal font-bold text-lg">BIO</h4>
+            <p>At Smith's Auto Garage, we believe in keeping your ride running smoothly, no matter the make or model. With over 20 years of experience, our team of certified mechanics is dedicated to providing top-notch service, from routine maintenance to major repairs. Whether you need a quick oil change or a complete engine overhaul, we’ve got you covered. We pride ourselves on honest assessments, fair pricing, and getting you back on the road as soon as possible.
+
+              When your car deserves the best, think Smith's Auto Garage — your trusted neighborhood mechanics.</p>
           </div>
         </div>
       </div>
