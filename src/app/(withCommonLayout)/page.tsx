@@ -8,6 +8,8 @@ import HowItWorks from "@/components/home/HowItWorks";
 import PopularFreelancers from "@/components/home/PopularFreelancers";
 import SuccessStories from "@/components/home/SuccessStories";
 import JoinCommunity from "@/components/home/JoinCommunity";
+import WhyChooseLiftWork from "@/components/home/WhyChooseLiftWork";
+import FeaturedGarages from "@/components/home/FeaturedGarages";
 
 const iamges = [
   avatarImage,
@@ -46,8 +48,10 @@ const page = () => {
     <>
       <ActionBtnSection />
       <FreelancerSlider />
+      <WhyChooseLiftWork />
       <ServicesSection />
       <HowItWorks />
+      <FeaturedGarages />
       <PopularFreelancers />
       <SuccessStories />
       {/* <BlogPostGrid /> */}

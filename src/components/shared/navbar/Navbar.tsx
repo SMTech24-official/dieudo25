@@ -33,8 +33,9 @@ const Navbar = () => {
     { path: "/contact-us", name: "Contact" },
     { path: "/blog", name: "Blog" },
   ];
+
   const handleToggleDropdown = () => {
-  setIsDropdownOpen((prev) => !prev);
+    setIsDropdownOpen((prev) => !prev); // Toggle dropdown open/close
   };
 
   return (
@@ -68,29 +69,27 @@ const Navbar = () => {
             ))}
 
             {/* Dropdown Menu */}
-              <div
-                className="relative"
-                onMouseEnter={() => setIsDropdownOpen(true)} 
-                onMouseLeave={() => setIsDropdownOpen(false)} 
+            <div className="relative">
+              <button 
+                className="text-gray-600 hover:text-lilac"
+                onClick={handleToggleDropdown} // Use the toggle function here
               >
-                <button className="text-gray-600 hover:text-lilac">
-                  More
-                </button>
-                {isDropdownOpen && ( 
-                  <div className="absolute bg-white shadow-lg rounded-md mt-2 w-40">
-                    {dropdownLinks.map((item) => (
-                      <Link
-                        key={item.path}
-                        href={item.path}
-                        className="block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-lilac"
-                      >
-                        {item.name}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-
+                More
+              </button>
+              {isDropdownOpen && ( 
+                <div className="absolute bg-white shadow-lg rounded-md mt-2 w-40">
+                  {dropdownLinks.map((item) => (
+                    <Link
+                      key={item.path}
+                      href={item.path}
+                      className="block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-lilac"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
 
             {/* Login / Sign Up Button */}
             <Link href="/sign-in">
