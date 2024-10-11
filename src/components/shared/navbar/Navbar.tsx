@@ -33,6 +33,9 @@ const Navbar = () => {
     { path: "/contact-us", name: "Contact" },
     { path: "/blog", name: "Blog" },
   ];
+  const handleToggleDropdown = () => {
+  setIsDropdownOpen((prev) => !prev);
+  };
 
   return (
     <nav>
