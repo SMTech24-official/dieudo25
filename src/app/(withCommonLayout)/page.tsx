@@ -9,6 +9,7 @@ import PopularFreelancers from "@/components/home/PopularFreelancers";
 import SuccessStories from "@/components/home/SuccessStories";
 import JoinCommunity from "@/components/home/JoinCommunity";
 import Hero from "@/components/home/Hero";
+import ProblemAndSolution from "@/components/home/ProblemAndSolution";
 
 const iamges = [
   avatarImage,
@@ -46,6 +47,7 @@ const page = () => {
   return (
     <>
       <Hero />
+      <ProblemAndSolution/>
       <ActionBtnSection />
       <FreelancerSlider />
       <ServicesSection />

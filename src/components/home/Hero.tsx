@@ -1,27 +1,28 @@
 "use client"
 
-import image4 from "@/assets/slider-image-4.jpg";
+import banner from "@/assets/banner.png";
 import Image from "next/image";
 
 
 const Hero = () => {
 
-    const handleSearch = (e) => {
+    const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const search = e.target.search.value
-        console.log(e.target.search.value);
+        const search = (e.target as HTMLFormElement).search.value;
+        console.log(search);
         // handle form submission logic here
         alert(`Search with: ${search}`);
     };
 
+
     return (
-        <div className="bg-[#003366]">
+        <div className="bg-primary">
             <div className=" max-w-[1700px] mx-auto px-4 text-white">
                 <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-0 md:gap-10 gap-4 items-center justify-center lg:p-10 md:py-8 py-5">
                     <div className="space-y-8 ">
                         <div className="space-y-2 ">
                             <h2 className="text-2xl md:text-3xl lg:text-5xl font-bold lg:w-[700px]">
-                                Find trusted garages near you, 
+                                Find trusted garages near you,
                                 in just a few clicks
                             </h2>
                             <h4 className="text-sm md:text-base">
@@ -38,7 +39,7 @@ const Hero = () => {
                                     name="search"
                                     type="search"
                                     placeholder="Search for any service..."
-                                    className="w-full peer px-4 py-2 rounded bg-gray-800 text-black placeholder-gray-400 bg-[#003366] border-b border-[#003366] outline-none focus:border-white"
+                                    className="w-full peer px-4 py-2 rounded bg-gray-800 text-black placeholder-gray-400 bg-primary border-b border-primary outline-none focus:border-white"
                                     required
                                 />
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin absolute right-0 opacity-35 peer-focus:opacity-100">
@@ -50,7 +51,7 @@ const Hero = () => {
 
                             <button
                                 type="submit"
-                                className="mt-4 bg-[#FF6600] hover:bg-[#FF6600]/80  w-full py-2 rounded text-white"
+                                className="mt-4 bg-secondary hover:bg-secondary/80  w-full py-2 rounded text-white"
                             >
                                 Find garages
                             </button>
@@ -58,7 +59,7 @@ const Hero = () => {
                     </div>
                     <div className="w-full h-[60vh] ">
                         <Image
-                            src={image4}
+                            src={banner}
                             alt="Banner Image"
                             objectFit="cover"
                             className="rounded-lg !w-full !h-full object-cover "
