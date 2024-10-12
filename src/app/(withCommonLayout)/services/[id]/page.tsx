@@ -22,6 +22,8 @@ import image3 from "../../../../assets/slider-image-3.jpg";
 import image4 from "../../../../assets/slider-image-4.jpg";
 import Image from "next/image";
 import { poppins } from "@/fonts/fonts";
+import { Review, TireService } from "@/types/types";
+import ReviewCard from "@/components/reviewCard/ReviewCard";
 
 
 const gallery = [
@@ -44,11 +46,7 @@ const gallery = [
 ];
 
 
-type TireService = {
-  serviceName: string;
-  description: string;
-  price: number; // Price in currency units
-};
+
 
 // Create an array of tire-related garage services
 const tireServices: TireService[] = [
@@ -104,9 +102,52 @@ const tireServices: TireService[] = [
   }
 ];
 
+const reviews: Review[] = [
+  {
+    customerName: "John Doe",
+    rating: 4.5,
+    comment: "Fast and professional service, tires delivered and installed in one hour. Very satisfied!",
+    date: "2024-10-01"
+  },
+  {
+    customerName: "Jane Smith",
+    rating: 4,
+    comment: "Excellent service! The staff was friendly, and they did a great job on my tires. Highly recommended!",
+    date: "2024-09-20"
+  },
+  {
+    customerName: "Mike Johnson",
+    rating: 4,
+    comment: "Good service, but it took a bit longer than expected. Overall, happy with the result.",
+    date: "2024-09-15"
+  },
+  {
+    customerName: "John Doe",
+    rating: 4.5,
+    comment: "Fast and professional service, tires delivered and installed in one hour. Very satisfied!",
+    date: "2024-10-01"
+  },
+  {
+    customerName: "Jane Smith",
+    rating: 4,
+    comment: "Excellent service! The staff was friendly, and they did a great job on my tires. Highly recommended!",
+    date: "2024-09-20"
+  },
+  {
+    customerName: "Mike Johnson",
+    rating: 4,
+    comment: "Good service, but it took a bit longer than expected. Overall, happy with the result.",
+    date: "2024-09-15"
+  }
+];
 
 export default function Page({ params }: { params: { slug: string } }) {
 
+  const [load, setLoad] = useState(3)
+
+  const handleReadMore = () => {
+    setLoad(load === 3 ? 6 : 3);
+  };
 
   const [isOpen, setIsOpen] = useState(false);
   console.log(params);
@@ -168,7 +209,13 @@ export default function Page({ params }: { params: { slug: string } }) {
         </Swiper>
       </div>
 
-      {/* address  */}
+ 
+
+
+      <div className="flex md:flex-row flex-col-reverse gap-6 w-full md:h-screen overflow-y-scroll garage_Details lg:mt-10">
+        {/* Left Side (Scrollable Content) */}
+        <div className="flex-1 ">
+               {/* address  */}
       <div className="lg:mt-6 md:mt-6 mt-4  md:space-y-2 space-y-1">
         <h2 className={`${poppins.className} lg:text-lg font-semibold flex items-center gap-2`}>
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg>
@@ -177,11 +224,6 @@ export default function Page({ params }: { params: { slug: string } }) {
           </span>
         </h2>
       </div>
-
-
-      <div className="flex md:flex-row flex-col-reverse gap-6 w-full h-screen overflow-y-scroll garage_Details lg:mt-10">
-        {/* Left Side (Scrollable Content) */}
-        <div className="flex-1 ">
           {/* Location */}
           <div className="h-[40vh] lg:mt-6 md:mt-6 mt-4">
             <iframe
@@ -192,7 +234,7 @@ export default function Page({ params }: { params: { slug: string } }) {
           </div>
 
           {/* Request a Quote */}
-          <div className="flex justify-center">
+          <div className="flex justify-center md:py-4 py-3">
             <button
               type="submit"
               className="mt-4 flex items-center gap-2 bg-secondary hover:bg-secondary/80  w-fit px-4 py-2 rounded text-white"
@@ -251,7 +293,7 @@ export default function Page({ params }: { params: { slug: string } }) {
             {/* price */}
 
             {/* Request a Quote */}
-            <div className="flex justify-center">
+            <div className="flex justify-center md:py-4 py-3">
               <button
                 type="submit"
                 className="mt-4 flex items-center gap-2 bg-secondary hover:bg-secondary/80  w-fit px-4 py-2 rounded text-white"
@@ -261,6 +303,25 @@ export default function Page({ params }: { params: { slug: string } }) {
               </button>
             </div>
             {/* Request a Quote */}
+
+            {/* review  */}
+            <div className="lg:mt-10 md:mt-7 mt-5 space-y-6 md:space-y-10">
+              <h4 className="text-coal font-bold text-lg uppercase">Customer Reviews</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {reviews.slice(0, load).map((review, index) => (
+                  <ReviewCard key={index} review={review} />
+                ))}
+              </div>
+              <div className="flex justify-center">
+                <button
+                  onClick={handleReadMore}
+                  type="submit"
+                  className="mt-4 flex items-center gap-2 bg-secondary hover:bg-secondary/80  w-fit px-4 py-2 rounded text-white"
+                >
+                  <span>Read  <span>{load ===3 ? "More": "Less"}</span> </span>
+                </button>
+              </div>
+            </div>
 
 
           </div>
