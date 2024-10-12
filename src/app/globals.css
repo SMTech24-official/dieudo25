@@ -27,24 +27,24 @@ html {
   }
 }
 
-.service_Details::-webkit-scrollbar {
-  width: 8px;
+.garage_Details::-webkit-scrollbar {
+  width: 0px;
 }
 
 /* Track */
-.service_Details::-webkit-scrollbar-track {
+.garage_Details::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px #F9F9F9; 
   border-radius: 10px;
 }
  
 /* Handle */
-.service_Details::-webkit-scrollbar-thumb {
+.garage_Details::-webkit-scrollbar-thumb {
   background: #003366; 
   border-radius: 10px;
 }
 
 /* Handle on hover */
-.service_Details::-webkit-scrollbar-thumb:hover {
+.garage_Details::-webkit-scrollbar-thumb:hover {
   background: #b30000; 
 }
 
