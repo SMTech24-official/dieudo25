@@ -2,8 +2,12 @@
 
 
 import { Facebook, Instagram, Twitter, Linkedin, Youtube } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import logo from "@/assets/logo.jpg"
+import { poppins } from "@/fonts/fonts";
+
 
 const footerLinks = [
   {
@@ -36,12 +40,15 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#003366] text-white">
+    <footer className="bg-primary text-white">
       <div className="container mx-auto py-12 sm:px-6 lg:px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* First Column: Logo and Social Links */}
           <div className="col-span-1">
-            <h2 className="text-2xl font-bold text-white mb-4">LOGO</h2>
+            {/* Logo */}
+            <Link href="/" className="text-xl font-bold">
+              <Image src={logo} alt="Company logo" width={60} height={50} />
+            </Link>
             <p className="mb-4">
               <strong>Location</strong>
               <br />
@@ -55,7 +62,7 @@ export default function Footer() {
                   className="text-gray-400 hover:text-white transition-colors duration-300"
                   aria-label={link.name}
                 >
-                  <link.icon className="h-6 w-6" />
+                  <link.icon className="h-6 w-6 hover:stroke-secondary transition-all duration-300" />
                 </a>
               ))}
             </div>
@@ -63,7 +70,7 @@ export default function Footer() {
 
           {/* Second Column: Quick Links */}
           <div>
-            <h3 className="text-sm font-semibold text-white tracking-wider uppercase mb-4">
+            <h3 className={`${poppins.className} text-sm font-semibold text-white tracking-wider uppercase mb-4`}>
               Quick Links
             </h3>
             <ul className="space-y-2">
@@ -71,7 +78,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="hover:text-white transition-colors duration-300"
+                    className="hover:text-secondary transition-colors duration-300"
                   >
                     {link.name}
                   </Link>
@@ -82,7 +89,7 @@ export default function Footer() {
 
           {/* Third Column: Contact Info and Newsletter */}
           <div>
-            <h3 className="text-sm font-semibold text-white tracking-wider uppercase mb-4">
+            <h3 className={`${poppins.className}text-sm font-semibold text-white tracking-wider uppercase mb-4`}>
               Contact Info
             </h3>
             <ul className="space-y-2">
@@ -90,7 +97,7 @@ export default function Footer() {
               <li>Phone: +264 81 234 5678</li>
             </ul>
             <div className="mt-6">
-              <h3 className="text-sm font-semibold text-white tracking-wider uppercase mb-4">
+              <h3 className={`${poppins.className} font-semibold text-white tracking-wider uppercase mb-4`}>
                 Stay Updated!
               </h3>
               <form onSubmit={handleNewsletterSubmit}>

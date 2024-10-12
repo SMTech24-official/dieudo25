@@ -34,14 +34,14 @@ const Mobile = ({ navLinks }: { navLinks: { name: string; path: string; icon: JS
   };
 
   return (
-    <div className="grid grid-cols-2 gap-2 md:hidden">
+    <div className="grid grid-cols-2 gap-2 lg:hidden">
       <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
         <SheetTrigger asChild>
           <Button
             asChild
             variant="ghost"
             size="icon"
-            className="md:hidden"
+            className="lg:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle mobile menu"
           >
