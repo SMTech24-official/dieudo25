@@ -1,14 +1,8 @@
 import { Metadata } from "next";
-import { Poppins } from "next/font/google";
 import "./globals.css";
+import { openSans } from "@/fonts/fonts";
 
-// Importing Poppins from Google Fonts
-const poppins = Poppins({
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  subsets: ["latin"],
-  variable: "--font-poppins",
-  display: "swap", // Optional: It defines the font loading behavior
-});
+
 
 export const metadata: Metadata = {
   title: "dieudo25",
@@ -22,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} antialiased bg-background`}>
+      <body className={` antialiased bg-background ${openSans.className}`}>
         {children}
       </body>
     </html>
