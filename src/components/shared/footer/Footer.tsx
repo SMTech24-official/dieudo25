@@ -104,7 +104,7 @@ export default function Footer() {
                 />
                 <button
                   type="submit"
-                  className="mt-4 bg-[#FF6600] hover:bg-[#FF6600]/80 text-white w-full py-2 rounded"
+                  className="mt-4 bg-secondary hover:bg-secondary/80 text-white w-full py-2 rounded"
                 >
                   Subscribe
                 </button>

@@ -10,7 +10,7 @@ import SectionHeader from "../section/SectionHeader";
 const steps = [
   {
     id: 1,
-    icon: <CheckCircle className="h-6 w-6 text-[#FF6600]" />, 
+    icon: <CheckCircle className="h-6 w-6 text-secondary" />, 
     title: "Search for a Service",
     description:
       "Start by entering the service you need (e.g., tire replacement, oil change, brake repair) in our search bar. LiftWork will instantly show you a list of verified garages near you that specialize in the service you’re looking for. Filter by services, location, availability, customer reviews, or pricing to find the perfect match for your needs.",

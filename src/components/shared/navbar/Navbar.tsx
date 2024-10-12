@@ -70,14 +70,13 @@ const Navbar = () => {
     <nav>
       <TopBar />
       <div
-        className={`sticky top-0 z-50 bg-white transition-all duration-300 ${
-          isSticky ? "shadow-md py-2" : "py-4"
-        }`}
+        className={`sticky top-0 z-50 bg-white transition-all duration-300 ${isSticky ? "shadow-md py-2" : "py-4"
+          }`}
       >
         <div className="max-w-[1700px] mx-auto px-4 flex items-center justify-between w-full">
           {/* Logo */}
           <Link href="/" className="text-xl font-bold">
-            <Image src={logo} alt="Company logo" width={60} height={50}/>
+            <Image src={logo} alt="Company logo" width={60} height={50} />
 
           </Link>
 
@@ -113,7 +112,7 @@ const Navbar = () => {
                     <Link
                       key={item.path}
                       href={item.path}
-                      className="flex items-center block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-primary"
+                      className="flex items-center px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-primary"
                     >
                       {item.icon}
                       {item.name}
@@ -124,26 +123,20 @@ const Navbar = () => {
             </div>
 
             {/* Separate Login and Sign Up Buttons */}
-            <Link href="/sign-in">
-              <Button className="bg-[#FF6600] flex items-center px-4 hover:bg-[#FF6600]/80 text-white">
-                <LogIn className="h-4 w-4 inline-block mr-1" />
-                Login
-              </Button>
-            </Link>
-            <Link href="/sign-up">
-              <Button className="bg-[#FF6600] flex items-center px-4 hover:bg-[#FF6600]/80 text-white">
-                <UserPlus className="h-4 w-4 inline-block mr-1" />
-                Sign Up
-              </Button>
-            </Link>
-
-            {/* CTA Button */}
-            <Link href="/request-quote">
-              <Button className="bg-[#FF6600] flex items-center px-8 hover:bg-[#FF6600]/80 text-white">
-                <Clipboard className="h-4 w-4 inline-block mr-1" />
-                Request a Quote
-              </Button>
-            </Link>
+            <div className="flex items-center gap-2">
+              <Link href="/sign-in">
+                <Button className="bg-secondary flex items-center px-4 hover:bg-secondary/80 text-white">
+                  <LogIn className="h-4 w-4 inline-block mr-1" />
+                  Login
+                </Button>
+              </Link>
+              <Link href="/sign-up">
+                <Button className="bg-secondary flex items-center px-4 hover:bg-secondary/80 text-white">
+                  <UserPlus className="h-4 w-4 inline-block mr-1" />
+                  Sign Up
+                </Button>
+              </Link>
+            </div>
           </nav>
 
           {/* Mobile Menu */}

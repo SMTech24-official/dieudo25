@@ -34,7 +34,7 @@ const Mobile = ({ navLinks }: { navLinks: { name: string; path: string; icon: JS
   };
 
   return (
-    <div className="grid grid-cols-2 gap-2">
+    <div className="grid grid-cols-2 gap-2 md:hidden">
       <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
         <SheetTrigger asChild>
           <Button
@@ -56,7 +56,7 @@ const Mobile = ({ navLinks }: { navLinks: { name: string; path: string; icon: JS
                 key={item.path}
                 href={item.path}
                 className="flex items-center text-gray-600 hover:text-gray-900"
-                onClick={handleLinkClick} 
+                onClick={handleLinkClick}
               >
                 {item.icon}
                 {item.name}
@@ -91,18 +91,20 @@ const Mobile = ({ navLinks }: { navLinks: { name: string; path: string; icon: JS
             {isDropdownOpen && <div className="h-16" />} {/* Spacer if dropdown is open */}
 
             {/* Separate Login and Sign Up Buttons */}
-            <Link href="/sign-in">
-              <Button className="bg-[#FF6600] hover:bg-[#FF6600]/80 text-white flex items-center" onClick={handleLinkClick}>
-                <LogIn className="h-4 w-4 inline-block mr-1" />
-                Login
-              </Button>
-            </Link>
-            <Link href="/sign-up">
-              <Button className="bg-[#FF6600] hover:bg-[#FF6600]/80 text-white flex items-center" onClick={handleLinkClick}>
-                <UserPlus className="h-4 w-4 inline-block mr-1" />
-                Sign Up
-              </Button>
-            </Link>
+            <div className="flex items-center gap-2">
+              <Link href="/sign-in">
+                <Button className="bg-secondary hover:bg-secondary/80 text-white flex items-center" onClick={handleLinkClick}>
+                  <LogIn className="h-4 w-4 inline-block mr-1" />
+                  Login
+                </Button>
+              </Link>
+              <Link href="/sign-up">
+                <Button className="bg-secondary hover:bg-secondary/80 text-white flex items-center" onClick={handleLinkClick}>
+                  <UserPlus className="h-4 w-4 inline-block mr-1" />
+                  Sign Up
+                </Button>
+              </Link>
+            </div>
           </div>
         </SheetContent>
       </Sheet>

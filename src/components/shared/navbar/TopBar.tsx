@@ -5,7 +5,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ChevronDown, Briefcase } from "lucide-react";
+import { ChevronDown, Briefcase, Clipboard } from "lucide-react";
+import Link from "next/link";
 import { TfiWorld } from "react-icons/tfi";
 
 const TopBar = () => {
@@ -15,13 +16,17 @@ const TopBar = () => {
         <div className="flex items-center space-x-2">
           <Briefcase className="h-5 w-5" />
           <span className="text-sm hidden sm:inline">
-            Post a job on Skillhive today and earn one month free!
+            Get a quick quote for your vehicle&apos;s service today!
           </span>
         </div>
         <div className="flex items-center space-x-3">
-          <Button className="bg-lime-400 hover:bg-lime-500 text-gray-800 text-sm py-1 px-3 h-auto">
-            Book Now
-          </Button>
+          {/* CTA Button */}
+          <Link href="/request-quote">
+            <Button className="bg-secondary flex items-center px-8 hover:bg-secondary/80 text-white">
+              <Clipboard className="h-4 w-4 inline-block mr-1" />
+              Request a Quote
+            </Button>
+          </Link>
           <div className="flex items-center gap-1">
             <TfiWorld />
             <DropdownMenu>
