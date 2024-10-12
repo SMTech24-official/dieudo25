@@ -13,8 +13,7 @@ export default function ContactForm() {
   } = useForm();
 
   // Form submit handler
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onSubmit = (data: any) => {
+  const onSubmit = (data) => {
     console.log(data);
     // Handle form submission, e.g., send data to a server
   };
@@ -42,11 +41,12 @@ export default function ContactForm() {
             </label>
             <Input
               id="name"
-              placeholder="Your name"
+              className="!outline-secondary border-none"
+              placeholder="write your name"
               {...register("name", { required: "Name is required" })}
             />
             {errors.name && (
-              <p className="text-red-500 text-sm">
+              <p className="text-red-500 text-sm mt-2 ">
                 {String(errors.name?.message)}
               </p>
             )}
@@ -59,6 +59,7 @@ export default function ContactForm() {
             </label>
             <Input
               id="email"
+              className="!outline-secondary border-none"
               type="email"
               placeholder="example@gmail.com"
               {...register("email", {
@@ -70,24 +71,25 @@ export default function ContactForm() {
               })}
             />
             {errors.email && (
-              <p className="text-red-500 text-sm">
+              <p className="text-red-500 text-sm mt-2">
                 {String(errors.email?.message)}
               </p>
             )}
           </div>
 
           {/* Subject */}
-          <div className="flex flex-col lg:col-span-2">
+          <div className="flex flex-col lg:col-span-2 ">
             <label htmlFor="subject" className="text-gray-600 mb-2 font-medium">
               Subject
             </label>
             <Input
               id="subject"
+              className="!outline-secondary border-none"
               placeholder="Subject"
               {...register("subject", { required: "Subject is required" })}
             />
             {errors.subject && (
-              <p className="text-red-500 text-sm">
+              <p className="text-red-500 text-sm mt-2">
                 {String(errors.subject?.message)}
               </p>
             )}
@@ -100,12 +102,13 @@ export default function ContactForm() {
             </label>
             <Textarea
               id="message"
+              className="!outline-secondary border-none"
               placeholder="Let us know your project details"
               rows={5}
               {...register("message", { required: "Message is required" })}
             />
             {errors.message && (
-              <p className="text-red-500 text-sm">
+              <p className="text-red-500 text-sm mt-2">
                 {String(errors.message?.message)}
               </p>
             )}
@@ -115,7 +118,7 @@ export default function ContactForm() {
           <div className="lg:col-span-2">
             <Button
               type="submit"
-              className="w-full flex items-center gap-2 bg-secondary hover:bg-primary text-base active:scale-95 transition text-[#7e92e3]hover:text-[#eff2fd]"
+              className="w-full flex items-center gap-2 bg-secondary hover:bg-[#FF6600]/80 text-base active:scale-95 transition text-[#7e92e3] hover:text-[#eff2fd]"
             >
               Just Send <GoArrowUpRight className="text-lg" />
             </Button>
