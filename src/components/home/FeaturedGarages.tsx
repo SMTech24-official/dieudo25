@@ -7,6 +7,8 @@ import Image from "next/image";
 import garage1 from "@/assets/slider-image-1.jpg";
 import garage2 from "@/assets/slider-image-2.jpg";
 import garage3 from "@/assets/slider-image-3.jpg";
+import SectionHeader from "../section/SectionHeader";
+
 
 const garages = [
   {
@@ -35,9 +37,11 @@ const garages = [
 export default function FeaturedGarages() {
   return (
     <section className="py-12 px-4">
-      <h2 className="text-3xl font-bold text-center text-[#003366] mb-8 font-montserrat">
-        Our Trusted Garages
-      </h2>
+      <SectionHeader
+        subTitle=""
+        title="Our Trusted Garages"
+        description=""
+      />
       <div className="flex justify-center gap-6">
         {garages.map((garage) => (
           <Card key={garage.id} className="w-[300px] h-[450px]">

@@ -40,19 +40,15 @@ export default function WhyChooseLiftWork() {
         description="Discover the advantages of working with us."
       />
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8"> 
           {features.map((feature, index) => (
             <Card
               key={index}
-              className="flex flex-col items-center p-6 shadow-md h-full bg-white"
+              className="flex flex-col items-center p-4 shadow-md h-[300px] bg-white lg:w-[310px]"
             >
-              <div className="mb-4">{feature.icon}</div>
-              <h3 className="text-2xl font-bold text-center text-[#003366] mb-2">
-                {feature.title}
-              </h3>
-              <p className="text-base font-medium text-gray-600 text-center">
-                {feature.description}
-              </p>
+              <div className="mb-3">{feature.icon}</div> 
+              <h3 className="text-xl font-bold text-center text-[#003366] mb-2">{feature.title}</h3> {/* Reduced margin-bottom */}
+              <p className="text-sm font-medium text-gray-600 text-center">{feature.description}</p>
             </Card>
           ))}
         </div>

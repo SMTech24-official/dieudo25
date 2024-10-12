@@ -22,9 +22,9 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
+    const navLinks = [
     { path: "/", name: "Home" },
-    { path: "/how-it-works", name: "How it works" },
+    { path: "#how-it-works", name: "How it works" },
     { path: "/find-garages", name: "Find Garages" },
     { path: "/register-garage", name: "Register Your Garage" },
   ];
@@ -35,7 +35,7 @@ const Navbar = () => {
   ];
 
   const handleToggleDropdown = () => {
-    setIsDropdownOpen((prev) => !prev); // Toggle dropdown open/close
+    setIsDropdownOpen((prev) => !prev); 
   };
 
   return (
@@ -59,9 +59,10 @@ const Navbar = () => {
               <Link
                 key={item.path}
                 href={item.path}
+                scroll={true}  
                 className={cn(
                   "text-gray-600 transition",
-                  item.path === pathName ? "text-lilac" : "hover:text-lilac"
+                  pathName === item.path ? "text-lilac" : "hover:text-lilac"
                 )}
               >
                 {item.name}
@@ -72,7 +73,7 @@ const Navbar = () => {
             <div className="relative">
               <button 
                 className="text-gray-600 hover:text-lilac"
-                onClick={handleToggleDropdown} // Use the toggle function here
+                onClick={handleToggleDropdown} 
               >
                 More
               </button>

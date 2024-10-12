@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { CheckCircle, ClipboardList, UserCheck, Star, Shield, Clock } from "lucide-react";
+import SectionHeader from "../section/SectionHeader";
+
 
 const steps = [
   {
@@ -73,8 +75,12 @@ export default function HowItWorks() {
   };
 
   return (
-    <section className="py-12 px-4">
-      <h2 className="text-3xl font-bold text-center text-[#003366] mb-10">How It Works</h2>
+    <section id="how-it-works" className="py-12 px-4">
+      <SectionHeader
+        subTitle=""
+        title="How It Works"
+        description=""
+      />
       <div className="max-w-6xl mx-auto relative overflow-hidden">
         <div
           className="flex transition-transform duration-300 ease-in-out"
@@ -89,7 +95,7 @@ export default function HowItWorks() {
             >
               <CardContent className="flex flex-col items-center justify-between text-center p-9 h-full">
                 <div className="mb-2">{step.icon}</div>
-                <h3 className="text-xl font-semibold text-[#003366] mb-1">{step.title}</h3>
+                <h3 className="text-xl font-semibold text-[#003366] flex-1">{step.title}</h3>
                 <p className="text-base text-gray-600">{step.description}</p>
               </CardContent>
             </Card>
