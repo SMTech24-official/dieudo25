@@ -14,21 +14,21 @@ const garages = [
   {
     id: 1,
     name: "Elite Auto Repair",
-    location: "New York, NY",
+    location: "123 Main St, New York, NY 10001",
     rating: 4.5,
     image: garage1,
   },
   {
     id: 2,
     name: "QuickFix Garage",
-    location: "Los Angeles, CA",
+    location: "456 Elm St, Los Angeles, CA 90001",
     rating: 4.7,
     image: garage2,
   },
   {
     id: 3,
     name: "AutoCare Experts",
-    location: "Houston, TX",
+    location: "789 Oak St, Houston, TX 77002",
     rating: 4.9,
     image: garage3,
   },
@@ -47,7 +47,7 @@ export default function FeaturedGarages() {
           {garages.map((garage) => (
             <Card
               key={garage.id}
-              className="w-full max-w-[320px] md:max-w-[350px] lg:max-w-[360px] h-[480px]"
+              className="w-full max-w-[320px] md:max-w-[350px] lg:max-w-[360px] h-[480px] shadow-md hover:shadow-lg transition-all hover:bg-hover_Color"
             >
               <CardContent className="p-6 flex flex-col justify-between h-full">
                 <div className="relative w-full h-48 mb-4">

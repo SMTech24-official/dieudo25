@@ -22,8 +22,8 @@ const TopBar = () => {
         <div className="flex items-center space-x-3">
           {/* CTA Button */}
           <Link href="/request-quote">
-            <Button className="bg-secondary flex items-center px-8 hover:bg-secondary/80 text-white">
-              <Clipboard className="h-4 w-4 inline-block mr-1" />
+            <Button className=" bg-secondary hover:bg-secondary/80 active:scale-95 transition-all w-full py-2 rounded-md text-white group">
+              <Clipboard className="h-4 w-4 inline-block mr-1 group-hover:fill-white" />
               Request a Quote
             </Button>
           </Link>

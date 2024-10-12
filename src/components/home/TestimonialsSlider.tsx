@@ -159,7 +159,7 @@ export default function TestimonialsSlider() {
             return (
               <Card
                 key={freelancer.id}
-                className={`absolute transition-all duration-300 ease-in-out ${offset === 0
+                className={`absolute transition-all duration-300 ease-in-out hover:bg-hover_Color ${offset === 0
                   ? "z-20 scale-100 opacity-100"
                   : Math.abs(offset) === 1
                     ? "z-10 scale-75 opacity-60"

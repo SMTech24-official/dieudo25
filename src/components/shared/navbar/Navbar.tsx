@@ -124,14 +124,14 @@ const Navbar = () => {
             {/* Separate Login and Sign Up Buttons */}
             <div className="flex items-center gap-2">
               <Link href="/sign-in">
-                <Button className="bg-secondary flex items-center px-4 hover:bg-secondary/80 text-white">
-                  <LogIn className="h-4 w-4 inline-block mr-1" />
+                <Button className=" bg-secondary hover:bg-secondary/80 active:scale-95 transition-all w-full py-2 rounded-md text-white group">
+                  <LogIn className="h-4 w-4 inline-block mr-1 group-hover:fill-white" />
                   Login
                 </Button>
               </Link>
               <Link href="/sign-up">
-                <Button className="bg-secondary flex items-center px-4 hover:bg-secondary/80 text-white">
-                  <UserPlus className="h-4 w-4 inline-block mr-1" />
+                <Button className=" bg-secondary hover:bg-secondary/80 active:scale-95 transition-all w-full py-2 rounded-md text-white group">
+                  <UserPlus className="h-4 w-4 inline-block mr-1 group-hover:fill-white" />
                   Sign Up
                 </Button>
               </Link>

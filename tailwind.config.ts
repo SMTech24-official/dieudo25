@@ -23,6 +23,7 @@ const config: Config = {
       colors: {
         primary: "#003366",
         secondary: "#FF6600",
+        hover_Color: "#eff2fd",
         foreground: "var(--foreground)",
         coal: "#353535",
         lemon: "#dafb57",
