@@ -3,7 +3,6 @@
 
 import BookingModal from "@/components/bookingModal/BookingModal";
 import { Button } from "@/components/ui/button";
-import { useEffect, useRef, useState } from "react";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -24,6 +23,7 @@ import Image from "next/image";
 import { poppins } from "@/fonts/fonts";
 import { Review, TireService } from "@/types/types";
 import ReviewCard from "@/components/reviewCard/ReviewCard";
+import { useState } from "react";
 
 
 const gallery = [

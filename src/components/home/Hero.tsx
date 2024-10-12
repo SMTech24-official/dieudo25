@@ -2,6 +2,7 @@
 
 import banner from "@/assets/banner.png";
 import Image from "next/image";
+import { Button } from "../ui/button";
 
 
 const Hero = () => {
@@ -49,12 +50,12 @@ const Hero = () => {
                             </div>
 
 
-                            <button
+                            <Button
                                 type="submit"
-                                className="mt-4 bg-secondary hover:bg-secondary/80  w-full py-2 rounded text-white"
+                                className="mt-4 bg-secondary hover:bg-secondary/80 active:scale-95 transition-all w-full py-2 rounded text-white"
                             >
                                 Find garages
-                            </button>
+                            </Button>
                         </form>
                     </div>
                     <div className="w-full h-[60vh] ">

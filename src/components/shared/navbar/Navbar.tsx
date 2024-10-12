@@ -17,7 +17,6 @@ import {
   UserCheck,
   LogIn,
   UserPlus,
-  Clipboard,
   Phone,
   BookOpen,
 } from "lucide-react"; // Import icons

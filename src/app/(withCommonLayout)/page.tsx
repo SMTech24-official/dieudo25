@@ -19,12 +19,6 @@ const page = () => {
       <FeaturedGarages />
       <TestimonialsSlider />
       <ActionBtnSection />
-      {/* <ServicesSection />
-      <PopularFreelancers />
-      <ActionBtnSection />
-      <SuccessStories /> */}
-      {/* <BlogPostGrid /> */}
-      {/* <JoinCommunity images={iamges} /> */}
     </>
   );
 };
