@@ -50,17 +50,17 @@ const page = () => {
     <>
       <Hero />
       <ProblemAndSolution/>
-      <TestimonialsSlider />
-      <ActionBtnSection />
       <WhyChooseLiftWork />
-      <ServicesSection />
       <HowItWorks />
       <FeaturedGarages />
+      <TestimonialsSlider />
+      <ActionBtnSection />
+      {/* <ServicesSection />
       <PopularFreelancers />
       <ActionBtnSection />
-      <SuccessStories />
+      <SuccessStories /> */}
       {/* <BlogPostGrid /> */}
-      <JoinCommunity images={iamges} />
+      {/* <JoinCommunity images={iamges} /> */}
     </>
   );
 };
