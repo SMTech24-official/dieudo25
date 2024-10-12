@@ -1,16 +1,28 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import TopBar from "./TopBar";
 import Mobile from "./Mobile";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import {
+  Home,
+  Info,
+  Wrench,
+  UserCheck,
+  LogIn,
+  UserPlus,
+  Clipboard,
+  Phone,
+  BookOpen,
+} from "lucide-react"; // Import icons
 
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement | null>(null); // Reference for dropdown
   const pathName = usePathname();
 
   useEffect(() => {
@@ -18,24 +30,36 @@ const Navbar = () => {
       setIsSticky(window.scrollY > 0);
     };
 
+    const handleClickOutside = (event: MouseEvent) => {
+      // Close dropdown if clicking outside
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
-    const navLinks = [
-    { path: "/", name: "Home" },
-    { path: "#how-it-works", name: "How it works" },
-    { path: "/find-garages", name: "Find Garages" },
-    { path: "/register-garage", name: "Register Your Garage" },
+  const navLinks = [
+    { path: "/", name: "Home", icon: <Home className="h-4 w-4 inline-block mr-1" /> },
+    { path: "#how-it-works", name: "How it works", icon: <Info className="h-4 w-4 inline-block mr-1" /> },
+    { path: "/find-garages", name: "Find Garages", icon: <Wrench className="h-4 w-4 inline-block mr-1" /> },
+    { path: "/register-garage", name: "Register Your Garage", icon: <UserCheck className="h-4 w-4 inline-block mr-1" /> },
   ];
 
   const dropdownLinks = [
-    { path: "/contact-us", name: "Contact" },
-    { path: "/blog", name: "Blog" },
+    { path: "/contact-us", name: "Contact", icon: <Phone className="h-4 w-4 inline-block mr-1" /> },
+    { path: "/blog", name: "Blog", icon: <BookOpen className="h-4 w-4 inline-block mr-1" /> },
   ];
 
   const handleToggleDropdown = () => {
-    setIsDropdownOpen((prev) => !prev); 
+    setIsDropdownOpen((prev) => !prev);
   };
 
   return (
@@ -59,32 +83,34 @@ const Navbar = () => {
               <Link
                 key={item.path}
                 href={item.path}
-                scroll={true}  
+                scroll={true}
                 className={cn(
-                  "text-gray-600 transition",
-                  pathName === item.path ? "text-lilac" : "hover:text-lilac"
+                  "text-gray-600 transition flex items-center",
+                  pathName === item.path ? "text-primary" : "hover:text-primary"
                 )}
               >
+                {item.icon}
                 {item.name}
               </Link>
             ))}
 
             {/* Dropdown Menu */}
-            <div className="relative">
-              <button 
-                className="text-gray-600 hover:text-lilac"
-                onClick={handleToggleDropdown} 
+            <div className="relative" ref={dropdownRef}>
+              <button
+                className="text-gray-600 hover:text-primary"
+                onClick={handleToggleDropdown}
               >
                 More
               </button>
-              {isDropdownOpen && ( 
-                <div className="absolute bg-white shadow-lg rounded-md mt-2 w-40">
+              {isDropdownOpen && (
+                <div className="absolute bg-white shadow-lg rounded-md mt-2 w-40 z-50">
                   {dropdownLinks.map((item) => (
                     <Link
                       key={item.path}
                       href={item.path}
-                      className="block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-lilac"
+                      className="flex items-center block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-primary"
                     >
+                      {item.icon}
                       {item.name}
                     </Link>
                   ))}
@@ -92,16 +118,24 @@ const Navbar = () => {
               )}
             </div>
 
-            {/* Login / Sign Up Button */}
+            {/* Separate Login and Sign Up Buttons */}
             <Link href="/sign-in">
-              <Button className="bg-[#FF6600] px-8 hover:bg-[#FF6600]/80 text-white">
-                Login / Sign Up
+              <Button className="bg-[#FF6600] flex items-center px-4 hover:bg-[#FF6600]/80 text-white">
+                <LogIn className="h-4 w-4 inline-block mr-1" />
+                Login
+              </Button>
+            </Link>
+            <Link href="/sign-up">
+              <Button className="bg-[#FF6600] flex items-center px-4 hover:bg-[#FF6600]/80 text-white">
+                <UserPlus className="h-4 w-4 inline-block mr-1" />
+                Sign Up
               </Button>
             </Link>
 
             {/* CTA Button */}
             <Link href="/request-quote">
-              <Button className="bg-[#FF6600] px-8 hover:bg-[#FF6600]/80 text-white">
+              <Button className="bg-[#FF6600] flex items-center px-8 hover:bg-[#FF6600]/80 text-white">
+                <Clipboard className="h-4 w-4 inline-block mr-1" />
                 Request a Quote
               </Button>
             </Link>
@@ -109,7 +143,7 @@ const Navbar = () => {
 
           {/* Mobile Menu */}
           <div className="w-full flex justify-end md:hidden">
-            <Mobile navLinks={navLinks} />
+            <Mobile navLinks={navLinks} /> {/* Pass handleLinkClick to Mobile */}
           </div>
         </div>
       </div>
