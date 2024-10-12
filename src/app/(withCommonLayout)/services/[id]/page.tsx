@@ -49,7 +49,24 @@ export default function Page({ params }: { params: { slug: string } }) {
   console.log(params);
   return (
     <main className="container  py-20">
-      <h2 className="mb-6 text-2xl font-medium">Title</h2>
+      {/* swiper  */}
+
+      <Swiper pagination={true} modules={[Pagination]} className="mySwiper w-full h-[30vh]">
+        {
+          gallery?.map((data, idx) => <SwiperSlide key={idx}>
+            <Image
+              src={data.image}
+              alt="Garage Image"
+              layout="fill"
+              objectFit="cover"
+              className=""
+            />
+          </SwiperSlide>
+          )
+        }
+
+      </Swiper>
+      <h2 className="mb-6 text-2xl font-medium">Quick Tire Garage</h2>
       <div className="flex md:flex-row flex-col-reverse gap-6 w-full">
         {/* Left Side (Sticky Content) */}
         <div className="md:w-[30%] w-full sticky top-20 h-[70vh]">
@@ -84,24 +101,6 @@ export default function Page({ params }: { params: { slug: string } }) {
           {/* bio  */}
           <div className="lg:mt-10 md:mt-7 mt-5 space-y-2 md:space-y-4">
             <h3 className="text-coal font-bold text-lg">Workshop Gallery</h3>
-
-            {/* swiper  */}
-
-            <Swiper pagination={true} modules={[Pagination]} className="mySwiper w-full h-[30vh]">
-              {
-                gallery?.map((data, idx) => <SwiperSlide key={idx}>
-                  <Image
-                  src={data.image}
-                  alt="Garage Image"
-                  layout="fill"
-                  objectFit="cover"
-                  className=""
-                />
-                </SwiperSlide>
-                )
-              }
-
-            </Swiper>
 
           </div>
         </div>
