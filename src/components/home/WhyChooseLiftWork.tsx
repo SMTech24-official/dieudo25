@@ -40,11 +40,11 @@ export default function WhyChooseLiftWork() {
         description="Discover the advantages of working with us."
       />
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-28 mt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-8"> {/* Adjusted gap to create more space */}
           {features.map((feature, index) => (
             <Card
               key={index}
-              className="flex flex-col items-center p-6 shadow-md h-[400px] bg-white lg:w-[310px] space-y-4 transition-colors transform origin-top hover:bg-[#eff2fd] ..." 
+              className="flex flex-col items-center p-6 shadow-md h-[400px] bg-white transition-colors transform origin-top hover:bg-[#eff2fd]"
             >
               <div className="mb-4">{feature.icon}</div>
               <h3 className="text-2xl font-bold text-center text-[#003366] flex-1">{feature.title}</h3>

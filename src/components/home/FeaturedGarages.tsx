@@ -2,13 +2,13 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Star } from "lucide-react";
 import Image from "next/image";
 import garage1 from "@/assets/slider-image-1.jpg";
 import garage2 from "@/assets/slider-image-2.jpg";
 import garage3 from "@/assets/slider-image-3.jpg";
 import SectionHeader from "../section/SectionHeader";
-
+import StarPicker from 'react-star-picker';
+import 'react-star-picker/styles.css';
 
 const garages = [
   {
@@ -38,16 +38,16 @@ export default function FeaturedGarages() {
   return (
     <section className="py-12 px-4">
       <SectionHeader
-        subTitle=""
-        title="Our Trusted Garages"
-        description=""
+        subTitle="Find your best garage partner"
+        title="Featured Garages"
+        description="Our Trusted Garages"
       />
       <div className="flex justify-center">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-4 max-w-[1200px] w-full px-2 sm:px-0">
           {garages.map((garage) => (
             <Card
               key={garage.id}
-              className="w-full max-w-[320px] md:max-w-[350px] lg:max-w-[360px] h-[480px]" // Slightly wider cards
+              className="w-full max-w-[320px] md:max-w-[350px] lg:max-w-[360px] h-[480px]"
             >
               <CardContent className="p-6 flex flex-col justify-between h-full">
                 <div className="relative w-full h-48 mb-4">
@@ -65,22 +65,20 @@ export default function FeaturedGarages() {
                   </h3>
                   <p className="text-sm text-gray-500 mb-4">{garage.location}</p>
                   <div className="flex items-center mb-4">
-                    {[...Array(5)].map((_, index) => (
-                      <Star
-                        key={index}
-                        className={`h-5 w-5 ${
-                          index < Math.floor(garage.rating)
-                            ? "text-yellow-500"
-                            : "text-gray-300"
-                        }`}
+                    <div className="flex items-center w-32"> {/* Fixed width for alignment */}
+                      <StarPicker
+                        size={20}
+                        starCount={5}
+                        disabled={true}
+                        value={garage.rating} // Provide the rating value directly
                       />
-                    ))}
+                    </div>
                     <span className="ml-2 text-sm text-gray-600">
                       {garage.rating.toFixed(1)}
                     </span>
                   </div>
                 </div>
-                <Button variant="default" className="w-full bg-primary">
+                <Button variant="default" className="w-full bg-secondary">
                   Get a Quote
                 </Button>
               </CardContent>
@@ -91,6 +89,3 @@ export default function FeaturedGarages() {
     </section>
   );
 }
-
-
-

@@ -80,9 +80,9 @@ export default function HowItWorks() {
   return (
     <section id="how-it-works" className="py-12 px-4">
       <SectionHeader
-        subTitle=""
-        title="How It Works"
-        description=""
+        subTitle="How It Works"
+        title="Working methodology"
+        description=" The best way to work"
       />
       <div className="max-w-6xl mx-auto relative overflow-hidden">
         <div
