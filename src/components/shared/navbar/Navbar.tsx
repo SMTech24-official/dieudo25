@@ -7,6 +7,9 @@ import TopBar from "./TopBar";
 import Mobile from "./Mobile";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import logo from "@/assets/logo.jpg"
+
+
 import {
   Home,
   Info,
@@ -18,6 +21,7 @@ import {
   Phone,
   BookOpen,
 } from "lucide-react"; // Import icons
+import Image from "next/image";
 
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -73,7 +77,8 @@ const Navbar = () => {
         <div className="max-w-[1700px] mx-auto px-4 flex items-center justify-between w-full">
           {/* Logo */}
           <Link href="/" className="text-xl font-bold">
-            LOGO
+            <Image src={logo} alt="Company logo" width={60} height={50}/>
+
           </Link>
 
           {/* Navigation Menu */}
