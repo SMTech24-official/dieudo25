@@ -27,7 +27,7 @@ const ProblemAndSolution = () => {
 
 
     return (
-        <section className="py-12 px-4">
+        <section className="py-12 lg:pb-20 pb-0 px-4">
             <SectionHeader
                 subTitle="The Challenge of Reliable Garage Services"
                 title="Simplifying Vehicle Maintenance with LiftWork"

@@ -33,14 +33,14 @@ const features = [
 
 export default function WhyChooseLiftWork() {
   return (
-    <section className="py-8 px-4">
+    <section className="py-12 lg:py-40 px-4">
       <SectionHeader
         subTitle="Why Choose LiftWork?"
         title="Key Features"
         description="Discover the advantages of working with us."
       />
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-8"> {/* Adjusted gap to create more space */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 "> {/* Adjusted gap to create more space */}
           {features.map((feature, index) => (
             <Card
               key={index}

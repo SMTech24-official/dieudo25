@@ -3,7 +3,7 @@ import React from "react";
 
 const ActionBtnSection = () => {
   return (
-    <header className="flex flex-col items-center justify-center py-20 px-4 text-center bg-[#F9F9F9]">
+    <header className="flex flex-col items-center justify-center py-12 lg:py-40 px-4 text-center bg-[#F9F9F9]">
       <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
         Ready to Book Your Service?
       </h1>

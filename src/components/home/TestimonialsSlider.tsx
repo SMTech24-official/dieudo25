@@ -133,7 +133,7 @@ export default function TestimonialsSlider() {
   };
 
   return (
-    <div className="px-4 py-12 ">
+    <div className="py-12 lg:py-40 px-4">
       <SectionHeader
         subTitle="What Our Customers Say"
         title="Trusted by Many, Loved by All"
