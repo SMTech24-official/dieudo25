@@ -10,6 +10,9 @@ body {
   font-family: var(--font-body);
 }
 
+html {
+  scroll-behavior: smooth;
+}
 
 
 @layer utilities {
@@ -44,3 +47,4 @@ body {
 .service_Details::-webkit-scrollbar-thumb:hover {
   background: #b30000; 
 }
+
