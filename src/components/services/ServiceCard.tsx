@@ -27,6 +27,7 @@ interface ServiceCardProps {
   offer: string
 }
 
+
 export default function ServiceCard({
   garage,
   ownerName,

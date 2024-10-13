@@ -3,47 +3,23 @@
 
 import BookingModal from "@/components/bookingModal/BookingModal";
 import { Button } from "@/components/ui/button";
-
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-
-
-// import required modules
-import { Pagination } from 'swiper/modules';
-
-
-import image1 from "../../../../assets/slider-image-1.jpg";
-import image2 from "../../../../assets/slider-image-2.jpg";
-import image3 from "../../../../assets/slider-image-3.jpg";
-import image4 from "../../../../assets/slider-image-4.jpg";
 import Image from "next/image";
 import { poppins } from "@/fonts/fonts";
 import { Review, TireService } from "@/types/types";
 import ReviewCard from "@/components/reviewCard/ReviewCard";
 import { useState } from "react";
+import ResponsiveSwiper from "@/components/responsiveSwiper/ResponsiveSwiper";
+import ImageGrid from "@/components/imageGrid/ImageGrid";
+import { reviews } from "@/utils/review";
 
 
 const gallery = [
-  {
-    image: image1,
-  },
-  {
-    image: image2,
-  },
-  {
+  "https://img.freepik.com/free-photo/auto-mechanic-checking-car_1303-14042.jpg?semt=ais_hybrid-rr-similar",
+  "https://img.freepik.com/free-photo/car-repair-maintenance-theme-mechanic-uniform-working-auto-service_627829-3918.jpg?semt=ais_hybrid-rr-similar",
+  "https://img.freepik.com/free-photo/happy-african-american-auto-repairman-talking-customer-workshop_637285-8626.jpg?semt=ais_hybrid-rr-similar",
+  "https://img.freepik.com/free-photo/female-mechanic-repairing-car_1170-1617.jpg?semt=ais_hybrid-rr-similar"
+]
 
-    image: image3,
-
-  },
-  {
-
-    image: image4,
-
-  },
-];
 
 
 
@@ -102,52 +78,18 @@ const tireServices: TireService[] = [
   }
 ];
 
-const reviews: Review[] = [
-  {
-    customerName: "John Doe",
-    rating: 4.5,
-    comment: "Fast and professional service, tires delivered and installed in one hour. Very satisfied!",
-    date: "2024-10-01"
-  },
-  {
-    customerName: "Jane Smith",
-    rating: 4,
-    comment: "Excellent service! The staff was friendly, and they did a great job on my tires. Highly recommended!",
-    date: "2024-09-20"
-  },
-  {
-    customerName: "Mike Johnson",
-    rating: 4,
-    comment: "Good service, but it took a bit longer than expected. Overall, happy with the result.",
-    date: "2024-09-15"
-  },
-  {
-    customerName: "John Doe",
-    rating: 4.5,
-    comment: "Fast and professional service, tires delivered and installed in one hour. Very satisfied!",
-    date: "2024-10-01"
-  },
-  {
-    customerName: "Jane Smith",
-    rating: 4,
-    comment: "Excellent service! The staff was friendly, and they did a great job on my tires. Highly recommended!",
-    date: "2024-09-20"
-  },
-  {
-    customerName: "Mike Johnson",
-    rating: 4,
-    comment: "Good service, but it took a bit longer than expected. Overall, happy with the result.",
-    date: "2024-09-15"
-  }
-];
-
 export default function Page({ params }: { params: { slug: string } }) {
 
-  const [load, setLoad] = useState(3)
+  const [load, setLoad] = useState(reviews.limit); // Start with showing 3 reviews
 
   const handleReadMore = () => {
-    setLoad(load === 3 ? 6 : 3);
+    if (load + 3 > reviews.total) {
+      setLoad(3); // Reset to show only 3 reviews if limit reached
+    } else {
+      setLoad(prevLoad => prevLoad + 3); // Load more reviews
+    }
   };
+
 
   const [isOpen, setIsOpen] = useState(false);
   console.log(params);
@@ -163,67 +105,31 @@ export default function Page({ params }: { params: { slug: string } }) {
       </h2>
 
       {/* gallarey  */}
-      <div className="md:grid grid-cols-4 grid-rows-2 lg:gap-4 md:gap-2 hidden">
-        {/* First div covering 2 columns and 2 rows */}
-        <div className="rounded-md col-span-2 row-span-2">
-          <Image src={gallery[0].image} alt={`Image ${0 + 1}`} className="rounded-md w-full h-full object-cover" />
-        </div>
-
-        {/* Second div */}
-        <div className="rounded-md col-start-3 col-span-1 row-start-1 row-span-1">
-          <Image src={gallery[1].image} alt={`Image ${1 + 1}`} className="rounded-md w-full h-full object-cover" />
-        </div>
-
-        {/* Third div */}
-        <div className="rounded-md col-start-3 col-span-1 row-start-2 row-span-1">
-          <Image src={gallery[2].image} alt={`Image ${2 + 1}`} className="rounded-md w-full h-full object-cover" />
-        </div>
-
-        {/* Fourth div */}
-        <div className="rounded-md col-start-4 row-start-1 col-span-1 row-span-1">
-          <Image src={gallery[3].image} alt={`Image ${3 + 1}`} className="rounded-md w-full h-full object-cover" />
-        </div>
-
-        {/* Fifth div */}
-        <div className="rounded-md col-start-4 col-span-1 row-start-2 row-span-1">
-          <Image src={gallery[1].image} alt={`Image ${1 + 1}`} className="rounded-md w-full h-full object-cover" />
-        </div>
-      </div>
+      <ImageGrid gallery={gallery} />
 
       {/* swiper for small devices */}
-      <div className="md:hidden block">
-        <Swiper pagination={true} modules={[Pagination]} className="mySwiper w-full h-[30vh] lg:mt-6 md:mt-6 mt-4">
-          {
-            gallery?.map((data, idx) => <SwiperSlide key={idx}>
-              <Image
-                src={data.image}
-                alt="Garage Image"
-                layout="fill"
-                objectFit="cover"
-                className=""
-              />
-            </SwiperSlide>
-            )
-          }
+      <ResponsiveSwiper
+        bannerImages={gallery}
+        pagination={true}
+        height="30vh" // You can adjust this value
+        additionalClasses="md:hidden block" // Add any additional classes you want
+      />
 
-        </Swiper>
-      </div>
 
- 
 
 
       <div className="flex md:flex-row flex-col-reverse gap-6 w-full md:h-screen overflow-y-scroll garage_Details lg:mt-10">
         {/* Left Side (Scrollable Content) */}
         <div className="flex-1 ">
-               {/* address  */}
-      <div className="lg:mt-6 md:mt-6 mt-4  md:space-y-2 space-y-1">
-        <h2 className={`${poppins.className} lg:text-lg font-semibold flex items-center gap-2`}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg>
-          <span>
-            1234 Tire Lane, Springfield, IL, 62704
-          </span>
-        </h2>
-      </div>
+          {/* address  */}
+          <div className="lg:mt-6 md:mt-6 mt-4  md:space-y-2 space-y-1">
+            <h2 className={`${poppins.className} lg:text-lg font-semibold flex items-center gap-2`}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg>
+              <span>
+                1234 Tire Lane, Springfield, IL, 62704
+              </span>
+            </h2>
+          </div>
           {/* Location */}
           <div className="h-[40vh] lg:mt-6 md:mt-6 mt-4">
             <iframe
@@ -308,7 +214,7 @@ export default function Page({ params }: { params: { slug: string } }) {
             <div className="lg:mt-10 md:mt-7 mt-5 space-y-6 md:space-y-10">
               <h4 className="text-coal font-bold text-lg uppercase">Customer Reviews</h4>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {reviews.slice(0, load).map((review, index) => (
+                {reviews.data.slice(0, load).map((review, index) => (
                   <ReviewCard key={index} review={review} />
                 ))}
               </div>
@@ -318,7 +224,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                   type="submit"
                   className="mt-4 flex items-center gap-2 bg-secondary hover:bg-secondary/80  w-fit px-4 py-2 rounded text-white"
                 >
-                  <span>Read  <span>{load ===3 ? "More": "Less"}</span> </span>
+                  <span>Read  <span>{load + 3 > reviews.total ? "Less" : "More"}</span> </span>
                 </button>
               </div>
             </div>

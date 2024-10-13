@@ -1,9 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import { useState, useEffect } from "react";
-
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import { servicesData } from "@/utils/servicesData";
 import SearchBar from "@/components/services/SearchBarProps";
 import FilterOptions from "@/components/services/FilterOptions";
