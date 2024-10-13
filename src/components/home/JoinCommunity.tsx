@@ -34,7 +34,7 @@ export default function JoinCommunity({
   const bubbles = generateBubbles(images, 50); // Generate 50 bubbles dynamically
 
   return (
-    <section className="relative w-full bg-lilac py-12 px-4 md:px-6 lg:px-4 mt-20">
+    <section className="relative w-full bg-lilac py-padding_base px-padding_small md:px-padding_top_bottom lg:px-padding_small mt-20">
       <div className="container  flex flex-col md:flex-row items-center justify-between">
         {/* Text Section */}
         <div className="text-white text-center md:text-left md:w-1/2">

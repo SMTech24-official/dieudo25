@@ -6,7 +6,8 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-
+import SectionHeader from "../../../components/section/SectionHeader";
+import { PaginationPage } from "@/components/services/PaginationPage";
 const blogPosts = [
   {
     title: "7 Client Red Flags Freelancers Should Look Out for",
@@ -36,10 +37,12 @@ const blogPosts = [
 
 export default function BlogPostGrid() {
   return (
-    <div className="container mx-auto px-padding_small pt-padding_medium">
-      <h2 className="text-5xl font-medium text-center mb-12 text-coal">
-        Gain More Knowledge with our Blog
-      </h2>
+    <div className="container mx-auto px-padding_small pt-padding_medium m-10">
+      <SectionHeader
+        subTitle="Find your best garage blogPosts..."
+        title=" Gain More Knowledge with our Blog"
+        description="Best blogs for your services"
+      />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {blogPosts.map((post, index) => (
           <Card
@@ -67,10 +70,15 @@ export default function BlogPostGrid() {
           </Card>
         ))}
       </div>
-      <div className="mt-8 text-center">
+      {/* <div className="mt-8 text-center">
         <Button className="bg-[#D0F288] text-gray-800 hover:bg-[#bfe06e]">
           View All
         </Button>
+      </div> */}
+
+      {/* Pagination */}
+      <div className="flex justify-center items-center mt-6 container px-5">
+        <PaginationPage />
       </div>
     </div>
   );

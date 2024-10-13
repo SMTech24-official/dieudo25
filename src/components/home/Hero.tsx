@@ -18,7 +18,7 @@ const Hero = () => {
 
 
     return (
-        <div className="bg-primary pb-12">
+        <div className="bg-primary pb-padding_small">
             <div className=" max-w-[1700px] mx-auto px-4 text-white">
                 <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-0 md:gap-10 gap-4 items-center justify-center lg:p-10 md:py-8 py-5">
                     <div className="space-y-8 ">
