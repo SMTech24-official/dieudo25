@@ -36,7 +36,7 @@ const ProblemAndSolution = () => {
             <div className="max-w-6xl mx-auto grid lg:grid-cols-2 grid-cols-1 lg:gap-0 md:gap-10 gap-4 items-center justify-center">
                 <div>
                     {problemSolutionSection.map((section, index) => (
-                        <Disclosure key={index} as="div" className="p-6 transition-all" defaultOpen={index === 0}>
+                        <Disclosure key={index} as="div" className="p-6 transition-all duration-300" defaultOpen={index === 0}>
                             <DisclosureButton className="group flex w-full items-start justify-between">
                                 <span className=" font-bold text-primary text-start">
                                     {section.title}

@@ -14,21 +14,21 @@ const garages = [
   {
     id: 1,
     name: "Elite Auto Repair",
-    location: "New York, NY",
+    location: "123 Main St, New York, NY 10001",
     rating: 4.5,
     image: garage1,
   },
   {
     id: 2,
     name: "QuickFix Garage",
-    location: "Los Angeles, CA",
+    location: "456 Elm St, Los Angeles, CA 90001",
     rating: 4.7,
     image: garage2,
   },
   {
     id: 3,
     name: "AutoCare Experts",
-    location: "Houston, TX",
+    location: "789 Oak St, Houston, TX 77002",
     rating: 4.9,
     image: garage3,
   },
@@ -42,12 +42,12 @@ export default function FeaturedGarages() {
         title="Featured Garages"
         description="Our Trusted Garages"
       />
-      <div className="flex justify-center">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-4 max-w-[1200px] w-full px-2 sm:px-0">
+      <div className="max-w-[1700px] mx-auto">
+        <div className="grid grid-cols-1 items-center justify-center md:grid-cols-2 lg:grid-cols-3  gap-4 md:gap-6 lg:gap-4 max-w-[1200px] w-full mx-auto px-2 sm:px-0 border">
           {garages.map((garage) => (
             <Card
               key={garage.id}
-              className="w-full max-w-[320px] md:max-w-[350px] lg:max-w-[360px] h-[480px]"
+              className="w-full max-w-[320px] md:max-w-[350px] lg:max-w-[360px] h-[480px] shadow-md hover:shadow-lg transition-all duration-300 hover:bg-hover_Color"
             >
               <CardContent className="p-6 flex flex-col justify-between h-full">
                 <div className="relative w-full h-48 mb-4">
@@ -79,7 +79,7 @@ export default function FeaturedGarages() {
                   </div>
                 </div>
                 <Button
-                  className="mt-4 flex items-center group gap-2 bg-secondary hover:bg-secondary/80 active:scale-95 transition-all w-full py-2 rounded text-white"
+                  className="mt-4 flex items-center group gap-2 bg-secondary hover:bg-secondary/80 active:scale-95 transition-all duration-300 w-full py-2 rounded text-white"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-wrench group-hover:fill-white"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
                   <span>Book Now </span>

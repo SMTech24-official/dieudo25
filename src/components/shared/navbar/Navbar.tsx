@@ -52,7 +52,7 @@ const Navbar = () => {
   const navLinks = [
     { path: "/", name: "Home", icon: <Home className="h-4 w-4 inline-block mr-1" /> },
     { path: "#how-it-works", name: "How it works", icon: <Info className="h-4 w-4 inline-block mr-1" /> },
-    { path: "/find-garages", name: "Find Garages", icon: <Wrench className="h-4 w-4 inline-block mr-1" /> },
+    { path: "/garages", name: "Find Garages", icon: <Wrench className="h-4 w-4 inline-block mr-1" /> },
     { path: "/register-garage", name: "Register Your Garage", icon: <UserCheck className="h-4 w-4 inline-block mr-1" /> },
   ];
 
@@ -76,11 +76,10 @@ const Navbar = () => {
           {/* Logo */}
           <Link href="/" className="text-xl font-bold">
             <Image src={logo} alt="Company logo" width={60} height={50} />
-
           </Link>
 
           {/* Navigation Menu */}
-          <nav className="hidden md:flex items-center space-x-6 font-medium">
+          <nav className="hidden lg:flex items-center space-x-6 font-medium">
             {/* Nav links */}
             {navLinks.map((item) => (
               <Link
@@ -124,14 +123,14 @@ const Navbar = () => {
             {/* Separate Login and Sign Up Buttons */}
             <div className="flex items-center gap-2">
               <Link href="/sign-in">
-                <Button className="bg-secondary flex items-center px-4 hover:bg-secondary/80 text-white">
-                  <LogIn className="h-4 w-4 inline-block mr-1" />
+                <Button className=" bg-secondary hover:bg-secondary/80 active:scale-95 transition-all duration-300 w-full py-2 rounded-md text-white group">
+                  <LogIn className="h-4 w-4 inline-block mr-1 group-hover:fill-white" /> 
                   Login
                 </Button>
               </Link>
               <Link href="/sign-up">
-                <Button className="bg-secondary flex items-center px-4 hover:bg-secondary/80 text-white">
-                  <UserPlus className="h-4 w-4 inline-block mr-1" />
+                <Button className=" bg-secondary hover:bg-secondary/80 active:scale-95 transition-all duration-300 w-full py-2 rounded-md text-white group">
+                  <UserPlus className="h-4 w-4 inline-block mr-1 group-hover:fill-white" />
                   Sign Up
                 </Button>
               </Link>
@@ -139,7 +138,7 @@ const Navbar = () => {
           </nav>
 
           {/* Mobile Menu */}
-          <div className="w-full flex justify-end md:hidden">
+          <div className="w-full flex justify-end lg:hidden">
             <Mobile navLinks={navLinks} /> {/* Pass handleLinkClick to Mobile */}
           </div>
         </div>

@@ -35,10 +35,11 @@ export default function FilterOptions() {
         <SelectContent>
           <SelectGroup>
             <SelectLabel>Service Options</SelectLabel>
-            <SelectItem value="Web Design">Web Design</SelectItem>
-            <SelectItem value="Graphic Design">Graphic Design</SelectItem>
-            <SelectItem value="SEO">SEO</SelectItem>
-            <SelectItem value="Digital Marketing">Digital Marketing</SelectItem>
+            <SelectItem value="Tire Installation">Tire Installation</SelectItem>
+            <SelectItem value="Tire Balancing">Tire Balancing</SelectItem>
+            <SelectItem value="Wheel Alignment">Wheel Alignment</SelectItem>
+            <SelectItem value="Tire Storage">Tire Storage</SelectItem>
+            <SelectItem value="Vehicle Pickup Service">Vehicle Pickup Service</SelectItem>
           </SelectGroup>
         </SelectContent>
       </Select>
@@ -50,10 +51,10 @@ export default function FilterOptions() {
         <SelectContent>
           <SelectGroup>
             <SelectLabel>Budget</SelectLabel>
-            <SelectItem value="Below $100">Below $100</SelectItem>
-            <SelectItem value="$100 - $500">$100 - $500</SelectItem>
-            <SelectItem value="$500 - $1000">$500 - $1000</SelectItem>
-            <SelectItem value="Above $1000">Above $1000</SelectItem>
+            <SelectItem value="Below CHF 100">Below CHF 100</SelectItem>
+            <SelectItem value="CHF 100 - CHF 500">CHF 100 - CHF 500</SelectItem>
+            <SelectItem value="CHF 500 - CHF 1000">CHF 500 - CHF 1000</SelectItem>
+            <SelectItem value="Above CHF 1000">Above CHF 1000</SelectItem>
           </SelectGroup>
         </SelectContent>
       </Select>
