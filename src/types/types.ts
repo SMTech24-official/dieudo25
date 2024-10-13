@@ -24,13 +24,13 @@ type Address = {
     country: string;
 };
 
-type OpeningHour = {
+export type OpeningHour = {
     id: number;
     slotName: string;
     days: string;
-    open?: string;  // Optional, for days that are closed
-    close?: string; // Optional, for days that are closed
-    status?: string; // Optional, for closed days
+    open?: string;  
+    close?: string; 
+    status?: string;
 };
 
 type Capacity = {
