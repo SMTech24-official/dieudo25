@@ -12,7 +12,6 @@ const steps = [
     title: "Search for a Service",
     description:
       "Start by entering the service you need (e.g., tire replacement, oil change, brake repair) in our search bar. LiftWork will instantly show you a list of verified garages near you that specialize in the service you’re looking for. Filter by services, location, availability, customer reviews, or pricing to find the perfect match for your needs.",
-
   },
   {
     id: 2,
@@ -20,7 +19,6 @@ const steps = [
     title: "Request a Quote",
     description:
       "Once you’ve selected a garage, submit a quote request directly through the platform. Fill out a short form describing your vehicle and the services you need (e.g., tire replacement, brake repairs, general maintenance). You can also specify additional details, such as preferred appointment times or any concerns you might have.",
-     
   },
   {
     id: 3,
@@ -28,7 +26,6 @@ const steps = [
     title: "Review and Accept",
     description:
       "After submitting your request, the garage will review your information and send a detailed quote for the services. You’ll receive notifications when your quote is ready. Review the pricing, services offered, and time estimates. If satisfied, you can confirm the service and proceed with the booking.",
-    
   },
   {
     id: 4,
@@ -36,7 +33,6 @@ const steps = [
     title: "Book Your Appointment",
     description:
       "Choose a time slot that works best for you from the garage’s real-time availability calendar. LiftWork’s scheduling system ensures that only available slots are shown, allowing for instant booking. Once confirmed, your appointment details will be saved to your dashboard, where you can track the service progress.",
-    
   },
   {
     id: 5,
@@ -75,6 +71,15 @@ export default function HowItWorks() {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + steps.length) % steps.length);
   };
 
+  // Hover effect - pause on hover
+  const pauseOnHover = () => clearInterval(autoPlayRef.current as NodeJS.Timeout);
+
+  const resumeAutoPlay = () => {
+    autoPlayRef.current = setInterval(() => {
+      nextSlide();
+    }, 3000);
+  };
+
   return (
     <section id="how-it-works" className="py-12 lg:py-40 px-4">
       <SectionHeader
@@ -88,16 +93,26 @@ export default function HowItWorks() {
           style={{
             transform: `translateX(-${currentIndex * (100 / 3)}%)`,
           }}
+          onMouseEnter={pauseOnHover}
+          onMouseLeave={resumeAutoPlay}
         >
           {steps.map((step) => (
             <Card
               key={step.id}
-              className="flex-shrink-0 group w-[100%] sm:w-[50%] lg:w-[33.33%] h-[380px] transition-all duration-300 mx-4 cursor-pointer hover:bg-hover_Color"
+              className="flex-shrink-0 group w-[100%] sm:w-[50%] lg:w-[30.5%] h-[380px] transition-all duration-300 mx-4 cursor-pointer relative overflow-hidden hover:bg-hover_Color"
             >
-              <CardContent className="flex flex-col items-center justify-between text-center p-9 h-full">
+              {/* Hover Effect Background */}
+              <span className="absolute inset-0 bg-[#eff2fd] transition-all origin-top-left duration-300 ease-in-out scale-0 group-hover:scale-100 rounded-lg z-0"></span>
+
+              {/* Icon and Content */}
+              <CardContent className="relative z-10 flex flex-col items-center justify-between text-center p-9 h-full">
                 <div className="mb-2">{step.icon}</div>
-                <h3 className="text-xl font-semibold text-[#003366] flex-1">{step.title}</h3>
-                <p className="text-base text-gray-600">{step.description}</p>
+                <h3 className="text-xl font-semibold text-[#003366] flex-1 group-hover:text-primary transition-all ease-out duration-300">
+                  {step.title}
+                </h3>
+                <p className="text-base text-gray-600 group-hover:text-primary transition-all ease-out duration-300">
+                  {step.description}
+                </p>
               </CardContent>
             </Card>
           ))}

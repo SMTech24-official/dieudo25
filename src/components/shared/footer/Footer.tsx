@@ -1,13 +1,11 @@
 "use client";
 
-
-import { Facebook, Instagram, Twitter, Linkedin, Youtube } from "lucide-react";
+import { Facebook, Instagram, Twitter, Linkedin, Youtube, Mail  } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import logo from "@/assets/logo.jpg"
+import logo from "@/assets/logo.jpg";
 import { poppins } from "@/fonts/fonts";
-
 
 const footerLinks = [
   {
@@ -35,7 +33,6 @@ export default function Footer() {
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // handle form submission logic here
     alert(`Subscribed with: ${email}`);
   };
 
@@ -45,7 +42,6 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* First Column: Logo and Social Links */}
           <div className="col-span-1">
-            {/* Logo */}
             <Link href="/" className="text-xl font-bold">
               <Image src={logo} alt="Company logo" width={60} height={50} />
             </Link>
@@ -89,7 +85,7 @@ export default function Footer() {
 
           {/* Third Column: Contact Info and Newsletter */}
           <div>
-            <h3 className={`${poppins.className}text-sm font-semibold text-white tracking-wider uppercase mb-4`}>
+            <h3 className={`${poppins.className} text-sm font-semibold text-white tracking-wider uppercase mb-4`}>
               Contact Info
             </h3>
             <ul className="space-y-2">
@@ -100,22 +96,26 @@ export default function Footer() {
               <h3 className={`${poppins.className} font-semibold text-white tracking-wider uppercase mb-4`}>
                 Stay Updated!
               </h3>
-              <form onSubmit={handleNewsletterSubmit}>
+              <form onSubmit={handleNewsletterSubmit} className="flex items-center space-x-2 gap-2 relative">
+                <label htmlFor="email" className="md:text-xl">
+                  Email:
+                </label>
                 <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email"
-                  className="w-full px-4 py-2 rounded bg-gray-800 text-white placeholder-gray-400"
-                  required
-                />
-                <button
-                  type="submit"
-                  className="mt-4 bg-secondary hover:bg-secondary/80 text-white w-full py-2 rounded"
-                >
-                  Subscribe
-                </button>
+                 id="Search"
+                 name="search"
+                 type="search"
+                 placeholder="Type your email..."
+                 className="w-full peer px-4 py-2 rounded bg-gray-800 text-black placeholder-gray-400 bg-primary border-b border-primary outline-none focus:border-white"
+                 required
+                 />
+                  <Mail className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 opacity-35 peer-focus:opacity-100 transition-colors duration-300" />
               </form>
+              <button
+                type="submit"
+                className="mt-4 bg-secondary hover:bg-secondary/80 text-white w-full py-2 rounded"
+              >
+                Subscribe
+              </button>
             </div>
           </div>
         </div>
@@ -129,13 +129,13 @@ export default function Footer() {
         <div className="mt-4 flex justify-center space-x-6">
           <Link
             href="/privacy-policy"
-            className="text-sm text-gray-400 hover:text-white transition-colors duration-300"
+            className="text-sm text-gray-400 hover:text-secondary transition-colors duration-300"
           >
             Privacy Policy
           </Link>
           <Link
             href="/terms-of-service"
-            className="text-sm text-gray-400 hover:text-white transition-colors duration-300"
+            className="text-sm text-gray-400 hover:text-secondary transition-colors duration-300"
           >
             Terms of Service
           </Link>

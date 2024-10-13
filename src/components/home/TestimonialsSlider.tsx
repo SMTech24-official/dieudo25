@@ -1,6 +1,5 @@
 "use client";
 
-
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -58,11 +57,7 @@ const customers = [
   },
 ];
 
-
 export default function TestimonialsSlider() {
-
-
-
   const [currentIndex, setCurrentIndex] = useState(2);
   const autoPlayRef = useRef<null | NodeJS.Timeout>(null);
   const sliderRef = useRef<HTMLDivElement | null>(null);
@@ -159,7 +154,7 @@ export default function TestimonialsSlider() {
             return (
               <Card
                 key={freelancer.id}
-                className={`absolute transition-all duration-300 ease-in-out hover:bg-hover_Color ${offset === 0
+                className={`absolute hover:bg-[#eff2fd] transition-all duration-300 origin-top-left  ease-in-out group-hover:scale-100 ${offset === 0
                   ? "z-20 scale-100 opacity-100"
                   : Math.abs(offset) === 1
                     ? "z-10 scale-75 opacity-60"
@@ -171,13 +166,12 @@ export default function TestimonialsSlider() {
                       : ""
                   }`}
               >
-                <CardContent className="p-6 xl:w-[800px] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[300px] " >
 
+                <CardContent className="p-6 xl:w-[800px] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[300px] ">
 
-                  <h3 className="text-lg font-semibold mb-5">
+                  <h3 className="text-lg font-semibold mb-5 group-hover:text-primary transition-all ease-out duration-300">
                     &quot;{freelancer.description}&quot;
                   </h3>
-
 
                   <div className="relative flex items-center w-20 h-20">
                     <Image
@@ -189,17 +183,21 @@ export default function TestimonialsSlider() {
                     />
 
                     <div className="ml-24">
-                      <h3 className="text-lg font-semibold mb-1 text-nowrap">
+                      <h3 className="text-lg font-semibold mb-1 text-nowrap group-hover:text-primary transition-all ease-out duration-300">
                         {freelancer.name}
                       </h3>
 
-                      <div className="w-32">
+                      <div className="flex items-center">
                         <StarPicker
                           size={20}
                           starCount={5}
                           disabled={true}
-                          className=""
-                          value={freelancer.rating} />
+                          className="w-380px"
+                          value={freelancer.rating}
+                        />
+                        <span className="text-sm text-gray-600 group-hover:text-primary transition-all duration-300 ease-out">
+                          {freelancer.rating}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -229,6 +227,5 @@ export default function TestimonialsSlider() {
         </Button>
       </div>
     </div>
-
   );
 }

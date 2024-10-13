@@ -34,7 +34,6 @@ const Navbar = () => {
     };
 
     const handleClickOutside = (event: MouseEvent) => {
-      // Close dropdown if clicking outside
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsDropdownOpen(false);
       }

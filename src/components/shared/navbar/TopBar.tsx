@@ -12,7 +12,7 @@ import { TfiWorld } from "react-icons/tfi";
 const TopBar = () => {
   return (
     <div className="bg-coal">
-      <div className=" text-white max-w-6xl mx-auto px-4 py-2 flex justify-between items-center">
+      <div className="text-white max-w-6xl mx-auto px-4 py-2 flex justify-between items-center">
         <div className="flex items-center space-x-2">
           <Briefcase className="h-5 w-5" />
           <span className="text-sm hidden sm:inline">
@@ -22,7 +22,7 @@ const TopBar = () => {
         <div className="flex items-center space-x-3">
           {/* CTA Button */}
           <Link href="/request-quote">
-            <Button className=" bg-secondary hover:bg-secondary/80 active:scale-95 transition-all duration-300 w-full py-2 rounded-md text-white group">
+            <Button className="bg-secondary hover:bg-secondary/80 active:scale-95 transition-all duration-300 w-full py-2 rounded-md text-white group">
               <Clipboard className="h-4 w-4 inline-block mr-1 group-hover:fill-white" />
               Request a Quote
             </Button>
@@ -33,7 +33,8 @@ const TopBar = () => {
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
-                  className="text-white text-sm outline-none focus:outline-none focus:border-none h-auto p-1"
+                  className="text-white text-sm h-auto p-1 outline-none border-none
+                             hover:bg-transparent hover:text-white focus:outline-none hover:focus:outline-none focus:ring-0 focus:bg-transparent"
                 >
                   EN <ChevronDown className="ml-1 h-4 w-4" />
                 </Button>
