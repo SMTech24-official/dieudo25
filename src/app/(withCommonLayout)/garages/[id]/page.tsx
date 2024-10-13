@@ -4,12 +4,13 @@
 import BookingModal from "@/components/bookingModal/BookingModal";
 import { Button } from "@/components/ui/button";
 import { poppins } from "@/fonts/fonts";
-import { TireService } from "@/types/types";
+import { Garage, TireService } from "@/types/types";
 import ReviewCard from "@/components/reviewCard/ReviewCard";
 import { useState } from "react";
 import ResponsiveSwiper from "@/components/responsiveSwiper/ResponsiveSwiper";
 import ImageGrid from "@/components/imageGrid/ImageGrid";
 import { reviews } from "@/utils/review";
+import { garage } from "@/utils/garageData";
 
 
 const gallery = [
@@ -89,9 +90,28 @@ export default function Page({ params }: { params: { slug: string } }) {
     }
   };
 
-
   const [isOpen, setIsOpen] = useState(false);
   console.log(params);
+
+
+  const {
+    garageName,
+    owner: { name: ownerName, contact: { phone, email } },
+    location: { address: { street, postalCode, city, canton } },
+    openingHours,
+    capacity: { maxVehiclesPerDay },
+    timeSlotAvailability: { emergencyService },
+    servicesOffered,
+    ratings: { rating, total: totalRatings },
+    pricing: { currency, price: { min_price, max_price } },
+    images: { profile, banners },
+    realTimeAvailability,
+    tireDelivery,
+    specialRequests,
+    offers,
+    garageBio
+  } = garage;
+
   return (
     <main className="container  md:py-20 py-10 w-full h-full">
 
@@ -99,16 +119,16 @@ export default function Page({ params }: { params: { slug: string } }) {
       <h2 className={`${poppins.className} lg:text-2xl md:text-xl text-lg md:mb-2 mb-1 font-semibold flex items-center gap-2`}>
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-warehouse"><path d="M22 8.35V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.35A2 2 0 0 1 3.26 6.5l8-3.2a2 2 0 0 1 1.48 0l8 3.2A2 2 0 0 1 22 8.35Z" /><path d="M6 18h12" /><path d="M6 14h12" /><rect width="12" height="12" x="6" y="10" /></svg>
         <span>
-          Quick Tire Garage
+          {garageName}
         </span>
       </h2>
 
       {/* gallarey  */}
-      <ImageGrid gallery={gallery} />
+      <ImageGrid gallery={banners} />
 
       {/* swiper for small devices */}
       <ResponsiveSwiper
-        bannerImages={gallery}
+        bannerImages={banners}
         pagination={true}
         height="30vh" // You can adjust this value
         additionalClasses="md:hidden block" // Add any additional classes you want
@@ -124,9 +144,12 @@ export default function Page({ params }: { params: { slug: string } }) {
           <div className="lg:mt-6 md:mt-6 mt-4  md:space-y-2 space-y-1">
             <h2 className={`${poppins.className} lg:text-lg font-semibold flex items-center gap-2`}>
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg>
-              <span>
-                1234 Tire Lane, Springfield, IL, 62704
-              </span>
+              <p>
+                <span>{postalCode} </span>
+                <span>{street}, </span>
+                <span>{city}, </span>
+                <span>{canton},</span>
+              </p>
             </h2>
           </div>
           {/* Location */}
@@ -155,16 +178,7 @@ export default function Page({ params }: { params: { slug: string } }) {
             <div className="lg:mt-10 md:mt-7 mt-5 space-y-2 md:space-y-4">
               <h4 className="text-coal font-bold text-lg uppercase">BIO</h4>
               <p>
-                At Smith's Auto Garage, we believe in keeping your ride running
-                smoothly, no matter the make or model. With over 20 years of
-                experience, our team of certified mechanics is dedicated to providing
-                top-notch service, from routine maintenance to major repairs. Whether
-                you need a quick oil change or a complete engine overhaul, we’ve got
-                you covered. We pride ourselves on honest assessments, fair pricing,
-                and getting you back on the road as soon as possible.
-                <br />
-                When your car deserves the best, think Smith's Auto Garage — your
-                trusted neighborhood mechanics.
+                {garageBio}
               </p>
             </div>
             {/* End Bio */}
@@ -172,7 +186,12 @@ export default function Page({ params }: { params: { slug: string } }) {
             <div className="lg:mt-10 md:mt-7 mt-5 space-y-2 md:space-y-4">
               <h4 className="text-coal font-bold text-lg uppercase">Service Offered</h4>
               <div>
-                {tireServices.map((service, index) => (
+                {/* serviceName
+serviceDetails
+min_price
+max_price
+averageTime */}
+                {servicesOffered.map((service, index) => (
                   <div key={index} className="p-4 flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-life-buoy"><circle cx="12" cy="12" r="10" /><path d="m4.93 4.93 4.24 4.24" /><path d="m14.83 9.17 4.24-4.24" /><path d="m14.83 14.83 4.24 4.24" /><path d="m9.17 14.83-4.24 4.24" /><circle cx="12" cy="12" r="4" /></svg>
                     <p className="font-semibold">{service.serviceName}</p>
@@ -186,11 +205,11 @@ export default function Page({ params }: { params: { slug: string } }) {
             <div className="lg:mt-10 md:mt-7 mt-5 space-y-2 md:space-y-4">
               <h4 className="text-coal font-bold text-lg uppercase">Competitive Price</h4>
               <div className="flex items-center justify-center flex-wrap lg:gap-4 ">
-                {tireServices.map((service, index) => (
+                {servicesOffered.map((service, index) => (
                   <div key={index} className="p-4  w-96 h-40 relative rounded-md shadow-md space-y-2 hover:shadow-lg flex flex-col hover:cursor-pointer">
                     <h5 className="font-semibold flex-1">{service.serviceName}</h5>
-                    <p className="flex-grow">{service.description}</p>
-                    <p className="text-primary font-bold">${service.price.toFixed(2)}</p>
+                    <p className="flex-grow">{service.serviceDetails}</p>
+                    <p className="text-primary font-bold">Starting From {service.min_price.toFixed(2)}</p>
                   </div>
                 ))}
               </div>
@@ -237,6 +256,7 @@ export default function Page({ params }: { params: { slug: string } }) {
         {/* Right Side (Sticky Content) */}
         <div className="h-[50vh] md:w-[30%] top-0 sticky">
           <div className="bg-white h-full w-full p-4 shadow-md">
+
             <div className="mb-5">
               <Button
                 onClick={() => setIsOpen(true)}
@@ -246,10 +266,6 @@ export default function Page({ params }: { params: { slug: string } }) {
               </Button>
               <BookingModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
             </div>
-            {/* Add your sticky content here */}
-            <p>Important Links</p>
-            <p>Contact Information</p>
-            {/* You can add more elements as needed */}
           </div>
         </div>
         {/* End Right Side (Sticky Content) */}
