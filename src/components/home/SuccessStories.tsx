@@ -30,7 +30,7 @@ const testimonials = [
 
 export default function SuccessStories() {
   return (
-    <div className="py-12 px-4 md:px-6 lg:px-8 bg-gray-50">
+    <div className="py-padding_base px-4 md:px-6 lg:px-8 bg-gray-50">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
