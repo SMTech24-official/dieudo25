@@ -21,7 +21,7 @@ export default function ServiceCard({
   console.log(bannerImage);
   return (
     <Link
-      href={`/services/${encodeURIComponent(sellerName)}`}
+      href={`/garages/${encodeURIComponent(sellerName)}`}
       className="border border-lemon p-4 rounded-lg shadow-md block"
     >
       <Image
