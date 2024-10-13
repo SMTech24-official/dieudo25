@@ -1,4 +1,4 @@
-/* eslint-disable react/no-unescaped-entities */
+
 "use client";
 
 import BookingModal from "@/components/bookingModal/BookingModal";
@@ -13,6 +13,12 @@ import { reviews } from "@/utils/review";
 import { garage } from "@/utils/garageData";
 import TimeSlots from "@/components/timeSlots/TimeSlots";
 import { isGarageOpen } from "@/helper/openStatus";
+import Image from "next/image";
+import StarPicker from "react-star-picker";
+import 'react-star-picker/styles.css';
+import wheel from "@/assets/wheel.png"
+
+
 
 
 const gallery = [
@@ -26,59 +32,6 @@ const gallery = [
 
 
 
-// Create an array of tire-related garage services
-const tireServices: TireService[] = [
-  {
-    serviceName: "Tire Rotation",
-    description: "Rotate your tires to ensure even wear and extend tire life.",
-    price: 25.00
-  },
-  {
-    serviceName: "Tire Alignment",
-    description: "Adjust the angles of the wheels to the manufacturer's specifications.",
-    price: 75.00
-  },
-  {
-    serviceName: "Tire Balancing",
-    description: "Balance your tires to ensure a smooth ride and even wear.",
-    price: 50.00
-  },
-  {
-    serviceName: "Tire Inspection",
-    description: "Inspect tires for wear, damage, and proper inflation.",
-    price: 15.00
-  },
-  {
-    serviceName: "Tire Replacement",
-    description: "Replace old or damaged tires with new ones.",
-    price: 100.00
-  },
-  {
-    serviceName: "Tire Repair",
-    description: "Repair punctured or damaged tires to extend their life.",
-    price: 30.00
-  },
-  {
-    serviceName: "Winter Tire Installation",
-    description: "Install winter tires for improved traction in snow and ice.",
-    price: 40.00
-  },
-  {
-    serviceName: "Summer Tire Installation",
-    description: "Install summer tires for optimal performance in warm weather.",
-    price: 40.00
-  },
-  {
-    serviceName: "Tire Pressure Monitoring System (TPMS) Check",
-    description: "Check and reset your TPMS for accurate tire pressure readings.",
-    price: 20.00
-  },
-  {
-    serviceName: "Tire Clean and Shine",
-    description: "Clean and apply shine to your tires for enhanced appearance.",
-    price: 10.00
-  }
-];
 
 export default function Page({ params }: { params: { slug: string } }) {
 
@@ -139,9 +92,9 @@ export default function Page({ params }: { params: { slug: string } }) {
 
 
 
-      <div className="flex md:flex-row flex-col-reverse gap-6 w-full md:h-screen overflow-y-scroll garage_Details lg:mt-10">
+      <div className="flex md:flex-row flex-col-reverse gap-6 w-full  lg:mt-10">
         {/* Left Side (Scrollable Content) */}
-        <div className="flex-1 ">
+        <div className="flex-1 md:h-screen overflow-y-scroll garage_Details">
           {/* address  */}
           <div className="lg:mt-6 md:mt-6 mt-4  md:space-y-2 space-y-1">
             <h2 className={`${poppins.className} lg:text-lg font-semibold flex items-center gap-2`}>
@@ -184,15 +137,22 @@ export default function Page({ params }: { params: { slug: string } }) {
               </p>
             </div>
             {/* End Bio */}
+
+
+            <div className="lg:mt-10 md:mt-7 mt-5  shadow-md rounded-md flex items-center justify-center gap-2 md:p-6 p-3 bg-hover_Color animate-pulse">
+
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-tags fill-secondary"><path d="m15 5 6.3 6.3a2.4 2.4 0 0 1 0 3.4L17 19" /><path d="M9.586 5.586A2 2 0 0 0 8.172 5H3a1 1 0 0 0-1 1v5.172a2 2 0 0 0 .586 1.414L8.29 18.29a2.426 2.426 0 0 0 3.42 0l3.58-3.58a2.426 2.426 0 0 0 0-3.42z" /><circle cx="6.5" cy="9.5" r=".5" fill="currentColor" /></svg>
+
+              <p className="md:text-lg">
+                {offers}
+              </p>
+            </div>
+
+
             {/* SERVICE */}
             <div className="lg:mt-10 md:mt-7 mt-5 space-y-2 md:space-y-4">
               <h4 className="text-coal font-bold text-lg uppercase">Service Offered</h4>
               <div>
-                {/* serviceName
-serviceDetails
-min_price
-max_price
-averageTime */}
                 {servicesOffered.map((service, index) => (
                   <div key={index} className="p-4 flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-life-buoy"><circle cx="12" cy="12" r="10" /><path d="m4.93 4.93 4.24 4.24" /><path d="m14.83 9.17 4.24-4.24" /><path d="m14.83 14.83 4.24 4.24" /><path d="m9.17 14.83-4.24 4.24" /><circle cx="12" cy="12" r="4" /></svg>
@@ -211,7 +171,10 @@ averageTime */}
                   <div key={index} className="p-4  w-96 h-40 relative rounded-md shadow-md space-y-2 hover:shadow-lg flex flex-col hover:cursor-pointer">
                     <h5 className="font-semibold flex-1">{service.serviceName}</h5>
                     <p className="flex-grow">{service.serviceDetails}</p>
-                    <p className="text-primary font-bold">Starting From {service.min_price.toFixed(2)}</p>
+                    <div>
+                      <p className="text-primary font-bold">Average Time: {service.averageTime}</p>
+                      <p className="text-primary font-bold">Starting From {service.min_price.toFixed(2)}</p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -229,6 +192,34 @@ averageTime */}
               </button>
             </div>
             {/* Request a Quote */}
+
+            <div className="lg:mt-10 md:mt-7 mt-5 space-y-2 md:space-y-4">
+              <h4 className="text-coal font-bold text-lg uppercase">Tier Delivery</h4>
+              <div className="flex items-center justify-center flex-wrap lg:gap-4 ">
+                {tireDelivery.map((tier, index) => (
+                  <div key={index} className="p-4  w-96 h-40 relative rounded-md shadow-md space-y-2 hover:shadow-lg flex flex-col hover:cursor-pointer">
+                    <Image src={wheel} alt="wheel logo" width={50} height={50}/>
+                    <div>
+                      <h5 className="font-semibold flex-1">Brand: {tier.brand}</h5>
+                      <p className="flex-grow">Delivery Time: {tier.deliveryTime}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="lg:mt-10 md:mt-7 mt-5 space-y-2 md:space-y-4">
+              <h4 className="text-coal font-bold text-lg uppercase">Special Services</h4>
+              <div className="flex items-center justify-center flex-wrap lg:gap-4 ">
+                {specialRequests.map((special, index) => (
+                  <div key={index} className="p-4  w-96 h-32 relative rounded-md shadow-md space-y-2 hover:shadow-lg flex flex-col hover:cursor-pointer">
+                      <h5 className="font-semibold flex-1">{special.serviceType}</h5>
+                      <p className="flex-grow">{special.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
 
             {/* review  */}
             <div className="lg:mt-10 md:mt-7 mt-5 space-y-6 md:space-y-10">
@@ -256,11 +247,35 @@ averageTime */}
 
 
         {/* Right Side (Sticky Content) */}
-        <div className="h-[50vh] md:w-[30%] top-0 sticky">
+        <div className="h-fit md:w-[30%] top-0 sticky">
           <div className="bg-white h-full w-full p-4 shadow-md">
-
+            {/* owner  */}
+            <div className="flex items-center gap-4">
+              <div className="flex rounded-full overflow-hidden">
+                <Image
+                  width={500}
+                  height={500}
+                  src={profile}
+                  alt={`image  of ${ownerName}`}
+                  className="size-[50px]"
+                />
+              </div>
+              <div className="space-y-1">
+                <h3 className="font-semibold text-sm flex-1">{ownerName}</h3>
+                <div className="flex items-center gap-1">
+                  <StarPicker
+                    size={20}
+                    starCount={5}
+                    disabled={true}
+                    className=""
+                    halfStars={true}
+                    value={rating} />
+                  <span className="text-sm">{rating} / {totalRatings}</span>
+                </div>
+              </div>
+            </div>
             {/* contact  */}
-            <div>
+            <div className="mt-5">
               <p className="uppercase font-semibold">Contact Information</p>
               <div className="space-y-2 mt-4 ">
                 <p className="flex items-center gap-2 ">
@@ -288,18 +303,23 @@ averageTime */}
               <p className="uppercase font-semibold flex items-center justify-between"><span>Price range</span> <span className="">{currency} {min_price} - {max_price}</span> </p>
             </div>
             <div className="mt-5">
-              <p className="uppercase font-semibold flex items-center justify-between"><span>Emergency Service</span> <span className="">{ emergencyService ? "Available" : "Not Available" }</span> </p>
+              <p className="uppercase font-semibold flex items-center justify-between"><span>Emergency Service</span> <span className="">{emergencyService ? "Available" : "Not Available"}</span> </p>
             </div>
 
-            <div className="mb-5">
-              <Button
-                onClick={() => setIsOpen(true)}
-                className="mt-4 flex items-center gap-2 bg-secondary hover:bg-secondary/80  w-full px-4 py-2 rounded text-white"
-              >
-                Book Now
-              </Button>
-              <BookingModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
-            </div>
+            {
+              realTimeAvailability && (
+                <div className="mb-5">
+                  <Button
+                    onClick={() => setIsOpen(true)}
+                    className="mt-4 flex items-center gap-2 bg-secondary hover:bg-secondary/80  w-full px-4 py-2 rounded text-white"
+                  >
+                    Book Now
+                  </Button>
+                  <BookingModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+                </div>
+              )
+            }
+
           </div>
         </div>
         {/* End Right Side (Sticky Content) */}
