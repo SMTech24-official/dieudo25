@@ -18,6 +18,7 @@ const ReviewCard: React.FC<{ review: Review }> = ({ review }) => {
                           starCount={5}
                           disabled={true}
                           className=""
+                          halfStars={true}
                           value={review.rating} />
                 {/* Display the rating */}
                 <span className="text-gray-600 font-medium ml-2">{review.rating}/5</span>
