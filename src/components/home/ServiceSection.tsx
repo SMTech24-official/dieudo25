@@ -33,7 +33,7 @@ const services = [
 
 export default function ServicesSection() {
   return (
-    <section className="py-12 px-4">
+    <section className="py-padding_base px-padding_small">
       <SectionHeader
         subTitle="What our freelancers are best at"
         title="Popular Freelance Services"

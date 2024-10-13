@@ -81,7 +81,7 @@ export default function HowItWorks() {
   };
 
   return (
-    <section id="how-it-works" className="py-12 lg:py-40 px-4">
+    <section id="how-it-works" className="py-padding_base lg:py-padding_base px-padding_small">
       <SectionHeader
         subTitle="How It Works"
         title="Working methodology"

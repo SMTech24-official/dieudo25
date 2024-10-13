@@ -36,7 +36,7 @@ const garages = [
 
 export default function FeaturedGarages() {
   return (
-    <section className="py-12 lg:py-40 px-4">
+    <section className="py-padding_base lg:py-padding_base px-padding_small">
       <SectionHeader
         subTitle="Find your best garage partner"
         title="Featured Garages"

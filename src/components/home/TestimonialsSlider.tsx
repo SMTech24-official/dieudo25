@@ -128,7 +128,7 @@ export default function TestimonialsSlider() {
   };
 
   return (
-    <div className="py-12 lg:py-40 px-4">
+    <div className="py-padding_base lg:py-padding_extra_large px-padding_small">
       <SectionHeader
         subTitle="What Our Customers Say"
         title="Trusted by Many, Loved by All"

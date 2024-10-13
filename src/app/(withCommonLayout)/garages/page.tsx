@@ -24,7 +24,7 @@ export default function ServicesPage() {
   //   }, [page, query]);
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-padding_small py-padding_medium">
       {/* Service Cards */}
       <SearchBar onSearch={setQuery} />
       <FilterOptions />

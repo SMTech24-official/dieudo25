@@ -13,9 +13,8 @@ export default function ContactForm() {
   } = useForm();
 
   // Form submit handler
-  const onSubmit = (data) => {
-    console.log(data);
-    // Handle form submission, e.g., send data to a server
+  const onSubmit = () => {
+    
   };
 
   return (
@@ -41,7 +40,7 @@ export default function ContactForm() {
             </label>
             <Input
               id="name"
-              className="!outline-secondary border-none"
+              className="!outline-primary "
               placeholder="write your name"
               {...register("name", { required: "Name is required" })}
             />
@@ -59,7 +58,7 @@ export default function ContactForm() {
             </label>
             <Input
               id="email"
-              className="!outline-secondary border-none"
+              className="!outline-primary "
               type="email"
               placeholder="example@gmail.com"
               {...register("email", {
@@ -84,7 +83,7 @@ export default function ContactForm() {
             </label>
             <Input
               id="subject"
-              className="!outline-secondary border-none"
+              className="!outline-primary "
               placeholder="Subject"
               {...register("subject", { required: "Subject is required" })}
             />
@@ -102,7 +101,7 @@ export default function ContactForm() {
             </label>
             <Textarea
               id="message"
-              className="!outline-secondary border-none"
+              className="!outline-primary "
               placeholder="Let us know your project details"
               rows={5}
               {...register("message", { required: "Message is required" })}

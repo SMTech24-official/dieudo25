@@ -36,7 +36,7 @@ const freelancers: freelancersDataTypes[] = [
 
 export default function PopularFreelancers() {
   return (
-    <section className="py-12 px-4">
+    <section className="py-padding_base px-padding_small">
       <div className="max-w-6xl mx-auto">
         <SectionHeader title="Popular Freelancers" />
 
