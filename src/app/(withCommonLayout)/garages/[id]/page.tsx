@@ -3,9 +3,8 @@
 
 import BookingModal from "@/components/bookingModal/BookingModal";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import { poppins } from "@/fonts/fonts";
-import { Review, TireService } from "@/types/types";
+import { TireService } from "@/types/types";
 import ReviewCard from "@/components/reviewCard/ReviewCard";
 import { useState } from "react";
 import ResponsiveSwiper from "@/components/responsiveSwiper/ResponsiveSwiper";

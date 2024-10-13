@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import { useState, useEffect } from "react";
-import { servicesData } from "@/utils/servicesData";
 import SearchBar from "@/components/services/SearchBarProps";
 import FilterOptions from "@/components/services/FilterOptions";
 import { PaginationPage } from "@/components/services/PaginationPage";
 import ServiceCard from "@/components/services/ServiceCard";
+import { garagesData } from "@/utils/garageData";
 
 export default function ServicesPage() {
   const [services, setServices] = useState([]);
@@ -29,9 +29,9 @@ export default function ServicesPage() {
       <SearchBar onSearch={setQuery} />
       <FilterOptions />
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {servicesData?.services.map((service) => (
-          <div key={service.id}>
-            <ServiceCard {...service} />
+        {garagesData?.garages.map((garages) => (
+          <div key={garages.id}>
+            <ServiceCard {...garages} />
           </div>
         ))}
       </div>
