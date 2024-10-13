@@ -12,6 +12,7 @@ import ImageGrid from "@/components/imageGrid/ImageGrid";
 import { reviews } from "@/utils/review";
 import { garage } from "@/utils/garageData";
 import TimeSlots from "@/components/timeSlots/TimeSlots";
+import { isGarageOpen } from "@/helper/openStatus";
 
 
 const gallery = [
@@ -273,12 +274,21 @@ averageTime */}
             </div>
             {/* openihng hours  */}
             <div className="mt-5">
-            <p className="uppercase font-semibold">Open Hours</p>
+              <p className="uppercase font-semibold flex items-center justify-between"><span>Open Hours</span> <span className={`${isGarageOpen(openingHours) === "Closed" ? "text-red-600" : "text-green-600"}`}>{isGarageOpen(openingHours)}</span> </p>
               <div className="space-y-2 mt-2">
                 {
                   openingHours.map(data => <TimeSlots key={data.id} data={data} />)
                 }
               </div>
+            </div>
+            <div className="mt-5">
+              <p className="uppercase font-semibold flex items-center justify-between"><span>Max Capacity / day</span> <span className="">{maxVehiclesPerDay} CAr</span> </p>
+            </div>
+            <div className="mt-5">
+              <p className="uppercase font-semibold flex items-center justify-between"><span>Price range</span> <span className="">{currency} {min_price} - {max_price}</span> </p>
+            </div>
+            <div className="mt-5">
+              <p className="uppercase font-semibold flex items-center justify-between"><span>Emergency Service</span> <span className="">{ emergencyService ? "Available" : "Not Available" }</span> </p>
             </div>
 
             <div className="mb-5">

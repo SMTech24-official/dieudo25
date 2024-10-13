@@ -7,6 +7,7 @@ const TimeSlots = ({ data }: { data: OpeningHour }) => {
             <p>{data.days}</p>
             <div className='flex items-center gap-1'>
                 <p>{data.open}</p>
+                <p>{data.status ? '' : "-"}</p>
                 <p>{data.close}</p>
                 <p>{data.status}</p>
 
