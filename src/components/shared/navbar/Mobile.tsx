@@ -12,7 +12,7 @@ const Mobile = ({ navLinks }: { navLinks: { name: string; path: string; icon: JS
 
   const dropdownLinks = [
     { path: "/contact-us", name: "Contact", icon: <Phone className="h-4 w-4 inline-block mr-1" /> },
-    { path: "/blog", name: "Blog", icon: <BookOpen className="h-4 w-4 inline-block mr-1" /> },
+    { path: "/blogs", name: "Blog", icon: <BookOpen className="h-4 w-4 inline-block mr-1" /> },
   ];
 
   // Close dropdown when clicking outside or other elements

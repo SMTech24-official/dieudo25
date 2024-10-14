@@ -81,43 +81,50 @@ export default function HowItWorks() {
   };
 
   return (
-    <section id="how-it-works" className="py-padding_base lg:py-padding_base px-padding_small">
+    <section id="how-it-works" className="py-padding_extra_large lg:p-padding_base px-padding_small justify-center relative max-w-4xl mx-auto">
       <SectionHeader
         subTitle="How It Works"
         title="Working methodology"
         description=" The best way to work"
       />
-      <div className="max-w-6xl mx-auto relative overflow-hidden">
-        <div
-          className="flex transition-transform duration-300 ease-in-out"
-          style={{
-            transform: `translateX(-${currentIndex * (100 / 3)}%)`,
-          }}
-          onMouseEnter={pauseOnHover}
-          onMouseLeave={resumeAutoPlay}
-        >
-          {steps.map((step) => (
-            <Card
-              key={step.id}
-              className="flex-shrink-0 group w-[100%] sm:w-[50%] lg:w-[30.5%] h-[380px] transition-all duration-300 mx-4 cursor-pointer relative overflow-hidden hover:bg-hover_Color"
-            >
-              {/* Hover Effect Background */}
-              <span className="absolute inset-0 bg-[#eff2fd] transition-all origin-top-left duration-300 ease-in-out scale-0 group-hover:scale-100 rounded-lg z-0"></span>
+      <div
+  className="flex transition-transform duration-300 ease-in-out"
+  style={{
+    transform: `translateX(-${currentIndex * 100}%)`, // Slide one full card at a time
+  }}
+  onMouseEnter={pauseOnHover}
+  onMouseLeave={resumeAutoPlay}
+>
+  {steps.map((step) => (
+    <Card
+      key={step.id}
+      className="flex-shrink-0 h-auto mx-auto transition-all duration-300 cursor-pointer relative "
+      style={{
+        // Custom widths for different screen sizes
+        width: 'calc(100%)', // Custom width for small devices (2/3)
+        '@media (min-width: 640px)': { width: '50%' }, // Custom width for medium devices
+        '@media (min-width: 1024px)': { width: '33.33%' }, // Custom width for large devices
+      }} 
+    >
+      <span className="absolute inset-0 bg-[#eff2fd] transition-all duration-300 ease-in-out scale-0 group-hover:scale-100 rounded-lg z-0"></span>
 
-              {/* Icon and Content */}
-              <CardContent className="relative z-10 flex flex-col items-center justify-between text-center p-9 h-full">
-                <div className="mb-2">{step.icon}</div>
-                <h3 className="text-xl font-semibold text-[#003366] flex-1 group-hover:text-primary transition-all ease-out duration-300">
-                  {step.title}
-                </h3>
-                <p className="text-base text-gray-600 group-hover:text-primary transition-all ease-out duration-300">
-                  {step.description}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+      <CardContent className="relative z-10 flex flex-col items-center justify-between text-center p-6 h-full">
+        <div className="mb-2">{step.icon}</div>
+        <h3 className="text-xl font-semibold text-[#003366] flex-1 group-hover:text-primary transition-all duration-300">
+          {step.title}
+        </h3>
+        <p className="text-base text-gray-600 group-hover:text-primary transition-all duration-300">
+          {step.description}
+        </p>
+      </CardContent>
+    </Card>
+  ))}
       </div>
+
+
+
+
+
     </section>
   );
 }

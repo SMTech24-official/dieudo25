@@ -117,7 +117,7 @@ export default function ContactForm() {
           <div className="lg:col-span-2">
             <Button
               type="submit"
-              className="w-full flex items-center gap-2 bg-secondary hover:bg-[#FF6600]/80 text-base active:scale-95 transition text-[#7e92e3] hover:text-[#eff2fd]"
+              className="w-full flex items-center gap-2 bg-secondary hover:bg-[#FF6600]/80 text-base active:scale-95 transition text-white hover:text-[#eff2fd]"
             >
               Just Send <GoArrowUpRight className="text-lg" />
             </Button>
