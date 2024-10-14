@@ -7,8 +7,6 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectItem, SelectLabel } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Link from "next/link";
-import DatePicker from "@/components/ui/datePicker"; // Assuming you have a DatePicker component for the calendar
-import MapLocation from "@/components/ui/mapLocation"; // Assuming you have a Google map location picker component
 
 type SignupData = {
   name?: string;
@@ -133,220 +131,213 @@ const emailValidation = {
             </TabsTrigger>
           </TabsList>
 
-        {/* Normal User Signup Form */}
-        <TabsContent value="user">
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            
-            {/* Full Name */}
-            <div className="space-y-2">
-              <Input
-                type="text"
-                placeholder="Full Name"
-                {...register("fullName", { required: "Full Name is required" })}
-              />
-              {errors.fullName && <p className="text-red-500">{errors.fullName.message}</p>}
-            </div>
-
-            {/* Email Address */}
-            <div className="space-y-2">
-              <Input
-                type="email"
-                placeholder="Email Address"
-                {...register("email", { required: "Email Address is required" })}
-              />
-              {errors.email && <p className="text-red-500">{errors.email.message}</p>}
-            </div>
-
-            {/* Phone Number */}
-            <div className="space-y-2">
-              <Input
-                type="text"
-                placeholder="Phone Number"
-                {...register("phoneNumber", { required: "Phone Number is required" })}
-              />
-              {errors.phoneNumber && <p className="text-red-500">{errors.phoneNumber.message}</p>}
-            </div>
-
-            {/* Vehicle Make and Model */}
-            <div className="space-y-2">
-              <Input
-                type="text"
-                placeholder="Vehicle Make and Model"
-                {...register("vehicleMakeModel", { required: "Vehicle Make and Model is required" })}
-              />
-              {errors.vehicleMakeModel && <p className="text-red-500">{errors.vehicleMakeModel.message}</p>}
-            </div>
-
-            {/* Year of Manufacture */}
-            <div className="space-y-2">
-              <Input
-                type="date"
-                placeholder="Year of Manufacture"
-                {...register("yearOfManufacture", { required: "Year of Manufacture is required" })}
-              />
-              {errors.yearOfManufacture && <p className="text-red-500">{errors.yearOfManufacture.message}</p>}
-            </div>
-
-            {/* Vehicle Type */}
-            <div className="space-y-2">
-              <Select {...register("vehicleType", { required: "Vehicle Type is required" })}>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select Vehicle Type" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectItem value="Car">Car</SelectItem>
-                    <SelectItem value="SUV">SUV</SelectItem>
-                    <SelectItem value="Utility Vehicle">Utility Vehicle</SelectItem>
-                    <SelectItem value="Motorcycle">Motorcycle</SelectItem>
-                    <SelectItem value="Other">Other</SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-              {errors.vehicleType && <p className="text-red-500">{errors.vehicleType.message}</p>}
-            </div>
-
-            {/* License Plate Number */}
-            <div className="space-y-2">
-              <Input
-                type="text"
-                placeholder="License Plate Number"
-                {...register("licensePlateNumber", { required: "License Plate Number is required" })}
-              />
-              {errors.licensePlateNumber && <p className="text-red-500">{errors.licensePlateNumber.message}</p>}
-            </div>
-
-            {/* Fuel Type */}
-            <div className="space-y-2">
-              <Select {...register("fuelType", { required: "Fuel Type is required" })}>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select Fuel Type" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectItem value="Gasoline">Gasoline</SelectItem>
-                    <SelectItem value="Diesel">Diesel</SelectItem>
-                    <SelectItem value="Electric">Electric</SelectItem>
-                    <SelectItem value="Hybrid">Hybrid</SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-              {errors.fuelType && <p className="text-red-500">{errors.fuelType.message}</p>}
-            </div>
-
-            {/* Current Tire Size */}
-            <div className="space-y-2">
-              <label>Current Tire Size</label>
-              <div className="flex space-x-2">
+          {/* Normal User Signup Form */}
+          <TabsContent value="user">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+              
+              {/* Full Name */}
+              <div className="space-y-2">
                 <Input
                   type="text"
-                  placeholder="Width"
-                  {...register("tireWidth", { required: "Width is required" })}
+                  placeholder="Full Name"
+                  {...register("fullName", { required: "Full Name is required" })}
                 />
+                {errors.fullName && <p className="text-red-500">{errors.fullName.message}</p>}
+              </div>
+
+              {/* Email Address */}
+              <div className="space-y-2">
+                <Input
+                  type="email"
+                  placeholder="Email Address"
+                  {...register("email", { required: "Email Address is required" })}
+                />
+                {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+              </div>
+
+              {/* Phone Number */}
+              <div className="space-y-2">
                 <Input
                   type="text"
-                  placeholder="Height"
-                  {...register("tireHeight", { required: "Height is required" })}
+                  placeholder="Phone Number"
+                  {...register("phoneNumber", { required: "Phone Number is required" })}
                 />
+                {errors.phoneNumber && <p className="text-red-500">{errors.phoneNumber.message}</p>}
+              </div>
+
+              {/* Vehicle Make and Model */}
+              <div className="space-y-2">
                 <Input
                   type="text"
-                  placeholder="Diameter"
-                  {...register("tireDiameter", { required: "Diameter is required" })}
+                  placeholder="Vehicle Make and Model"
+                  {...register("vehicleMakeModel", { required: "Vehicle Make and Model is required" })}
+                />
+                {errors.vehicleMakeModel && <p className="text-red-500">{errors.vehicleMakeModel.message}</p>}
+              </div>
+
+              {/* Year of Manufacture */}
+              <div className="space-y-2">
+                <Input
+                  type="date"
+                  placeholder="Year of Manufacture"
+                  {...register("yearOfManufacture", { required: "Year of Manufacture is required" })}
+                />
+                {errors.yearOfManufacture && <p className="text-red-500">{errors.yearOfManufacture.message}</p>}
+              </div>
+
+              {/* Vehicle Type */}
+              <div className="space-y-2">
+                <Select {...register("vehicleType", { required: "Vehicle Type is required" })}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select Vehicle Type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectItem value="Car">Car</SelectItem>
+                      <SelectItem value="SUV">SUV</SelectItem>
+                      <SelectItem value="Utility Vehicle">Utility Vehicle</SelectItem>
+                      <SelectItem value="Motorcycle">Motorcycle</SelectItem>
+                      <SelectItem value="Other">Other</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+                {errors.vehicleType && <p className="text-red-500">{errors.vehicleType.message}</p>}
+              </div>
+
+              {/* License Plate Number */}
+              <div className="space-y-2">
+                <Input
+                  type="text"
+                  placeholder="License Plate Number"
+                  {...register("licensePlateNumber", { required: "License Plate Number is required" })}
+                />
+                {errors.licensePlateNumber && <p className="text-red-500">{errors.licensePlateNumber.message}</p>}
+              </div>
+
+              {/* Fuel Type */}
+              <div className="space-y-2">
+                <Select {...register("fuelType", { required: "Fuel Type is required" })}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select Fuel Type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectItem value="Gasoline">Gasoline</SelectItem>
+                      <SelectItem value="Diesel">Diesel</SelectItem>
+                      <SelectItem value="Electric">Electric</SelectItem>
+                      <SelectItem value="Hybrid">Hybrid</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+                {errors.fuelType && <p className="text-red-500">{errors.fuelType.message}</p>}
+              </div>
+
+              {/* Current Tire Size */}
+              <div className="space-y-2">
+                <label>Current Tire Size</label>
+                <div className="flex space-x-2">
+                  <Input
+                    type="text"
+                    placeholder="Width"
+                    {...register("tireWidth", { required: "Width is required" })}
+                  />
+                  <Input
+                    type="text"
+                    placeholder="Height"
+                    {...register("tireHeight", { required: "Height is required" })}
+                  />
+                  <Input
+                    type="text"
+                    placeholder="Diameter"
+                    {...register("tireDiameter", { required: "Diameter is required" })}
+                  />
+                </div>
+                {errors.tireWidth && <p className="text-red-500">{errors.tireWidth.message}</p>}
+                {errors.tireHeight && <p className="text-red-500">{errors.tireHeight.message}</p>}
+                {errors.tireDiameter && <p className="text-red-500">{errors.tireDiameter.message}</p>}
+              </div>
+
+              {/* Tire Condition */}
+              <div className="space-y-2">
+                <Input
+                  type="text"
+                  placeholder="Tire Condition"
+                  {...register("tireCondition", { required: "Tire Condition is required" })}
+                />
+                {errors.tireCondition && <p className="text-red-500">{errors.tireCondition.message}</p>}
+              </div>
+
+              {/* Preferred Tire Type */}
+              <div className="space-y-2">
+                <label>Preferred Tire Type</label>
+                <div className="flex space-x-2">
+                  <div className="flex items-center space-x-2">
+                    <Checkbox {...register("preferredTireType")} value="Winter Tires" />
+                    <label>Winter Tires</label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Checkbox {...register("preferredTireType")} value="Summer Tires" />
+                    <label>Summer Tires</label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Checkbox {...register("preferredTireType")} value="All-Season Tires" />
+                    <label>All-Season Tires</label>
+                  </div>
+                </div>
+              </div>
+
+              {/* Tire Budget */}
+              <div className="space-y-2">
+                <Input
+                  type="text"
+                  placeholder="Tire Budget"
+                  {...register("tireBudget", { required: "Tire Budget is required" })}
+                />
+                {errors.tireBudget && <p className="text-red-500">{errors.tireBudget.message}</p>}
+              </div>
+
+              {/* Brand Preferences (Optional) */}
+              <div className="space-y-2">
+                <Input
+                  type="text"
+                  placeholder="Brand Preferences (Optional)"
+                  {...register("brandPreferences")}
                 />
               </div>
-              {errors.tireWidth && <p className="text-red-500">{errors.tireWidth.message}</p>}
-              {errors.tireHeight && <p className="text-red-500">{errors.tireHeight.message}</p>}
-              {errors.tireDiameter && <p className="text-red-500">{errors.tireDiameter.message}</p>}
-            </div>
 
-            {/* Tire Condition */}
-            <div className="space-y-2">
-              <Input
-                type="text"
-                placeholder="Tire Condition"
-                {...register("tireCondition", { required: "Tire Condition is required" })}
-              />
-              {errors.tireCondition && <p className="text-red-500">{errors.tireCondition.message}</p>}
-            </div>
-
-            {/* Preferred Tire Type */}
-            <div className="space-y-2">
-              <label>Preferred Tire Type</label>
-              <div className="flex space-x-2">
+              {/* Tire Pressure Monitoring System (TPMS) */}
+              <div className="space-y-2">
                 <div className="flex items-center space-x-2">
-                  <Checkbox {...register("preferredTireType")} value="Winter Tires" />
-                  <label>Winter Tires</label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Checkbox {...register("preferredTireType")} value="Summer Tires" />
-                  <label>Summer Tires</label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Checkbox {...register("preferredTireType")} value="All-Season Tires" />
-                  <label>All-Season Tires</label>
+                  <Checkbox {...register("tpms")} />
+                  <label>My car is equipped with a Tire Pressure Monitoring System (TPMS).</label>
                 </div>
               </div>
-            </div>
 
-            {/* Tire Budget */}
-            <div className="space-y-2">
-              <Input
-                type="text"
-                placeholder="Tire Budget"
-                {...register("tireBudget", { required: "Tire Budget is required" })}
-              />
-              {errors.tireBudget && <p className="text-red-500">{errors.tireBudget.message}</p>}
-            </div>
-
-            {/* Brand Preferences (Optional) */}
-            <div className="space-y-2">
-              <Input
-                type="text"
-                placeholder="Brand Preferences (Optional)"
-                {...register("brandPreferences")}
-              />
-            </div>
-
-            {/* Tire Pressure Monitoring System (TPMS) */}
-            <div className="space-y-2">
-              <div className="flex items-center space-x-2">
-                <Checkbox {...register("tpms")} />
-                <label>My car is equipped with a Tire Pressure Monitoring System (TPMS).</label>
+              {/* Home Pickup Service */}
+              <div className="space-y-2">
+                <div className="flex items-center space-x-2">
+                  <Checkbox {...register("homePickupService")} />
+                  <label>I prefer home pickup service.</label>
+                </div>
               </div>
-            </div>
 
-            {/* Home Pickup Service */}
-            <div className="space-y-2">
-              <div className="flex items-center space-x-2">
-                <Checkbox {...register("homePickupService")} />
-                <label>I prefer home pickup service.</label>
+              {/* Submit Button */}
+              <Button
+                type="submit"
+                className="w-full group gap-2 bg-secondary hover:bg-secondary/80 active:scale-95 transition-all duration-300 py-2 rounded text-white hover:text-white"
+              >
+                Sign Up
+              </Button>
+              <div className="text-center">
+                <p className="text-sm text-gray-500">
+                  Already have an account?{" "}
+                  <Link href="/sign-in" className="text-lilac">
+                    Sign In
+                  </Link>
+                </p>
               </div>
-            </div>
-
-            {/* Submit Button */}
-            <Button
-              type="submit"
-              className="w-full group gap-2 bg-secondary hover:bg-secondary/80 active:scale-95 transition-all duration-300 py-2 rounded text-white hover:text-white"
-            >
-              Sign Up
-            </Button>
-            <div className="text-center">
-              <p className="text-sm text-gray-500">
-                Already have an account?{" "}
-                <Link href="/sign-in" className="text-lilac">
-                  Sign In
-                </Link>
-              </p>
-            </div>
-          </form>
-        </TabsContent>
-
-
-
-      
-          
-       
-
+            </form>
+          </TabsContent>
 
           {/* Service Provider Signup Form */}
           <TabsContent value="provider">

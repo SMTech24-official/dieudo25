@@ -1,6 +1,6 @@
 "use client";
-import { SubmitHandler, useForm } from "react-hook-form";
 
+import { SubmitHandler, useForm } from "react-hook-form";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import authImage from "@/assets/auth.jpg";
