@@ -50,7 +50,7 @@ const Navbar = () => {
 
   const navLinks = [
     { path: "/", name: "Home", icon: <Home className="h-4 w-4 inline-block mr-1" /> },
-    { path: "#how-it-works", name: "How it works", icon: <Info className="h-4 w-4 inline-block mr-1" /> },
+    { path: "./#how-it-works", name: "How it works", icon: <Info className="h-4 w-4 inline-block mr-1" /> },
     { path: "/garages", name: "Find Garages", icon: <Wrench className="h-4 w-4 inline-block mr-1" /> },
     { path: "/register-garage", name: "Register Your Garage", icon: <UserCheck className="h-4 w-4 inline-block mr-1" /> },
   ];
