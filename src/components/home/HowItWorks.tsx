@@ -106,7 +106,8 @@ export default function HowItWorks() {
         '@media (min-width: 1024px)': { width: '33.33%' }, // Custom width for large devices
       }} 
     >
-      <span className="absolute inset-0 bg-[#eff2fd] transition-all duration-300 ease-in-out scale-0 group-hover:scale-100 rounded-lg z-0"></span>
+      {/* Hover Effect Background */}
+      <span className="absolute inset-0 bg-[#eff2fd] transition-all origin-top-left duration-300 ease-in-out scale-0 group-hover:scale-100 rounded-lg z-0"></span>
 
       <CardContent className="relative z-10 flex flex-col items-center justify-between text-center p-6 h-full">
         <div className="mb-2">{step.icon}</div>

@@ -1,6 +1,6 @@
 "use client";
-import { SubmitHandler, useForm } from "react-hook-form";
 
+import { SubmitHandler, useForm } from "react-hook-form";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import authImage from "@/assets/auth.jpg";
@@ -92,7 +92,7 @@ const SignInFrom = () => {
 
             <Button
               type="submit"
-              className="w-full bg-lemon/80 hover:bg-lemon text-coal font-bold py-2"
+              className="w-full group gap-2 bg-secondary hover:bg-secondary/80 active:scale-95 transition-all duration-300 py-2 rounded text-white hover:text-white"
             >
               Login
             </Button>
