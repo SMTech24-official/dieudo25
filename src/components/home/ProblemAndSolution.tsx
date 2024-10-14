@@ -43,7 +43,8 @@ const ProblemAndSolution = () => {
                             key={index} 
                             as="div" 
                             className="p-6 transition-all duration-300"
-                            open={openIndex === index} 
+                            defaultOpen={openIndex === index} 
+
                         >
                             <DisclosureButton 
                                 className="group flex w-full justify-between items-center py-3"

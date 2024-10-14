@@ -12,7 +12,7 @@ export default function RequestQuoteForm() {
   const { register, handleSubmit, setValue, formState: { errors } } = useForm();
   const [tireBudgetVisible, setTireBudgetVisible] = useState(false); // For showing tire budget options
 
-  const onSubmit = (data) => {
+  const onSubmit = (data:any) => {
     console.log("Quote request submitted", data);
   };
 
@@ -85,7 +85,7 @@ export default function RequestQuoteForm() {
             <Checkbox {...register("tireType")} value="All-Season">All-Season</Checkbox>
             <Input type="text" placeholder="Other Tire Type" {...register("otherTireType")} />
           </div>
-          <Select {...register("brandPreference")} className="w-full">
+          <Select {...register("brandPreference")}>
             <SelectTrigger>
               <SelectValue placeholder="Brand Preference (Optional)" />
             </SelectTrigger>
@@ -104,7 +104,7 @@ export default function RequestQuoteForm() {
             <Checkbox {...register("purchaseTires")}>No, I already have my tires</Checkbox>
           </div>
           {tireBudgetVisible && (
-            <Select {...register("tireBudget")} className="w-full">
+            <Select {...register("tireBudget")} >
               <SelectTrigger>
                 <SelectValue placeholder="Tire Budget (per tire)" />
               </SelectTrigger>
