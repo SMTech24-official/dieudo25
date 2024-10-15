@@ -16,15 +16,15 @@ export default function SectionHeader({
   return (
     <div
       className={cn(
-        "text-center  flex flex-col items-center justify-center px-4 pb-[80px]",
+        "text-center  flex flex-col items-center justify-center px-4 lg:pb-padding_extra md:pb-padding_medium pb-[20px]",
         className
       )}
     >
       {subTitle && (
-        <p className="text-base font-medium text-lilac mb-2">{subTitle && subTitle}</p>
+        <p className="sm:text-base text-sm font-medium text-lilac sm:mb-2 mb-1">{subTitle && subTitle}</p>
       )}
-      <h2 className="text-5xl font-medium text-gray-900 mb-4">{title}</h2>
-      {description && <p className="text-gray-600 text-base">{description}</p>}
+      <h2 className="md:text-5xl text-3xl font-medium text-gray-900 sm:mb-2 mb-1">{title}</h2>
+      {description && <p className="text-gray-600 sm:text-base text-sm">{description}</p>}
     </div>
   );
 }

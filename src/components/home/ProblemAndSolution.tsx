@@ -37,12 +37,12 @@ const ProblemAndSolution = () => {
             />
             <div className="container mx-auto grid lg:grid-cols-2 grid-cols-1 lg:gap-10 gap-4">
                 {/* Left column - text section */}
-                <div className="flex flex-col space-y-4 max-h-[80vh] overflow-visible pt-16">
+                <div className="flex flex-col space-y-4 max-h-screen overflow-visible pt-16">
                     {problemSolutionSection.map((section, index) => (
                         <Disclosure 
                             key={index} 
                             as="div" 
-                            className="p-6 transition-all duration-300"
+                            className="p-3 transition-all duration-300"
                             defaultOpen={openIndex === index} 
 
                         >

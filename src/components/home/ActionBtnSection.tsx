@@ -7,7 +7,7 @@ const ActionBtnSection = () => {
       <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
         Ready to Book Your Service?
       </h1>
-      <p className="text-xl md:text-2xl text-gray-600 mb-8">
+      <p className="text-base md:text-2xl text-gray-600 mb-8">
         Reliable garages, transparent pricing, seamless booking.
       </p>
       <Button className="mt-4 bg-secondary group hover:bg-secondary/80 active:scale-95 transition-all duration-300 w-fit py-2 rounded text-white">

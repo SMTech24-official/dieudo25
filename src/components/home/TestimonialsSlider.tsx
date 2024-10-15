@@ -137,7 +137,7 @@ export default function TestimonialsSlider() {
       />
 
       <div
-        className="relative w-full h-[60vh] lg:h-[30vh] overflow-hidden"
+        className="relative w-full h-[30vh]  lg:h-[30vh] overflow-hidden"
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
@@ -170,7 +170,7 @@ export default function TestimonialsSlider() {
 
                 <CardContent className="p-6 xl:w-[800px] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[300px] ">
 
-                  <h3 className="text-lg font-semibold mb-5 group-hover:text-primary transition-all ease-out duration-300">
+                  <h3 className="md:text-lg text-sm font-semibold mb-5 group-hover:text-primary transition-all ease-out duration-300">
                     &quot;{freelancer.description}&quot;
                   </h3>
 
@@ -179,7 +179,7 @@ export default function TestimonialsSlider() {
                       src={freelancer.image}
                       alt={freelancer.name}
                       objectFit="cover"
-                      className="rounded-full w-20 h-20 object-cover"
+                      className="rounded-full lg:w-20 w-16 lg:h-20 h-16 object-cover"
                     />
 
                     <div className="">

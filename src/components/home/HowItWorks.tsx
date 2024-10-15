@@ -145,13 +145,13 @@ export default function HowItWorks() {
       className={` py-padding_base lg:py-padding_extra_large px-padding_small`}
     >
       <SectionHeader
-        subTitle="What Our Customers Say"
-        title="Trusted by Many, Loved by All"
-        description="Customer Experiences That Speak for Themselves"
+        subTitle="How it Works"
+        title="Working Methodology"
+        description="The Best Way to Work"
       />
 
       <div
-        className="relative container h-[60vh] lg:h-[50vh] overflow-hidden"
+        className="relative container h-[40vh] lg:h-[50vh] overflow-hidden"
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
