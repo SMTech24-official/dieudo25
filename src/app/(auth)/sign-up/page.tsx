@@ -4,7 +4,7 @@ import SignUpForm from "@/components/signUpForm/SignUpForm";
 
 const SignUp = () => {
   return (
-    <main className="grid grid-cols-2  lg:min-h-screen lg:py-0 py-10 place-items-center lg:place-items-start w-full ">
+    <main className="grid lg:grid-cols-2 justify- lg:min-h-screen lg:py-0 py-10 place-items-center lg:place-items-start w-full ">
       <div
         style={{ backgroundImage: `url(${authImage.src})` }}
         className="flex-1 bg-blue-500/30 bg-center bg-cover lg:flex bg-blend-overlay text-white hidden flex-col justify-center p-10 col-span-1 w-full h-full"
@@ -17,7 +17,9 @@ const SignUp = () => {
           <div className="mt-10 relative"></div>
         </div>
       </div>
-      <SignUpForm />
+      <div className="w-full">
+        <SignUpForm />
+      </div>
     </main>
   );
 };

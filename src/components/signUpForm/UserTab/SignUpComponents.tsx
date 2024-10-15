@@ -26,7 +26,7 @@ type SignupData = {
   homePickupService: boolean;
 }
 
-export default function TireServiceSignup() {
+export default function SignUpComponents() {
   const [formData, setFormData] = useState<SignupData>({
     fullName: '',
     email: '',
@@ -46,6 +46,40 @@ export default function TireServiceSignup() {
     tpms: false,
     homePickupService: false,
   })
+
+
+  const fullNameValidation = {
+    required: "Full Name is required",
+    minLength: {
+      value: 2,
+      message: "Full Name must be at least 2 characters long",
+    },
+  };
+
+  const emailValidation = {
+    required: "Email is required",
+    pattern: {
+      value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+      message: "Invalid email address",
+    },
+  };
+
+  // Strong password validation regex
+  const passwordValidation = {
+    required: "Password is required",
+    minLength: {
+      value: 6,
+      message: "Password must be at least 6 characters long",
+    },
+    validate: {
+      uppercase: (value: string) =>
+        /[A-Z]/.test(value) || "Password must contain at least one uppercase letter",
+      specialChar: (value: string) =>
+        /[!@#$%^&*(),.?":{}|<>]/.test(value) || "Password must contain at least one special character",
+    },
+  };
+
+
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -76,9 +110,8 @@ export default function TireServiceSignup() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-orange-50 p-4">
-      <div className="w-full max-w-2xl p-8 bg-white rounded-lg shadow-md">
-        <h1 className="text-2xl font-bold text-center mb-6">Tire Service Sign Up</h1>
+    <div className="flex items-center justify-center h-full w-full p-5">
+      <div className="w-full max-w-2xl">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
