@@ -189,6 +189,7 @@ export default function TestimonialsSlider() {
 
                       <div className="flex items-center">
                         <StarPicker
+                        onChange={() =>{}}
                           size={20}
                           starCount={5}
                           disabled={true}

@@ -45,6 +45,7 @@ export default function SingleBlogPost() {
               alt={post.title}
               width={800} // Increased the width of the image
               height={500}
+                objectFit="cover"
               className='w-full h-auto object-cover rounded'
             />
           </div>

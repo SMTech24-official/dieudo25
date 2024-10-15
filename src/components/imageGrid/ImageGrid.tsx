@@ -16,6 +16,7 @@ const ImageGrid: React.FC<GalleryProps> = ({ gallery }) => {
                     height={900}
                     src={gallery[0]}
                     alt={`Image ${0 + 1}`}
+                      objectFit="cover"
                     className="rounded-md w-full h-full object-cover"
                 />
             </div>
@@ -26,6 +27,7 @@ const ImageGrid: React.FC<GalleryProps> = ({ gallery }) => {
                     width={1200}
                     height={900}
                     src={gallery[1]}
+                      objectFit="cover"
                     alt={`Image ${1 + 1}`}
                     className="rounded-md w-full h-full object-cover"
                 />
@@ -38,6 +40,7 @@ const ImageGrid: React.FC<GalleryProps> = ({ gallery }) => {
                     height={900}
                     src={gallery[2]}
                     alt={`Image ${2 + 1}`}
+                      objectFit="cover"
                     className="rounded-md w-full h-full object-cover"
                 />
             </div>

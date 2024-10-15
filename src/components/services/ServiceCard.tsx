@@ -81,6 +81,8 @@ garageName, location, pricing, owner, offers, images, ratings
             {/* Render stars based on rating */}
             <div className="flex items-center gap-1">
               <StarPicker
+                onChange={()=>{}}
+
                 size={20}
                 starCount={5}
                 disabled={true}

@@ -198,7 +198,7 @@ export default function Page({ params }: { params: { slug: string } }) {
               <div className="flex items-center justify-center flex-wrap lg:gap-4 ">
                 {tireDelivery.map((tier, index) => (
                   <div key={index} className="p-4  w-96 h-40 relative rounded-md shadow-md space-y-2 hover:shadow-lg flex flex-col hover:cursor-pointer">
-                    <Image src={wheel} alt="wheel logo" width={50} height={50}/>
+                    <Image src={wheel} alt="wheel logo" width={50} height={50}   objectFit="cover"/>
                     <div>
                       <h5 className="font-semibold flex-1">Brand: {tier.brand}</h5>
                       <p className="flex-grow">Delivery Time: {tier.deliveryTime}</p>
@@ -257,6 +257,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                   height={500}
                   src={profile}
                   alt={`image  of ${ownerName}`}
+                    objectFit="cover"
                   className="size-[50px]"
                 />
               </div>
@@ -264,6 +265,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                 <h3 className="font-semibold text-sm flex-1">{ownerName}</h3>
                 <div className="flex items-center gap-1">
                   <StarPicker
+                  onChange={()=>{}}
                     size={20}
                     starCount={5}
                     disabled={true}

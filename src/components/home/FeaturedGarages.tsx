@@ -73,6 +73,7 @@ export default function FeaturedGarages() {
                   <div className="flex items-center mb-4">
                     <div className="flex items-center">
                       <StarPicker
+                      onChange={() => {}}
                         size={20}
                         starCount={5}
                         value={garage.rating}

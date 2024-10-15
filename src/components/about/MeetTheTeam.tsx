@@ -98,6 +98,7 @@ export default function MeetTheTeam() {
                   src={member.imageSrc}
                   alt={member.name}
                   width={150}
+                    objectFit="cover"
                   height={150}
                   className="rounded-lg w-full size-full object-cover"
                 />

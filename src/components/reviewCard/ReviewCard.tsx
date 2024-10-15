@@ -14,6 +14,7 @@ const ReviewCard: React.FC<{ review: Review }> = ({ review }) => {
             <div className="flex items-center space-x-1">
                 {/* Render stars based on rating */}
                 <StarPicker
+                onChange={()=>{}}
                           size={20}
                           starCount={5}
                           disabled={true}

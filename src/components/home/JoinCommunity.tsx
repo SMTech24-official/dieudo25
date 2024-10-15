@@ -74,6 +74,7 @@ export default function JoinCommunity({
                   alt={`Bubble ${bubble.id}`}
                   width={bubble.size}
                   height={bubble.size}
+                    objectFit="cover"
                   className="rounded-full"
                 />
               </motion.div>

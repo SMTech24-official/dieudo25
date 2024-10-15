@@ -78,6 +78,7 @@ export default function DigitalWorkSection() {
           alt="Digital Work Illustration"
           width={600}
           height={400}
+            objectFit="cover"
           className="rounded-lg shadow-lg"
         />
       </motion.div>

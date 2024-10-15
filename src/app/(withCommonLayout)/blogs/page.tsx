@@ -44,6 +44,7 @@ export default function BlogPostGrid() {
                 alt={post.title}
                 width={400}
                 height={300}
+                objectFit="cover"
                 className="w-full h-48 object-cover"
               />
             </CardHeader>

@@ -66,6 +66,7 @@ export default function SkillhiveSection() {
             alt="Skillhive Illustration"
             width={600}
             height={400}
+              objectFit="cover"
             className="rounded-lg shadow-lg"
           />
         </motion.div>
