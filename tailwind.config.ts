@@ -39,7 +39,7 @@ const config: Config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      padding:{
+      padding: {
         padding_base: "48px",
         padding_small: "16px",
         padding_medium: "32px",

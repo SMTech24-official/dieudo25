@@ -31,7 +31,7 @@ const garages = [
     location: "789 Oak St, Houston, TX 77002",
     rating: 4.5,
     image: garage3,
-  },
+  }
 ];
 
 export default function FeaturedGarages() {
@@ -42,7 +42,7 @@ export default function FeaturedGarages() {
         title="Featured Garages"
         description="Our Trusted Garages"
       />
-      <div className="max-w-[1180px] mx-auto">
+      <div className="container">
         {/* Responsive Grid to display the garages */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 items-center justify-center mx-auto">
           {garages.map((garage) => (
