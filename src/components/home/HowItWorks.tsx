@@ -102,9 +102,8 @@ export default function HowItWorks() {
       style={{
         // Custom widths for different screen sizes
         width: 'calc(100%)', // Custom width for small devices (2/3)
-        '@media (min-width: 640px)': { width: '50%' }, // Custom width for medium devices
-        '@media (min-width: 1024px)': { width: '33.33%' }, // Custom width for large devices
       }} 
+
     >
       {/* Hover Effect Background */}
       <span className="absolute inset-0 bg-[#eff2fd] transition-all origin-top-left duration-300 ease-in-out scale-0 group-hover:scale-100 rounded-lg z-0"></span>

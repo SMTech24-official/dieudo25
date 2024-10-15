@@ -78,7 +78,6 @@ export default function FeaturedGarages() {
                         value={garage.rating}
                         halfStars
                         disabled={true}
-                        activeColor="#f6ad55"
                       />
                     </div>
                     <span className="ml-2 text-sm text-gray-600 group-hover:text-primary transition-all duration-300 ease-out">
