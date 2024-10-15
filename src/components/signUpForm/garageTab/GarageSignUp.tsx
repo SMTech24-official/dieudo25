@@ -1,13 +1,13 @@
-import { useState } from 'react'
-import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Card, CardContent } from "@/components/ui/card"
-import { X } from 'lucide-react'
+import { useState } from "react";
+import { useForm, Controller } from "react-hook-form";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { X } from 'lucide-react';
 
-type OpeningHours = { day: string; start: string; end: string }
+type OpeningHours = { day: string; start: string; end: string };
 
 type Address = {
     street: string;
@@ -15,7 +15,7 @@ type Address = {
     city: string;
     canton: string;
     country: string;
-}
+};
 
 type GarageServiceProviderData = {
     password: string;
@@ -28,9 +28,9 @@ type GarageServiceProviderData = {
     timeSlotAvailability?: boolean;
     dailyCapacity?: number;
     servicesOffer: string[];
-}
+};
 
-const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 const predefinedServices = [
     "Tire Installation",
@@ -40,154 +40,157 @@ const predefinedServices = [
     "Tire Ordering for the Customer",
     "Servicing and Other Mechanical Services",
     "Vehicle Pickup Service"
-]
+];
 
 export default function GarageServiceProviderSignup() {
-    const [formData, setFormData] = useState<GarageServiceProviderData>({
-        password: '',
-        confirmPassword: '',
-        rememberMe: false,
-        address: {
-            street: '',
-            postalCode: '',
-            city: '',
-            canton: '',
-            country: 'Switzerland'
-        },
-        openingHours: [],
-        servicesOffer: [],
-    })
-
-    const [newService, setNewService] = useState('')
-    const [newOpeningHour, setNewOpeningHour] = useState<OpeningHours>({ day: '', start: '', end: '' })
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target
-        setFormData(prev => ({ ...prev, [name]: value }))
-    }
-
-    const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target
-        setFormData(prev => ({
-            ...prev,
-            address: { ...prev.address, [name]: value }
-        }))
-    }
-
-    const handleSelectChange = (name: string) => (value: string) => {
-        setFormData(prev => ({ ...prev, [name]: value }))
-    }
-
-    const handleCheckboxChange = (name: string) => (checked: boolean) => {
-        setFormData(prev => ({ ...prev, [name]: checked }))
-    }
-
-    const handleServicesChange = (services: string[]) => {
-        setFormData(prev => ({ ...prev, servicesOffer: services }))
-    }
-
-    const handleAddCustomService = () => {
-        if (newService && !formData.servicesOffer.includes(newService)) {
-            setFormData(prev => ({ ...prev, servicesOffer: [...prev.servicesOffer, newService] }))
-            setNewService('')
+    const { control, handleSubmit, watch, formState: { errors }, setValue, getValues } = useForm<GarageServiceProviderData>({
+        defaultValues: {
+            password: '',
+            confirmPassword: '',
+            rememberMe: false,
+            address: {
+                street: '',
+                postalCode: '',
+                city: '',
+                canton: '',
+                country: 'Switzerland'
+            },
+            openingHours: [],
+            servicesOffer: [],
         }
-    }
+    });
 
-    const handleRemoveService = (service: string) => {
-        setFormData(prev => ({
-            ...prev,
-            servicesOffer: prev.servicesOffer.filter(s => s !== service)
-        }))
-    }
+    // Local state for new opening hour and new service
+    const [newOpeningHour, setNewOpeningHour] = useState<OpeningHours>({ day: '', start: '', end: '' });
+    const [newService, setNewService] = useState('');
+
+    const password = watch("password");
+
+    const passwordValidation = {
+        required: "Password is required",
+        minLength: {
+            value: 8,
+            message: "Password must be at least 8 characters long",
+        },
+        validate: {
+            uppercase: (value: string) =>
+                /[A-Z]/.test(value) || "Password must contain at least one uppercase letter",
+            lowercase: (value: string) =>
+                /[a-z]/.test(value) || "Password must contain at least one lowercase letter",
+            number: (value: string) =>
+                /[0-9]/.test(value) || "Password must contain at least one number",
+            specialChar: (value: string) =>
+                /[!@#$%^&*(),.?":{}|<>]/.test(value) || "Password must contain at least one special character",
+        },
+    };
+
+    const onSubmit = (data: GarageServiceProviderData) => {
+        console.log('Form submitted:', data);
+    };
 
     const handleAddOpeningHour = () => {
+        const currentOpeningHours = getValues("openingHours");
         if (newOpeningHour.day && newOpeningHour.start && newOpeningHour.end) {
-            setFormData(prev => ({
-                ...prev,
-                openingHours: [...prev.openingHours, newOpeningHour]
-            }))
-            setNewOpeningHour({ day: '', start: '', end: '' })
+            setValue("openingHours", [...currentOpeningHours, newOpeningHour]);
+            setNewOpeningHour({ day: '', start: '', end: '' });
         }
-    }
+    };
 
     const handleRemoveOpeningHour = (index: number) => {
-        setFormData(prev => ({
-            ...prev,
-            openingHours: prev.openingHours.filter((_, i) => i !== index)
-        }))
-    }
+        const currentOpeningHours = getValues("openingHours");
+        setValue("openingHours", currentOpeningHours.filter((_, i) => i !== index));
+    };
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
-        console.log('Form submitted:', formData)
-        // Handle form submission logic here
-    }
+    const handleAddCustomService = () => {
+        const currentServices = getValues("servicesOffer");
+        if (newService && !currentServices.includes(newService)) {
+            setValue("servicesOffer", [...currentServices, newService]);
+            setNewService('');
+        }
+    };
+
+    const handleRemoveService = (service: string) => {
+        const currentServices = getValues("servicesOffer");
+        setValue("servicesOffer", currentServices.filter(s => s !== service));
+    };
 
     return (
         <div className="flex items-center justify-center h-full w-full p-5">
             <div className="w-full max-w-2xl">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <Label htmlFor="garageName">Garage Name</Label>
-                            <Input id="garageName" name="garageName" value={formData.garageName || ''} onChange={handleInputChange} required />
-                        </div>
-                        <div>
-                            <Label htmlFor="serviceType">Service Type</Label>
-                            <Select onValueChange={handleSelectChange('serviceType')} value={formData.serviceType}>
-                                <SelectTrigger>
-                                    <SelectValue placeholder="Select service type" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="general">General Repair</SelectItem>
-                                    <SelectItem value="specialist">Specialist</SelectItem>
-                                    <SelectItem value="bodywork">Bodywork</SelectItem>
-                                </SelectContent>
-                            </Select>
-                        </div>
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                    {/* Garage Name field */}
+                    <div>
+                        <Label htmlFor="garageName">Garage Name</Label>
+                        <Controller
+                            name="garageName"
+                            control={control}
+                            rules={{ required: "Garage name is required" }}
+                            render={({ field }) => <Input {...field} />}
+                        />
+                        {errors.garageName && <p className="text-red-500 text-sm">{errors.garageName.message}</p>}
                     </div>
 
+                    {/* Address fields */}
                     <div className="space-y-4">
                         <h2 className="text-xl font-semibold">Address</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <Label htmlFor="street">Street</Label>
-                                <Input id="street" name="street" value={formData.address.street} onChange={handleAddressChange} required />
-                            </div>
-                            <div>
-                                <Label htmlFor="postalCode">Postal Code</Label>
-                                <Input id="postalCode" name="postalCode" value={formData.address.postalCode} onChange={handleAddressChange} required />
-                            </div>
-                            <div>
-                                <Label htmlFor="city">City</Label>
-                                <Input id="city" name="city" value={formData.address.city} onChange={handleAddressChange} required />
-                            </div>
-                            <div>
-                                <Label htmlFor="canton">Canton</Label>
-                                <Input id="canton" name="canton" value={formData.address.canton} onChange={handleAddressChange} required />
-                            </div>
-                            <div className="md:col-span-2">
-                                <Label htmlFor="country">Country</Label>
-                                <Input id="country" name="country" value={formData.address.country} onChange={handleAddressChange} required />
-                            </div>
+                            {(['street', 'postalCode', 'city', 'canton', 'country'] as const).map((field) => (
+                                <div key={field}>
+                                    <Label htmlFor={field}>{field.charAt(0).toUpperCase() + field.slice(1)}</Label>
+                                    <Controller
+                                        name={`address.${field}` as const}
+                                        control={control}
+                                        rules={{ required: `${field.charAt(0).toUpperCase() + field.slice(1)} is required` }}
+                                        render={({ field: { onChange, value } }) => (
+                                            <Input
+                                                id={field}
+                                                value={typeof value === 'string' ? value : ''}
+                                                onChange={onChange}
+                                            />
+                                        )}
+                                    />
+                                    {errors.address && errors.address[field] && (
+                                        <p className="text-red-500 text-sm">{errors.address[field]?.message}</p>
+                                    )}
+                                </div>
+                            ))}
                         </div>
+
                     </div>
 
+                    {/* Password fields */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <Label htmlFor="password">Password</Label>
-                            <Input id="password" name="password" type="password" value={formData.password} onChange={handleInputChange} required />
+                            <Controller
+                                name="password"
+                                control={control}
+                                rules={passwordValidation}
+                                render={({ field }) => <Input type="password" {...field} />}
+                            />
+                            {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
                         </div>
                         <div>
                             <Label htmlFor="confirmPassword">Confirm Password</Label>
-                            <Input id="confirmPassword" name="confirmPassword" type="password" value={formData.confirmPassword} onChange={handleInputChange} required />
+                            <Controller
+                                name="confirmPassword"
+                                control={control}
+                                rules={{
+                                    required: "Please confirm your password",
+                                    validate: (value) => value === password || "Passwords do not match"
+                                }}
+                                render={({ field }) => <Input type="password" {...field} />}
+                            />
+                            {errors.confirmPassword && <p className="text-red-500 text-sm">{errors.confirmPassword.message}</p>}
                         </div>
                     </div>
 
+                    {/* Opening Hours */}
                     <div className="space-y-4">
                         <h2 className="text-xl font-semibold">Opening Hours</h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <Select onValueChange={(value) => setNewOpeningHour(prev => ({ ...prev, day: value }))} value={newOpeningHour.day}>
+                            <Select required
+                                onValueChange={(value) => setNewOpeningHour((prev) => ({ ...prev, day: value }))} value={newOpeningHour.day}>
                                 <SelectTrigger>
                                     <SelectValue placeholder="Select day" />
                                 </SelectTrigger>
@@ -197,120 +200,144 @@ export default function GarageServiceProviderSignup() {
                                     ))}
                                 </SelectContent>
                             </Select>
-                            <Input
-                                type="time"
-                                value={newOpeningHour.start}
-                                onChange={(e) => setNewOpeningHour(prev => ({ ...prev, start: e.target.value }))}
-                                placeholder="Start time"
-                            />
-                            <Input
-                                type="time"
-                                value={newOpeningHour.end}
-                                onChange={(e) => setNewOpeningHour(prev => ({ ...prev, end: e.target.value }))}
-                                placeholder="End time"
-                            />
+                            <Input type="time" value={newOpeningHour.start} onChange={(e) => setNewOpeningHour((prev) => ({ ...prev, start: e.target.value }))} placeholder="Start time" />
+                            <Input type="time" value={newOpeningHour.end} onChange={(e) => setNewOpeningHour((prev) => ({ ...prev, end: e.target.value }))} placeholder="End time" />
                         </div>
-                        <Button type="button" onClick={handleAddOpeningHour} className="w-full">
+                        <Button type="button" onClick={handleAddOpeningHour} className="w-full bg-orange-500 hover:bg-orange-600 text-white">
                             Add Opening Hours
                         </Button>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-                            {formData.openingHours.map((hour, index) => (
-                                <div key={index} className="flex items-center justify-between p-2 bg-gray-100 rounded">
-                                    <span>{hour.day}: {hour.start} - {hour.end}</span>
-                                    <Button
-                                        type="button"
-                                        variant="ghost"
-                                        size="icon"
-                                        onClick={() => handleRemoveOpeningHour(index)}
-                                    >
-                                        <X className="h-4 w-4" />
-                                    </Button>
-                                </div>
-                            ))}
+                            <Controller
+                                name="openingHours"
+                                control={control}
+                                render={({ field }) => (
+                                    <>
+                                        {field.value.map((hour, index) => (
+                                            <div key={index} className="flex items-center justify-between p-2 bg-gray-100 rounded">
+                                                <span>{hour.day}: {hour.start} - {hour.end}</span>
+                                                <Button
+                                                    type="button"
+                                                    variant="ghost"
+                                                    size="icon"
+                                                    onClick={() => handleRemoveOpeningHour(index)}
+                                                >
+                                                    <X className="h-4 w-4" />
+                                                </Button>
+                                            </div>
+                                        ))}
+                                    </>
+                                )}
+                            />
                         </div>
                     </div>
 
+                    {/* Services Offered */}
                     <div className="space-y-4">
                         <h2 className="text-xl font-semibold">Services Offered</h2>
-                        <Select
-                            onValueChange={(value) => handleServicesChange([...formData.servicesOffer, value])}
-                            value={formData.servicesOffer[formData.servicesOffer.length - 1]}
-                        >
-                            <SelectTrigger>
-                                <SelectValue placeholder="Select services" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectGroup>
-                                    {predefinedServices.map((service) => (
-                                        <SelectItem key={service} value={service}>
-                                            {service}
-                                        </SelectItem>
-                                    ))}
-                                </SelectGroup>
-                            </SelectContent>
-                        </Select>
+                        <Controller
+                            name="servicesOffer"
+                            control={control}
+                            render={({ field }) => (
+                                <Select 
+                                    onValueChange={(value) => field.onChange([...field.value, value])}
+                                    value={field.value[field.value.length - 1]}
+                                >
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Select services" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectGroup>
+                                            {predefinedServices.map((service) => (
+                                                <SelectItem key={service} value={service}>
+                                                    {service}
+                                                </SelectItem>
+                                            ))}
+                                        </SelectGroup>
+                                    </SelectContent>
+                                </Select>
+                            )}
+                        />
                         <div className="flex gap-4">
-                            <Input
-                                value={newService}
-                                onChange={(e) => setNewService(e.target.value)}
-                                placeholder="Enter a custom service"
-                            />
-                            <Button type="button" onClick={handleAddCustomService}>
+                            <Input  value={newService} onChange={(e) => setNewService(e.target.value)} placeholder="Enter a custom service" />
+                            <Button type="button" onClick={handleAddCustomService} className="w-full bg-orange-500 hover:bg-orange-600 text-white">
                                 Add Custom Service
                             </Button>
                         </div>
                         <div className="flex flex-wrap gap-2">
-                            {formData.servicesOffer.map((service, index) => (
-                                <div key={index} className="flex items-center bg-gray-100 rounded px-3 py-1">
-                                    <span>{service}</span>
-                                    <Button
-                                        type="button"
-                                        variant="ghost"
-                                        size="icon"
-                                        onClick={() => handleRemoveService(service)}
-                                    >
-                                        <X className="h-4 w-4" />
-                                    </Button>
-                                </div>
-                            ))}
+                            <Controller
+                                name="servicesOffer"
+                                control={control}
+                                render={({ field }) => (
+                                    <>
+                                        {field.value.map((service, index) => (
+                                            <div key={index} className="flex items-center bg-gray-100 rounded px-3 py-1">
+                                                <span>{service}</span>
+                                                <Button
+                                                    type="button"
+                                                    variant="ghost"
+                                                    size="icon"
+                                                    onClick={() => handleRemoveService(service)}
+                                                >
+                                                    <X className="h-4 w-4" />
+                                                </Button>
+                                            </div>
+                                        ))}
+                                    </>
+                                )}
+                            />
                         </div>
                     </div>
 
+                    {/* Additional fields */}
                     <div className="space-y-4">
                         <div>
                             <Label htmlFor="dailyCapacity">Daily Capacity</Label>
-                            <Input
-                                id="dailyCapacity"
+                            <Controller
                                 name="dailyCapacity"
-                                type="number"
-                                value={formData.dailyCapacity || ''}
-                                onChange={handleInputChange}
-                                placeholder="Enter daily capacity"
+                                control={control}
+                                render={({ field }) => (
+                                    <Input
+                                        type="number"
+                                        {...field}
+                                        placeholder="Enter daily capacity"
+                                    />
+                                )}
                             />
                         </div>
                         <div className="flex items-center space-x-2">
-                            <Checkbox
-                                id="timeSlotAvailability"
-                                checked={formData.timeSlotAvailability}
-                                onCheckedChange={handleCheckboxChange('timeSlotAvailability')}
+                            <Controller
+                                name="timeSlotAvailability"
+                                control={control}
+                                render={({ field }) => (
+                                    <Checkbox
+                                        id="timeSlotAvailability"
+                                        checked={field.value}
+                                        onCheckedChange={field.onChange}
+                                    />
+                                )}
                             />
                             <label htmlFor="timeSlotAvailability">Enable time slot availability</label>
                         </div>
                         <div className="flex items-center space-x-2">
-                            <Checkbox
-                                id="rememberMe"
-                                checked={formData.rememberMe}
-                                onCheckedChange={handleCheckboxChange('rememberMe')}
+                            <Controller
+                                name="rememberMe"
+                                control={control}
+                                render={({ field }) => (
+                                    <Checkbox
+                                        id="rememberMe"
+                                        checked={field.value}
+                                        onCheckedChange={field.onChange}
+                                    />
+                                )}
                             />
                             <label htmlFor="rememberMe">Remember me</label>
                         </div>
                     </div>
-
-                    <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white">
-                        Sign Up as Garage Service Provider
+                    <Button type="submit" className="w-full bg-orange-500 hover:bg-orange-600 text-white">
+                        Sign Up
                     </Button>
                 </form>
             </div>
         </div>
-    )
+    );
 }

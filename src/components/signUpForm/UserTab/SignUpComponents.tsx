@@ -1,10 +1,9 @@
-import { useState } from 'react'
+import { useForm, Controller } from "react-hook-form"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 
 type SignupData = {
   fullName: string;
@@ -14,6 +13,8 @@ type SignupData = {
   yearOfManufacture: string;
   vehicleType: string;
   licensePlateNumber: string;
+  password: string;
+  confirmPassword: string;
   fuelType: string;
   tireWidth: string;
   tireHeight: string;
@@ -27,41 +28,35 @@ type SignupData = {
 }
 
 export default function SignUpComponents() {
-  const [formData, setFormData] = useState<SignupData>({
-    fullName: '',
-    email: '',
-    phoneNumber: '',
-    vehicleMakeModel: '',
-    yearOfManufacture: '',
-    vehicleType: '',
-    licensePlateNumber: '',
-    fuelType: '',
-    tireWidth: '',
-    tireHeight: '',
-    tireDiameter: '',
-    tireCondition: '',
-    preferredTireType: [],
-    tireBudget: '',
-    brandPreferences: '',
-    tpms: false,
-    homePickupService: false,
-  })
+  const { control, handleSubmit, watch, formState: { errors } } = useForm<SignupData>({
+    defaultValues: {
+      fullName: '',
+      email: '',
+      phoneNumber: '',
+      password: '',
+      confirmPassword: '',
+      vehicleMakeModel: '',
+      yearOfManufacture: '',
+      vehicleType: '',
+      licensePlateNumber: '',
+      fuelType: '',
+      tireWidth: '',
+      tireHeight: '',
+      tireDiameter: '',
+      tireCondition: '',
+      preferredTireType: [],
+      tireBudget: '',
+      brandPreferences: '',
+      tpms: false,
+      homePickupService: false,
+    }
+  });
 
+  const password = watch("password");
 
-  const fullNameValidation = {
-    required: "Full Name is required",
-    minLength: {
-      value: 2,
-      message: "Full Name must be at least 2 characters long",
-    },
-  };
-
-  const emailValidation = {
-    required: "Email is required",
-    pattern: {
-      value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-      message: "Invalid email address",
-    },
+  const onSubmit = (data: SignupData) => {
+    console.log('Form submitted:', data);
+    // Handle form submission logic here
   };
 
   // Strong password validation regex
@@ -79,92 +74,114 @@ export default function SignUpComponents() {
     },
   };
 
-
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
-
-  const handleSelectChange = (name: string) => (value: string) => {
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
-
-  const handleCheckboxChange = (name: string) => (checked: boolean) => {
-    setFormData(prev => ({ ...prev, [name]: checked }))
-  }
-
-  const handlePreferredTireTypeChange = (type: string) => {
-    setFormData(prev => ({
-      ...prev,
-      preferredTireType: prev.preferredTireType.includes(type)
-        ? prev.preferredTireType.filter(t => t !== type)
-        : [...prev.preferredTireType, type]
-    }))
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log('Form submitted:', formData)
-    // Handle form submission logic here
-  }
-
   return (
     <div className="flex items-center justify-center h-full w-full p-5">
       <div className="w-full max-w-2xl">
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <Label htmlFor="fullName">Full Name</Label>
-              <Input id="fullName" name="fullName" value={formData.fullName} onChange={handleInputChange} required />
+              <Controller
+                name="fullName"
+                control={control}
+                rules={{ required: "Full name is required" }}
+                render={({ field }) => <Input {...field} />}
+              />
+              {errors.fullName && <p className="text-red-500 text-sm mt-1">{errors.fullName.message}</p>}
             </div>
             <div>
               <Label htmlFor="email">Email</Label>
-              <Input id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} required />
+              <Controller
+                name="email"
+                control={control}
+                rules={{ required: "Email is required", pattern: { value: /^\S+@\S+$/i, message: "Invalid email address" } }}
+                render={({ field }) => <Input type="email" {...field} />}
+              />
+              {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
             </div>
             <div>
               <Label htmlFor="phoneNumber">Phone Number</Label>
-              <Input id="phoneNumber" name="phoneNumber" value={formData.phoneNumber} onChange={handleInputChange} required />
+              <Controller
+                name="phoneNumber"
+                control={control}
+                rules={{ required: "Phone number is required" }}
+                render={({ field }) => <Input {...field} />}
+              />
+              {errors.phoneNumber && <p className="text-red-500 text-sm mt-1">{errors.phoneNumber.message}</p>}
             </div>
             <div>
               <Label htmlFor="vehicleMakeModel">Vehicle Make and Model</Label>
-              <Input id="vehicleMakeModel" name="vehicleMakeModel" value={formData.vehicleMakeModel} onChange={handleInputChange} required />
+              <Controller
+                name="vehicleMakeModel"
+                control={control}
+                rules={{ required: "Vehicle make and model is required" }}
+                render={({ field }) => <Input {...field} />}
+              />
+              {errors.vehicleMakeModel && <p className="text-red-500 text-sm mt-1">{errors.vehicleMakeModel.message}</p>}
             </div>
             <div>
               <Label htmlFor="yearOfManufacture">Year of Manufacture</Label>
-              <Input id="yearOfManufacture" name="yearOfManufacture" value={formData.yearOfManufacture} onChange={handleInputChange} required />
+              <Controller
+                name="yearOfManufacture"
+                control={control}
+                rules={{ required: "Year of manufacture is required" }}
+                render={({ field }) => <Input {...field} />}
+              />
+              {errors.yearOfManufacture && <p className="text-red-500 text-sm mt-1">{errors.yearOfManufacture.message}</p>}
             </div>
             <div>
               <Label htmlFor="vehicleType">Vehicle Type</Label>
-              <Select onValueChange={handleSelectChange('vehicleType')} value={formData.vehicleType}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select vehicle type" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="sedan">Sedan</SelectItem>
-                  <SelectItem value="suv">SUV</SelectItem>
-                  <SelectItem value="truck">Truck</SelectItem>
-                  <SelectItem value="van">Van</SelectItem>
-                </SelectContent>
-              </Select>
+              <Controller
+                name="vehicleType"
+                control={control}
+                rules={{ required: "Vehicle type is required" }}
+                render={({ field }) => (
+                  <Select onValueChange={field.onChange} value={field.value}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select vehicle type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="sedan">Sedan</SelectItem>
+                      <SelectItem value="suv">SUV</SelectItem>
+                      <SelectItem value="truck">Truck</SelectItem>
+                      <SelectItem value="van">Van</SelectItem>
+                    </SelectContent>
+                  </Select>
+                )}
+              />
+              {errors.vehicleType && <p className="text-red-500 text-sm mt-1">{errors.vehicleType.message}</p>}
             </div>
             <div>
               <Label htmlFor="licensePlateNumber">License Plate Number</Label>
-              <Input id="licensePlateNumber" name="licensePlateNumber" value={formData.licensePlateNumber} onChange={handleInputChange} required />
+              <Controller
+                name="licensePlateNumber"
+                control={control}
+                rules={{ required: "License plate number is required" }}
+                render={({ field }) => <Input {...field} />}
+              />
+              {errors.licensePlateNumber && <p className="text-red-500 text-sm mt-1">{errors.licensePlateNumber.message}</p>}
             </div>
             <div>
               <Label htmlFor="fuelType">Fuel Type</Label>
-              <Select onValueChange={handleSelectChange('fuelType')} value={formData.fuelType}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select fuel type" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="gasoline">Gasoline</SelectItem>
-                  <SelectItem value="diesel">Diesel</SelectItem>
-                  <SelectItem value="electric">Electric</SelectItem>
-                  <SelectItem value="hybrid">Hybrid</SelectItem>
-                </SelectContent>
-              </Select>
+              <Controller
+                name="fuelType"
+                control={control}
+                rules={{ required: "Fuel type is required" }}
+                render={({ field }) => (
+                  <Select onValueChange={field.onChange} value={field.value}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select fuel type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="gasoline">Gasoline</SelectItem>
+                      <SelectItem value="diesel">Diesel</SelectItem>
+                      <SelectItem value="electric">Electric</SelectItem>
+                      <SelectItem value="hybrid">Hybrid</SelectItem>
+                    </SelectContent>
+                  </Select>
+                )}
+              />
+              {errors.fuelType && <p className="text-red-500 text-sm mt-1">{errors.fuelType.message}</p>}
             </div>
           </div>
 
@@ -173,40 +190,77 @@ export default function SignUpComponents() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
                 <Label htmlFor="tireWidth">Tire Width</Label>
-                <Input id="tireWidth" name="tireWidth" value={formData.tireWidth} onChange={handleInputChange} required />
+                <Controller
+                  name="tireWidth"
+                  control={control}
+                  rules={{ required: "Tire width is required" }}
+                  render={({ field }) => <Input {...field} />}
+                />
+                {errors.tireWidth && <p className="text-red-500 text-sm mt-1">{errors.tireWidth.message}</p>}
               </div>
               <div>
                 <Label htmlFor="tireHeight">Tire Height</Label>
-                <Input id="tireHeight" name="tireHeight" value={formData.tireHeight} onChange={handleInputChange} required />
+                <Controller
+                  name="tireHeight"
+                  control={control}
+                  rules={{ required: "Tire height is required" }}
+                  render={({ field }) => <Input {...field} />}
+                />
+                {errors.tireHeight && <p className="text-red-500 text-sm mt-1">{errors.tireHeight.message}</p>}
               </div>
               <div>
                 <Label htmlFor="tireDiameter">Tire Diameter</Label>
-                <Input id="tireDiameter" name="tireDiameter" value={formData.tireDiameter} onChange={handleInputChange} required />
+                <Controller
+                  name="tireDiameter"
+                  control={control}
+                  rules={{ required: "Tire diameter is required" }}
+                  render={({ field }) => <Input {...field} />}
+                />
+                {errors.tireDiameter && <p className="text-red-500 text-sm mt-1">{errors.tireDiameter.message}</p>}
               </div>
             </div>
             <div>
               <Label htmlFor="tireCondition">Tire Condition</Label>
-              <Select onValueChange={handleSelectChange('tireCondition')} value={formData.tireCondition}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select tire condition" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="new">New</SelectItem>
-                  <SelectItem value="good">Good</SelectItem>
-                  <SelectItem value="fair">Fair</SelectItem>
-                  <SelectItem value="poor">Poor</SelectItem>
-                </SelectContent>
-              </Select>
+              <Controller
+                name="tireCondition"
+                control={control}
+                rules={{ required: "Tire condition is required" }}
+                render={({ field }) => (
+                  <Select onValueChange={field.onChange} value={field.value}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select tire condition" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="new">New</SelectItem>
+                      <SelectItem value="good">Good</SelectItem>
+                      <SelectItem value="fair">Fair</SelectItem>
+                      <SelectItem value="poor">Poor</SelectItem>
+                    </SelectContent>
+                  </Select>
+                )}
+              />
+              {errors.tireCondition && <p className="text-red-500 text-sm mt-1">{errors.tireCondition.message}</p>}
             </div>
             <div>
               <Label>Preferred Tire Type</Label>
               <div className="flex flex-wrap gap-4 mt-2">
                 {['All-Season', 'Summer', 'Winter', 'All-Terrain'].map((type) => (
                   <div key={type} className="flex items-center space-x-2">
-                    <Checkbox
-                      id={`tireType-${type}`}
-                      checked={formData.preferredTireType.includes(type)}
-                      onCheckedChange={() => handlePreferredTireTypeChange(type)}
+                    <Controller
+                      name="preferredTireType"
+                      control={control}
+                      render={({ field }) => (
+                        <Checkbox
+                          id={`tireType-${type}`}
+                          checked={field.value.includes(type)}
+                          onCheckedChange={(checked) => {
+                            const updatedValue = checked
+                              ? [...field.value, type]
+                              : field.value.filter((t: string) => t !== type);
+                            field.onChange(updatedValue);
+                          }}
+                        />
+                      )}
                     />
                     <label htmlFor={`tireType-${type}`}>{type}</label>
                   </div>
@@ -215,35 +269,81 @@ export default function SignUpComponents() {
             </div>
             <div>
               <Label htmlFor="tireBudget">Tire Budget</Label>
-              <Input id="tireBudget" name="tireBudget" value={formData.tireBudget} onChange={handleInputChange} placeholder="Enter your budget" />
+              <Controller
+                name="tireBudget"
+                control={control}
+                render={({ field }) => <Input {...field} placeholder="Enter your budget" />}
+              />
             </div>
             <div>
               <Label htmlFor="brandPreferences">Brand Preferences (optional)</Label>
-              <Input id="brandPreferences" name="brandPreferences" value={formData.brandPreferences} onChange={handleInputChange} placeholder="Enter preferred brands" />
+              <Controller
+                name="brandPreferences"
+                control={control}
+                render={({ field }) => <Input {...field} placeholder="Enter preferred brands" />}
+              />
             </div>
           </div>
 
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <Checkbox
-                id="tpms"
-                checked={formData.tpms}
-                onCheckedChange={handleCheckboxChange('tpms')}
+              <Controller
+                name="tpms"
+                control={control}
+                render={({ field }) => (
+                  <Checkbox
+                    id="tpms"
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                )}
               />
               <label htmlFor="tpms">Tire Pressure Monitoring System (TPMS)</label>
             </div>
             <div className="flex items-center space-x-2">
-              <Checkbox
-                id="homePickupService"
-                checked={formData.homePickupService}
-                onCheckedChange={handleCheckboxChange('homePickupService')}
+              <Controller
+                name="homePickupService"
+                control={control}
+                render={({ field }) => (
+                  <Checkbox
+                    id="homePickupService"
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                )}
               />
               <label htmlFor="homePickupService">Home Pickup Service</label>
             </div>
           </div>
 
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <Label htmlFor="password">Password</Label>
+              <Controller
+                name="password"
+                control={control}
+                rules={passwordValidation}
+                render={({ field }) => <Input type="password" {...field} />}
+              />
+              {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>}
+            </div>
+            <div>
+              <Label htmlFor="confirmPassword">Confirm Password</Label>
+              <Controller
+                name="confirmPassword"
+                control={control}
+                rules={{
+                  required: "Please confirm your password",
+                  validate: (value) => value === password || "Passwords do not match"
+                }}
+                render={({ field }) => <Input type="password" {...field} />}
+              />
+              {errors.confirmPassword && <p className="text-red-500 text-sm mt-1">{errors.confirmPassword.message}</p>}
+            </div>
+          </div>
+
           <Button type="submit" className="w-full bg-orange-500 hover:bg-orange-600 text-white">
-            Sign Up for Tire Service
+            Sign Up
           </Button>
         </form>
       </div>
