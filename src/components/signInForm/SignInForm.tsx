@@ -5,6 +5,9 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import authImage from "@/assets/auth.jpg";
 import Link from "next/link";
+import SignupForm from "../signUpForm/SignUpForm";
+import SignInComponents from "../signUpForm/UserTab/SignUpComponents";
+import LoginPageComponents from "../signUpForm/UserTab/LogIncomponents";
 
 // Define types for form data
 type LoginFormInputs = {
@@ -44,71 +47,8 @@ const SignInFrom = () => {
       </div>
 
       {/* Right Section (Login Form) */}
-      <div className="flex-1 flex justify-center items-center lg:px-0 px-5">
-        <div className="w-full lg:max-w-md border border-slate-200 shadow p-4  ">
-          <h2 className="text-2xl font-bold  mb-6">Login</h2>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <div>
-              <Input
-                type="email"
-                placeholder="name@mail.com"
-                {...register("email", { required: "Email is required" })}
-                className="w-full"
-              />
-              {errors.email && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.email.message}
-                </p>
-              )}
-            </div>
-
-            <div>
-              <Input
-                type="password"
-                placeholder="********"
-                {...register("password", { required: "Password is required" })}
-                className="w-full"
-              />
-              {errors.password && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.password.message}
-                </p>
-              )}
-              <div className="text-right mt-2">
-                <a href="#" className="text-blue-500 text-sm">
-                  Reset Password
-                </a>
-              </div>
-            </div>
-
-            <div className="flex items-center">
-              <input
-                type="checkbox"
-                {...register("remember")}
-                className="mr-2"
-              />
-              <label>Remember Password</label>
-            </div>
-
-            <Button
-              type="submit"
-              className="w-full group gap-2 bg-secondary hover:bg-secondary/80 active:scale-95 transition-all duration-300 py-2 rounded text-white hover:text-white"
-            >
-              Login
-            </Button>
-
-            <div className="text-center mt-4">
-              <p className="text-sm">
-                Don&apos;t have an account?{" "}
-                <Link href="/sign-up" className="text-blue-500">
-                  Sign up
-                </Link>
-              </p>
-            </div>
-
-            
-          </form>
-        </div>
+      <div className="flex-1 flex items-center justify-center lg:px-0 px-5">
+            <LoginPageComponents />
       </div>
     </div>
   );

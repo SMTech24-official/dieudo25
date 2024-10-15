@@ -17,16 +17,7 @@ import Image from "next/image";
 import StarPicker from "react-star-picker";
 import 'react-star-picker/styles.css';
 import wheel from "@/assets/wheel.png"
-
-
-
-
-const gallery = [
-  "https://img.freepik.com/free-photo/auto-mechanic-checking-car_1303-14042.jpg?semt=ais_hybrid-rr-similar",
-  "https://img.freepik.com/free-photo/car-repair-maintenance-theme-mechanic-uniform-working-auto-service_627829-3918.jpg?semt=ais_hybrid-rr-similar",
-  "https://img.freepik.com/free-photo/happy-african-american-auto-repairman-talking-customer-workshop_637285-8626.jpg?semt=ais_hybrid-rr-similar",
-  "https://img.freepik.com/free-photo/female-mechanic-repairing-car_1170-1617.jpg?semt=ais_hybrid-rr-similar"
-]
+import { Clipboard } from "lucide-react";
 
 
 
@@ -67,8 +58,9 @@ export default function Page({ params }: { params: { slug: string } }) {
     garageBio
   } = garage;
 
+
   return (
-    <main className="container  md:py-20 py-10 w-full h-full">
+    <main className="container  py-padding_base lg:pb-padding_extra pb-0 px-padding_small w-full h-full">
 
       {/* name  */}
       <h2 className={`${poppins.className} lg:text-2xl md:text-xl text-lg md:mb-2 mb-1 font-semibold flex items-center gap-2`}>
@@ -89,11 +81,90 @@ export default function Page({ params }: { params: { slug: string } }) {
         additionalClasses="md:hidden block" // Add any additional classes you want
       />
 
-
-
-
       <div className="flex md:flex-row flex-col-reverse gap-6 w-full  lg:mt-10">
         {/* Left Side (Scrollable Content) */}
+
+        <div className="h-fit md:w-[30%] top-0 sticky">
+          <div className="bg-white h-full w-full p-4 shadow-md">
+            {/* owner  */}
+            <div className="flex items-center gap-4">
+              <div className="flex rounded-full overflow-hidden">
+                <Image
+                  width={500}
+                  height={500}
+                  src={profile}
+                  alt={`image  of ${ownerName}`}
+                  objectFit="cover"
+                  className="size-[50px]"
+                />
+              </div>
+              <div className="space-y-1">
+                <h3 className="font-semibold text-sm flex-1">{ownerName}</h3>
+                <div className="flex items-center gap-1">
+                  <StarPicker
+                    onChange={() => { }}
+                    size={20}
+                    starCount={5}
+                    disabled={true}
+                    className=""
+                    halfStars={true}
+                    value={rating} />
+                  <span className="text-sm">{rating} / {totalRatings}</span>
+                </div>
+              </div>
+            </div>
+            {/* contact  */}
+            <div className="mt-5">
+              <p className="uppercase font-semibold">Contact Information</p>
+              <div className="space-y-2 mt-4 ">
+                <p className="flex items-center gap-2 ">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-phone-call"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /><path d="M14.05 2a9 9 0 0 1 8 7.94" /><path d="M14.05 6A5 5 0 0 1 18 10" /></svg>
+                  {phone}</p>
+                <p className="flex items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>
+                  {email}
+                </p>
+              </div>
+            </div>
+            {/* openihng hours  */}
+            <div className="mt-5">
+              <p className="uppercase font-semibold flex items-center justify-between"><span>Open Hours</span> <span className={`${isGarageOpen(openingHours) === "Closed" ? "text-red-600" : "text-green-600"}`}>{isGarageOpen(openingHours)}</span> </p>
+              <div className="space-y-2 mt-2">
+                {
+                  openingHours.map(data => <TimeSlots key={data.id} data={data} />)
+                }
+              </div>
+            </div>
+            <div className="mt-5">
+              <p className="uppercase font-semibold flex items-center justify-between"><span>Max Capacity / day</span> <span className="">{maxVehiclesPerDay} CAr</span> </p>
+            </div>
+            <div className="mt-5">
+              <p className="uppercase font-semibold flex items-center justify-between"><span>Price range</span> <span className="">{currency} {min_price} - {max_price}</span> </p>
+            </div>
+            <div className="mt-5">
+              <p className="uppercase font-semibold flex items-center justify-between"><span>Emergency Service</span> <span className="">{emergencyService ? "Available" : "Not Available"}</span> </p>
+            </div>
+
+            {
+              realTimeAvailability && (
+                <div className="mb-5">
+                  <Button
+                    onClick={() => setIsOpen(true)}
+                    className="mt-4 flex items-center gap-2 bg-secondary hover:bg-secondary/80  w-full px-4 py-2 rounded text-white"
+                  >
+                    Book Now
+                  </Button>
+                  <BookingModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+                </div>
+              )
+            }
+
+          </div>
+        </div>
+        {/* End Left Side (Scrollable Content) */}
+
+
+        {/* Right Side (Sticky Content) */}
         <div className="flex-1 md:h-screen overflow-y-scroll garage_Details">
           {/* address  */}
           <div className="lg:mt-6 md:mt-6 mt-4  md:space-y-2 space-y-1">
@@ -120,10 +191,10 @@ export default function Page({ params }: { params: { slug: string } }) {
           <div className="flex justify-center md:py-4 py-3">
             <button
               type="submit"
-              className="mt-4 flex items-center gap-2 bg-secondary hover:bg-secondary/80  w-fit px-4 py-2 rounded text-white"
+              className="mt-4 flex items-center gap-2 bg-secondary hover:bg-secondary/80  w-fit px-4 py-2 rounded text-white group"
             >
               <span>Request a Quote</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg>
+              <Clipboard className="h-4 w-4 inline-block mr-1 group-hover:fill-white" />
             </button>
           </div>
           {/* Request a Quote */}
@@ -185,10 +256,10 @@ export default function Page({ params }: { params: { slug: string } }) {
             <div className="flex justify-center md:py-4 py-3">
               <button
                 type="submit"
-                className="mt-4 flex items-center gap-2 bg-secondary hover:bg-secondary/80  w-fit px-4 py-2 rounded text-white"
+                className="mt-4 flex items-center gap-2 bg-secondary hover:bg-secondary/80 group w-fit px-4 py-2 rounded text-white"
               >
                 <span>Request a Quote</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg>
+                <Clipboard className="h-4 w-4 inline-block mr-1 group-hover:fill-white" />
               </button>
             </div>
             {/* Request a Quote */}
@@ -198,7 +269,7 @@ export default function Page({ params }: { params: { slug: string } }) {
               <div className="flex items-center justify-center flex-wrap lg:gap-4 ">
                 {tireDelivery.map((tier, index) => (
                   <div key={index} className="p-4  w-96 h-40 relative rounded-md shadow-md space-y-2 hover:shadow-lg flex flex-col hover:cursor-pointer">
-                    <Image src={wheel} alt="wheel logo" width={50} height={50}   objectFit="cover"/>
+                    <Image src={wheel} alt="wheel logo" width={50} height={50} objectFit="cover" />
                     <div>
                       <h5 className="font-semibold flex-1">Brand: {tier.brand}</h5>
                       <p className="flex-grow">Delivery Time: {tier.deliveryTime}</p>
@@ -213,8 +284,8 @@ export default function Page({ params }: { params: { slug: string } }) {
               <div className="flex items-center justify-center flex-wrap lg:gap-4 ">
                 {specialRequests.map((special, index) => (
                   <div key={index} className="p-4  w-96 h-32 relative rounded-md shadow-md space-y-2 hover:shadow-lg flex flex-col hover:cursor-pointer">
-                      <h5 className="font-semibold flex-1">{special.serviceType}</h5>
-                      <p className="flex-grow">{special.description}</p>
+                    <h5 className="font-semibold flex-1">{special.serviceType}</h5>
+                    <p className="flex-grow">{special.description}</p>
                   </div>
                 ))}
               </div>
@@ -240,87 +311,6 @@ export default function Page({ params }: { params: { slug: string } }) {
               </div>
             </div>
 
-
-          </div>
-        </div>
-        {/* End Left Side (Scrollable Content) */}
-
-
-        {/* Right Side (Sticky Content) */}
-        <div className="h-fit md:w-[30%] top-0 sticky">
-          <div className="bg-white h-full w-full p-4 shadow-md">
-            {/* owner  */}
-            <div className="flex items-center gap-4">
-              <div className="flex rounded-full overflow-hidden">
-                <Image
-                  width={500}
-                  height={500}
-                  src={profile}
-                  alt={`image  of ${ownerName}`}
-                    objectFit="cover"
-                  className="size-[50px]"
-                />
-              </div>
-              <div className="space-y-1">
-                <h3 className="font-semibold text-sm flex-1">{ownerName}</h3>
-                <div className="flex items-center gap-1">
-                  <StarPicker
-                  onChange={()=>{}}
-                    size={20}
-                    starCount={5}
-                    disabled={true}
-                    className=""
-                    halfStars={true}
-                    value={rating} />
-                  <span className="text-sm">{rating} / {totalRatings}</span>
-                </div>
-              </div>
-            </div>
-            {/* contact  */}
-            <div className="mt-5">
-              <p className="uppercase font-semibold">Contact Information</p>
-              <div className="space-y-2 mt-4 ">
-                <p className="flex items-center gap-2 ">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-phone-call"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /><path d="M14.05 2a9 9 0 0 1 8 7.94" /><path d="M14.05 6A5 5 0 0 1 18 10" /></svg>
-                  {phone}</p>
-                <p className="flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>
-                  {email}
-                </p>
-              </div>
-            </div>
-            {/* openihng hours  */}
-            <div className="mt-5">
-              <p className="uppercase font-semibold flex items-center justify-between"><span>Open Hours</span> <span className={`${isGarageOpen(openingHours) === "Closed" ? "text-red-600" : "text-green-600"}`}>{isGarageOpen(openingHours)}</span> </p>
-              <div className="space-y-2 mt-2">
-                {
-                  openingHours.map(data => <TimeSlots key={data.id} data={data} />)
-                }
-              </div>
-            </div>
-            <div className="mt-5">
-              <p className="uppercase font-semibold flex items-center justify-between"><span>Max Capacity / day</span> <span className="">{maxVehiclesPerDay} CAr</span> </p>
-            </div>
-            <div className="mt-5">
-              <p className="uppercase font-semibold flex items-center justify-between"><span>Price range</span> <span className="">{currency} {min_price} - {max_price}</span> </p>
-            </div>
-            <div className="mt-5">
-              <p className="uppercase font-semibold flex items-center justify-between"><span>Emergency Service</span> <span className="">{emergencyService ? "Available" : "Not Available"}</span> </p>
-            </div>
-
-            {
-              realTimeAvailability && (
-                <div className="mb-5">
-                  <Button
-                    onClick={() => setIsOpen(true)}
-                    className="mt-4 flex items-center gap-2 bg-secondary hover:bg-secondary/80  w-full px-4 py-2 rounded text-white"
-                  >
-                    Book Now
-                  </Button>
-                  <BookingModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
-                </div>
-              )
-            }
 
           </div>
         </div>

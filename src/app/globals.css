@@ -28,7 +28,7 @@ html {
 }
 
 .garage_Details::-webkit-scrollbar {
-  width: 0px;
+  width: 5px;
 }
 
 /* Track */
