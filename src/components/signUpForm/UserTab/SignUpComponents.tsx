@@ -1,83 +1,218 @@
+import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 
-export default function SignInComponents() {
+type SignupData = {
+  fullName: string;
+  email: string;
+  phoneNumber: string;
+  vehicleMakeModel: string;
+  yearOfManufacture: string;
+  vehicleType: string;
+  licensePlateNumber: string;
+  fuelType: string;
+  tireWidth: string;
+  tireHeight: string;
+  tireDiameter: string;
+  tireCondition: string;
+  preferredTireType: string[];
+  tireBudget: string;
+  brandPreferences?: string;
+  tpms: boolean;
+  homePickupService: boolean;
+}
+
+export default function TireServiceSignup() {
+  const [formData, setFormData] = useState<SignupData>({
+    fullName: '',
+    email: '',
+    phoneNumber: '',
+    vehicleMakeModel: '',
+    yearOfManufacture: '',
+    vehicleType: '',
+    licensePlateNumber: '',
+    fuelType: '',
+    tireWidth: '',
+    tireHeight: '',
+    tireDiameter: '',
+    tireCondition: '',
+    preferredTireType: [],
+    tireBudget: '',
+    brandPreferences: '',
+    tpms: false,
+    homePickupService: false,
+  })
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
+
+  const handleSelectChange = (name: string) => (value: string) => {
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
+
+  const handleCheckboxChange = (name: string) => (checked: boolean) => {
+    setFormData(prev => ({ ...prev, [name]: checked }))
+  }
+
+  const handlePreferredTireTypeChange = (type: string) => {
+    setFormData(prev => ({
+      ...prev,
+      preferredTireType: prev.preferredTireType.includes(type)
+        ? prev.preferredTireType.filter(t => t !== type)
+        : [...prev.preferredTireType, type]
+    }))
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    console.log('Form submitted:', formData)
+    // Handle form submission logic here
+  }
+
   return (
-    <div className="flex items-center justify-center min-h-screen bg-orange-50">
-      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
-        <Button variant="outline" className="w-full mb-6">
-          <svg
-            className="w-5 h-5 mr-2"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-              fill="#4285F4"
-            />
-            <path
-              d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-              fill="#34A853"
-            />
-            <path
-              d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-              fill="#FBBC05"
-            />
-            <path
-              d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-              fill="#EA4335"
-            />
-          </svg>
-          Continue with Google
-        </Button>
-        <div className="text-center text-sm text-gray-500 mb-6">
-          Or create your own account here!
-        </div>
-        <div className="grid grid-cols-2 gap-4 mb-4">
-          <div>
-            <label htmlFor="firstName">First Name</label>
-            <Input id="firstName" placeholder="First name" />
+    <div className="flex items-center justify-center min-h-screen bg-orange-50 p-4">
+      <div className="w-full max-w-2xl p-8 bg-white rounded-lg shadow-md">
+        <h1 className="text-2xl font-bold text-center mb-6">Tire Service Sign Up</h1>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <Label htmlFor="fullName">Full Name</Label>
+              <Input id="fullName" name="fullName" value={formData.fullName} onChange={handleInputChange} required />
+            </div>
+            <div>
+              <Label htmlFor="email">Email</Label>
+              <Input id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} required />
+            </div>
+            <div>
+              <Label htmlFor="phoneNumber">Phone Number</Label>
+              <Input id="phoneNumber" name="phoneNumber" value={formData.phoneNumber} onChange={handleInputChange} required />
+            </div>
+            <div>
+              <Label htmlFor="vehicleMakeModel">Vehicle Make and Model</Label>
+              <Input id="vehicleMakeModel" name="vehicleMakeModel" value={formData.vehicleMakeModel} onChange={handleInputChange} required />
+            </div>
+            <div>
+              <Label htmlFor="yearOfManufacture">Year of Manufacture</Label>
+              <Input id="yearOfManufacture" name="yearOfManufacture" value={formData.yearOfManufacture} onChange={handleInputChange} required />
+            </div>
+            <div>
+              <Label htmlFor="vehicleType">Vehicle Type</Label>
+              <Select onValueChange={handleSelectChange('vehicleType')} value={formData.vehicleType}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select vehicle type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="sedan">Sedan</SelectItem>
+                  <SelectItem value="suv">SUV</SelectItem>
+                  <SelectItem value="truck">Truck</SelectItem>
+                  <SelectItem value="van">Van</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <Label htmlFor="licensePlateNumber">License Plate Number</Label>
+              <Input id="licensePlateNumber" name="licensePlateNumber" value={formData.licensePlateNumber} onChange={handleInputChange} required />
+            </div>
+            <div>
+              <Label htmlFor="fuelType">Fuel Type</Label>
+              <Select onValueChange={handleSelectChange('fuelType')} value={formData.fuelType}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select fuel type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="gasoline">Gasoline</SelectItem>
+                  <SelectItem value="diesel">Diesel</SelectItem>
+                  <SelectItem value="electric">Electric</SelectItem>
+                  <SelectItem value="hybrid">Hybrid</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
-          <div>
-            <label htmlFor="lastName">Last Name</label>
-            <Input id="lastName" placeholder="Last name" />
+
+          <div className="space-y-4">
+            <h2 className="text-xl font-semibold">Tire Information</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <Label htmlFor="tireWidth">Tire Width</Label>
+                <Input id="tireWidth" name="tireWidth" value={formData.tireWidth} onChange={handleInputChange} required />
+              </div>
+              <div>
+                <Label htmlFor="tireHeight">Tire Height</Label>
+                <Input id="tireHeight" name="tireHeight" value={formData.tireHeight} onChange={handleInputChange} required />
+              </div>
+              <div>
+                <Label htmlFor="tireDiameter">Tire Diameter</Label>
+                <Input id="tireDiameter" name="tireDiameter" value={formData.tireDiameter} onChange={handleInputChange} required />
+              </div>
+            </div>
+            <div>
+              <Label htmlFor="tireCondition">Tire Condition</Label>
+              <Select onValueChange={handleSelectChange('tireCondition')} value={formData.tireCondition}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select tire condition" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="new">New</SelectItem>
+                  <SelectItem value="good">Good</SelectItem>
+                  <SelectItem value="fair">Fair</SelectItem>
+                  <SelectItem value="poor">Poor</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <Label>Preferred Tire Type</Label>
+              <div className="flex flex-wrap gap-4 mt-2">
+                {['All-Season', 'Summer', 'Winter', 'All-Terrain'].map((type) => (
+                  <div key={type} className="flex items-center space-x-2">
+                    <Checkbox
+                      id={`tireType-${type}`}
+                      checked={formData.preferredTireType.includes(type)}
+                      onCheckedChange={() => handlePreferredTireTypeChange(type)}
+                    />
+                    <label htmlFor={`tireType-${type}`}>{type}</label>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <Label htmlFor="tireBudget">Tire Budget</Label>
+              <Input id="tireBudget" name="tireBudget" value={formData.tireBudget} onChange={handleInputChange} placeholder="Enter your budget" />
+            </div>
+            <div>
+              <Label htmlFor="brandPreferences">Brand Preferences (optional)</Label>
+              <Input id="brandPreferences" name="brandPreferences" value={formData.brandPreferences} onChange={handleInputChange} placeholder="Enter preferred brands" />
+            </div>
           </div>
-        </div>
-        <div className="mb-4">
-          <label htmlFor="email">Email Address</label>
-          <Input id="email" type="email" placeholder="example@gmail.com" />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="phone">Phone Number</label>
-          <Input id="phone" type="tel" placeholder="(123) 456 - 7890" />
-        </div>
-        <div className="mb-6">
-          <label htmlFor="password">Password</label>
-          <Input id="password" type="password" placeholder="Enter your password" />
-        </div>
-        <div className="flex items-center space-x-2 mb-4">
-          <Checkbox id="terms" />
-          <label
-            htmlFor="terms"
-            className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-          >
-            I accept the{" "}
-            <span className="text-orange-500 hover:underline cursor-pointer">Terms and Conditions</span>.
-          </label>
-        </div>
-        <div className="flex items-center space-x-2 mb-6">
-          <Checkbox id="privacy" />
-          <label
-            htmlFor="privacy"
-            className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-          >
-            I have reviewed and agree to How&apos;s{" "}
-            <span className="text-orange-500 hover:underline cursor-pointer">Privacy policy</span>
-          </label>
-        </div>
-        <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white">Sign Up</Button>
+
+          <div className="space-y-4">
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="tpms"
+                checked={formData.tpms}
+                onCheckedChange={handleCheckboxChange('tpms')}
+              />
+              <label htmlFor="tpms">Tire Pressure Monitoring System (TPMS)</label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="homePickupService"
+                checked={formData.homePickupService}
+                onCheckedChange={handleCheckboxChange('homePickupService')}
+              />
+              <label htmlFor="homePickupService">Home Pickup Service</label>
+            </div>
+          </div>
+
+          <Button type="submit" className="w-full bg-orange-500 hover:bg-orange-600 text-white">
+            Sign Up for Tire Service
+          </Button>
+        </form>
       </div>
     </div>
   )

@@ -13,11 +13,10 @@ import 'swiper/css/pagination';
 // import required modules
 import { Pagination } from 'swiper/modules';
 import { poppins } from "@/fonts/fonts";
-import StarPicker from "react-star-picker";
-import 'react-star-picker/styles.css';
 import { Garage } from "@/types/types";
 import { Button } from "@headlessui/react";
 import { useRouter } from "next/navigation";
+import StarRating from "../ratings/Ratings";
 
 
 
@@ -89,15 +88,8 @@ export default function FeaturedGarage({
                         <div className="flex justify-between items-center mt-4">
                             {/* Render stars based on rating */}
                             <div className="flex items-center gap-1">
-                                <StarPicker
-                                    onChange={() => { }}
+                                <StarRating ratted={ratings.rating} size="18" />
 
-                                    size={20}
-                                    starCount={5}
-                                    disabled={true}
-                                    className=""
-                                    halfStars={true}
-                                    value={ratings.rating} />
                                 <span className="text-sm">{ratings.rating} / {ratings.total}</span>
                             </div>
                             <span className="text-sm font-medium">From {pricing.currency} {pricing.price.min_price} - {pricing.currency} {pricing.price.max_price}</span>

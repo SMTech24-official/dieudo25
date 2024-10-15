@@ -10,9 +10,10 @@ import image2 from "@/assets/team-2.jpg";
 import image3 from "@/assets/team-3.jpg";
 import image4 from "@/assets/team-4.jpg";
 import SectionHeader from "../section/SectionHeader";
-import StarPicker from 'react-star-picker';
+import StarRating from "../ratings/Ratings";
+// import StarPicker from 'react-star-picker';
 
-import 'react-star-picker/styles.css';
+// import 'react-star-picker/styles.css';
 
 const customers = [
   {
@@ -187,14 +188,8 @@ export default function TestimonialsSlider() {
                       </h3>
 
                       <div className="flex gap-2 items-center">
-                        <StarPicker
-                        onChange={() =>{}}
-                          size={20}
-                          starCount={5}
-                          disabled={true}
-                          className=""
-                          value={freelancer.rating}
-                        />
+                        <StarRating ratted={freelancer.rating} size="20" />
+
                         <span className="text-sm text-gray-600 group-hover:text-primary transition-all duration-300 ease-out">
                           {freelancer.rating} / 5
                         </span>

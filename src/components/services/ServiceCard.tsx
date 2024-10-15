@@ -10,16 +10,17 @@ import 'swiper/css/pagination';
 // import required modules
 import { Pagination } from 'swiper/modules';
 import { poppins } from "@/fonts/fonts";
-import StarPicker from "react-star-picker";
-import 'react-star-picker/styles.css';
+// import StarPicker from "react-star-picker";
+// import 'react-star-picker/styles.css';
 import { Garage } from "@/types/types";
+import StarRating from "../ratings/Ratings";
 
 
 
 
 
 export default function ServiceCard({
-garageName, location, pricing, owner, offers, images, ratings
+  garageName, location, pricing, owner, offers, images, ratings
 
 }: Garage) {
   return (
@@ -62,10 +63,10 @@ garageName, location, pricing, owner, offers, images, ratings
               <h2 className={`${poppins.className} text-sm font-semibold flex items-center gap-1`}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg>
                 <span>
-                 {location.address.postalCode}
-                 {location.address.street}
-                 {location.address.canton}
-                 {location.address.city}
+                  {location.address.postalCode}
+                  {location.address.street}
+                  {location.address.canton}
+                  {location.address.city}
                 </span>
               </h2>
             </div>
@@ -80,16 +81,9 @@ garageName, location, pricing, owner, offers, images, ratings
           <div className="flex justify-between items-center mt-4">
             {/* Render stars based on rating */}
             <div className="flex items-center gap-1">
-              <StarPicker
-                onChange={()=>{}}
+              <StarRating ratted={ratings.rating} size="18" />
 
-                size={20}
-                starCount={5}
-                disabled={true}
-                className=""
-                halfStars={true}
-                value={ratings.rating} />
-                <span className="text-sm">{ratings.rating} / {ratings.total}</span>
+              <span className="text-sm">{ratings.rating} / {ratings.total}</span>
             </div>
             <span className="text-sm font-medium">From {pricing.currency} {pricing.price.min_price} - {pricing.currency} {pricing.price.max_price}</span>
           </div>

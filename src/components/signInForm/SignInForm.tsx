@@ -7,7 +7,7 @@ import authImage from "@/assets/auth.jpg";
 import Link from "next/link";
 import SignupForm from "../signUpForm/SignUpForm";
 import SignInComponents from "../signUpForm/UserTab/SignUpComponents";
-import LoginPageComponents from "../signUpForm/UserTab/LogIncomponents";
+import LoginPageComponents from "./LogIncomponents";
 
 // Define types for form data
 type LoginFormInputs = {

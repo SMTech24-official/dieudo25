@@ -1,10 +1,6 @@
 "use client";
 
-import garage1 from "@/assets/slider-image-1.jpg";
-import garage2 from "@/assets/slider-image-2.jpg";
-import garage3 from "@/assets/slider-image-3.jpg";
 import SectionHeader from "../section/SectionHeader";
-import 'react-star-picker/styles.css'; 
 import { garagesData } from "@/utils/garageData";
 import FeaturedGarage from "../services/FeaturedGarage";
 

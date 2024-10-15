@@ -14,10 +14,11 @@ import { garage } from "@/utils/garageData";
 import TimeSlots from "@/components/timeSlots/TimeSlots";
 import { isGarageOpen } from "@/helper/openStatus";
 import Image from "next/image";
-import StarPicker from "react-star-picker";
-import 'react-star-picker/styles.css';
+// import StarPicker from "react-star-picker";
+// import 'react-star-picker/styles.css';
 import wheel from "@/assets/wheel.png"
 import { Clipboard } from "lucide-react";
+import StarRating from "@/components/ratings/Ratings";
 
 
 
@@ -101,14 +102,9 @@ export default function Page({ params }: { params: { slug: string } }) {
               <div className="space-y-1">
                 <h3 className="font-semibold text-sm flex-1">{ownerName}</h3>
                 <div className="flex items-center gap-1">
-                  <StarPicker
-                    onChange={() => { }}
-                    size={20}
-                    starCount={5}
-                    disabled={true}
-                    className=""
-                    halfStars={true}
-                    value={rating} />
+
+                  <StarRating ratted={rating} size="17" />
+
                   <span className="text-sm">{rating} / {totalRatings}</span>
                 </div>
               </div>
