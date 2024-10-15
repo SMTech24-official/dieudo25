@@ -2,16 +2,17 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-import Link from "next/link";
 import { Input } from "../ui/input";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
 
 export default function RequestQuoteForm() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { register, handleSubmit, setValue, formState: { errors } } = useForm();
   const [tireBudgetVisible, setTireBudgetVisible] = useState(false); // For showing tire budget options
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit = (data:any) => {
     console.log("Quote request submitted", data);
   };

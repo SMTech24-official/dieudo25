@@ -62,6 +62,7 @@ export default function SignupForm() {
     formState: { errors },
   } = useForm<SignupData>();
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isProvider, setIsProvider] = useState(false);
   const [openingHours, setOpeningHours] = useState<
     { day: string; start: string; end: string }[]
