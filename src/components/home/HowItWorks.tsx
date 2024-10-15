@@ -6,7 +6,6 @@ import { CheckCircle, ClipboardList, UserCheck, Star, Shield, Clock, ChevronLeft
 import SectionHeader from "../section/SectionHeader";
 import { Button } from "../ui/button";
 
--2, -1, 0, 1, 2
 
 const steps = [
   {
@@ -142,7 +141,7 @@ export default function HowItWorks() {
 
   return (
     <div
-      // ref={sectionRef}
+      id="how-it-works"
       className={` py-padding_base lg:py-padding_extra_large px-padding_small`}
     >
       <SectionHeader

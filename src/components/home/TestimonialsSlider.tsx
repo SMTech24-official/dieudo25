@@ -173,31 +173,30 @@ export default function TestimonialsSlider() {
                     &quot;{freelancer.description}&quot;
                   </h3>
 
-                  <div className="relative flex items-center w-20 h-20">
+                  <div className="flex gap-4 items-center">
                     <Image
                       src={freelancer.image}
                       alt={freelancer.name}
-                      layout="fill"
                       objectFit="cover"
-                      className="rounded-lg"
+                      className="rounded-full w-20 h-20 object-cover"
                     />
 
-                    <div className="ml-24">
+                    <div className="">
                       <h3 className="text-lg font-semibold mb-1 text-nowrap group-hover:text-primary transition-all ease-out duration-300">
                         {freelancer.name}
                       </h3>
 
-                      <div className="flex items-center">
+                      <div className="flex gap-2 items-center">
                         <StarPicker
                         onChange={() =>{}}
                           size={20}
                           starCount={5}
                           disabled={true}
-                          className="w-380px"
+                          className=""
                           value={freelancer.rating}
                         />
                         <span className="text-sm text-gray-600 group-hover:text-primary transition-all duration-300 ease-out">
-                          {freelancer.rating}
+                          {freelancer.rating} / 5
                         </span>
                       </div>
                     </div>
