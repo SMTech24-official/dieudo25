@@ -151,7 +151,7 @@ export default function HowItWorks() {
       />
 
       <div
-        className="relative container h-[40vh] lg:h-[50vh] overflow-hidden"
+        className="relative container h-[40vh] sm:h-[50vh] lg:h-[50vh] overflow-hidden"
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
