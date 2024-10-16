@@ -61,7 +61,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 
 
   return (
-    <main className="container  py-padding_base lg:pb-padding_extra pb-0 px-padding_small w-full h-full">
+    <main className="container  py-padding_base   pb-0 px-padding_small w-full h-full">
 
       {/* name  */}
       <h2 className={`${poppins.className} lg:text-2xl md:text-xl text-lg md:mb-2 mb-1 font-semibold flex items-center gap-2`}>

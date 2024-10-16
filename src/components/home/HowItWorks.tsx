@@ -142,7 +142,7 @@ export default function HowItWorks() {
   return (
     <div
       id="how-it-works"
-      className={` py-padding_base lg:py-padding_extra_large px-padding_small`}
+      className={` py-padding_base px-padding_small`}
     >
       <SectionHeader
         subTitle="How it Works"

@@ -125,7 +125,7 @@ export default function Footer() {
                   name='search'
                   type='search'
                   placeholder='Type your email...'
-                  className='w-full peer px-4 py-2 rounded bg-gray-800 text-black placeholder-gray-400 bg-primary border-b border-primary outline-none focus:border-white'
+                  className='w-full peer px-4 py-2  bg-gray-800 text-black placeholder-gray-400 bg-primary border-b border-primary outline-none focus:border-white'
                   required
                 />
                 <Mail className='absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 opacity-35 peer-focus:opacity-100 transition-colors duration-300' />

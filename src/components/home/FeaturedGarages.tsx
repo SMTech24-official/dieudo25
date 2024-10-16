@@ -8,7 +8,7 @@ import FeaturedGarage from "../services/FeaturedGarage";
 
 export default function FeaturedGarages() {
   return (
-    <section className="py-padding_base lg:py-padding_base px-padding_small">
+    <section className="py-padding_base px-padding_small">
       <SectionHeader
         subTitle="Find your best garage partner"
         title="Featured Garages"

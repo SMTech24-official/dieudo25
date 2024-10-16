@@ -41,7 +41,7 @@ const Hero = () => {
                                     name="search"
                                     type="search"
                                     placeholder="Search for any service..."
-                                    className="w-full peer px-4 py-2 rounded bg-gray-800 text-black placeholder-gray-400 bg-primary border-b border-primary outline-none focus:border-white"
+                                    className="w-full peer px-4 py-2 bg-gray-800 text-black placeholder-gray-400 bg-primary border-b border-primary outline-none focus:border-white"
                                     required
                                 />
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin absolute right-0 opacity-35 peer-focus:opacity-100">

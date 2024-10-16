@@ -33,7 +33,7 @@ const features = [
 
 export default function WhyChooseLiftWork() {
   return (
-    <section className="py-padding_base lg:py-padding_extra_large  px-padding_small">
+    <section className="py-padding_base px-padding_small">
       <SectionHeader
         subTitle="Why Choose LiftWork?"
         title="Key Features"

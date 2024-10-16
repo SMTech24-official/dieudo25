@@ -29,7 +29,7 @@ const ProblemAndSolution = () => {
     ];
 
     return (
-        <section className="py-padding_base lg:pb-padding_extra pb-0 px-padding_small">
+        <section className="py-padding_base px-padding_small">
             <SectionHeader
                 subTitle="The Challenge of Reliable Garage Services"
                 title="Simplifying Vehicle Maintenance with LiftWork"

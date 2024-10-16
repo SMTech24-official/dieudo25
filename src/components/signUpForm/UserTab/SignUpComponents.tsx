@@ -220,26 +220,17 @@ export default function SignUpComponents() {
               </div>
             </div>
             <div>
-              <Label htmlFor="tireCondition">Tire Condition</Label>
-              <Controller
-                name="tireCondition"
-                control={control}
-                rules={{ required: "Tire condition is required" }}
-                render={({ field }) => (
-                  <Select onValueChange={field.onChange} value={field.value}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select tire condition" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="new">New</SelectItem>
-                      <SelectItem value="good">Good</SelectItem>
-                      <SelectItem value="fair">Fair</SelectItem>
-                      <SelectItem value="poor">Poor</SelectItem>
-                    </SelectContent>
-                  </Select>
-                )}
-              />
-              {errors.tireCondition && <p className="text-red-500 text-sm mt-1">{errors.tireCondition.message}</p>}
+              <div>
+                <Label htmlFor="tireCondition">Tire Condition</Label>
+                <Controller
+                  name="tireCondition"
+                  control={control}
+                  rules={{ required: "Tire condition is required" }}
+                  render={({ field }) => <Input {...field} placeholder="Enter tire condition" />}
+                />
+                {errors.tireCondition && <p className="text-red-500 text-sm mt-1">{errors.tireCondition.message}</p>}
+
+              </div>
             </div>
             <div>
               <Label>Preferred Tire Type</Label>
