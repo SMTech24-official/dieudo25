@@ -24,29 +24,29 @@ export default function ServiceCard({
 
 }: Garage) {
   return (
-    <div
-      className=" p-4 rounded-lg shadow-md block"
-    >
+    <Link href={`/garages/${encodeURIComponent(owner.name)}`}>
+      <div
+        className=" p-4 rounded-lg shadow-md block"
+      >
 
-      {/* swiper for small devices */}
-      <div className="">
-        <Swiper pagination={true} modules={[Pagination]} className="mySwiper w-full h-[20vh] lg:mt-3 md:mt-6 mt-4">
-          {
-            images.banners?.map((data, idx) => <SwiperSlide key={idx}>
-              <Image
-                src={data}
-                alt="Garage Image"
-                layout="fill"
-                objectFit="cover"
-                className=""
-              />
-            </SwiperSlide>
-            )
-          }
+        {/* swiper for small devices */}
+        <div className="">
+          <Swiper pagination={true} modules={[Pagination]} className="mySwiper w-full h-[20vh] lg:mt-3 md:mt-6 mt-4">
+            {
+              images.banners?.map((data, idx) => <SwiperSlide key={idx}>
+                <Image
+                  src={data}
+                  alt="Garage Image"
+                  layout="fill"
+                  objectFit="cover"
+                  className=""
+                />
+              </SwiperSlide>
+              )
+            }
 
-        </Swiper>
-      </div>
-      <Link href={`/garages/${encodeURIComponent(owner.name)}`}>
+          </Swiper>
+        </div>
         <div className="h-full mt-2">
           <div className="flex my-3 items-center gap-4 h-full">
             <div className="flex rounded-full overflow-hidden">
@@ -72,13 +72,13 @@ export default function ServiceCard({
             </div>
           </div>
           <p className="text-sm text-gray-600">by {owner.name}</p>
-          <h2 className={`${poppins.className} my-3 flex items-center gap-1 h-10`}>
+          <h2 className={`${poppins.className} my-3 flex sm:flex-row flex-col sm:items-center gap-1 h-10`}>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-award"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526" /><circle cx="12" cy="8" r="6" /></svg>
             <span className="">
               {offers}
             </span>
           </h2>
-          <div className="flex justify-between items-center mt-4">
+          <div className="flex flex-col space-y-1 xl:flex-row justify-between xl:items-center mt-4">
             {/* Render stars based on rating */}
             <div className="flex items-center gap-1">
               <StarRating ratted={ratings.rating} size="18" />
@@ -88,8 +88,8 @@ export default function ServiceCard({
             <span className="text-sm font-medium">From {pricing.currency} {pricing.price.min_price} - {pricing.currency} {pricing.price.max_price}</span>
           </div>
         </div>
-      </Link>
 
-    </div>
+      </div >
+    </Link>
   );
 }

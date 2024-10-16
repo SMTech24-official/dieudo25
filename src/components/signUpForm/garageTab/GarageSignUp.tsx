@@ -131,6 +131,7 @@ export default function GarageServiceProviderSignup() {
             // Add the new service to the list
             setValue("servicesOffer", [...currentServices, newService]);
             setNewService(''); 
+            
         }
     };
 

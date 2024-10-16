@@ -40,7 +40,7 @@ export default function WhyChooseLiftWork() {
         description="Discover the advantages of working with us."
       />
       <div className="container mt-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"> 
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2  xl:grid-cols-4 gap-4"> 
           {features.map((feature, index) => (
             <Card
               key={index}

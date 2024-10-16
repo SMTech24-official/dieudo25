@@ -233,7 +233,7 @@ export default function Page({ params }: { params: { slug: string } }) {
             {/* price */}
             <div className="lg:mt-10 md:mt-7 mt-5 space-y-2 md:space-y-4">
               <h4 className="text-coal font-bold text-lg uppercase">Competitive Price</h4>
-              <div className="flex items-center justify-center flex-wrap lg:gap-4 ">
+              <div className="flex items-center justify-center flex-wrap gap-4">
                 {servicesOffered.map((service, index) => (
                   <div key={index} className="p-4  w-96 h-40 relative rounded-md shadow-md space-y-2 hover:shadow-lg flex flex-col hover:cursor-pointer">
                     <h5 className="font-semibold flex-1">{service.serviceName}</h5>
@@ -262,7 +262,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 
             <div className="lg:mt-10 md:mt-7 mt-5 space-y-2 md:space-y-4">
               <h4 className="text-coal font-bold text-lg uppercase">Tier Delivery</h4>
-              <div className="flex items-center justify-center flex-wrap lg:gap-4 ">
+              <div className="flex items-center justify-center flex-wrap gap-4 ">
                 {tireDelivery.map((tier, index) => (
                   <div key={index} className="p-4  w-96 h-40 relative rounded-md shadow-md space-y-2 hover:shadow-lg flex flex-col hover:cursor-pointer">
                     <Image src={wheel} alt="wheel logo" width={50} height={50} objectFit="cover" />
@@ -277,7 +277,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 
             <div className="lg:mt-10 md:mt-7 mt-5 space-y-2 md:space-y-4">
               <h4 className="text-coal font-bold text-lg uppercase">Special Services</h4>
-              <div className="flex items-center justify-center flex-wrap lg:gap-4 ">
+              <div className="flex items-center justify-center flex-wrap gap-4 ">
                 {specialRequests.map((special, index) => (
                   <div key={index} className="p-4  w-96 h-32 relative rounded-md shadow-md space-y-2 hover:shadow-lg flex flex-col hover:cursor-pointer">
                     <h5 className="font-semibold flex-1">{special.serviceType}</h5>

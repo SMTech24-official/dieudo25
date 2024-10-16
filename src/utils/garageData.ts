@@ -705,7 +705,7 @@ export const garage=  {
     {
       id: 1,
       slotName: "Weekday Regular",
-      days: "Monday to Friday",
+      days: "Monday ",
       open: "07:00",
       close: "17:00"
     },
@@ -721,7 +721,34 @@ export const garage=  {
       slotName: "Sunday Closed",
       days: "Sunday",
       status: "Closed"
-    }
+    },
+    {
+      id: 1,
+      slotName: "Weekday Regular",
+      days: "Tuesday",
+      open: "07:00",
+      close: "17:00"
+    },
+    {
+      id: 2,
+      slotName: "Saturday Service",
+      days: "Wednesday",
+      open: "09:00",
+      close: "14:00"
+    },
+    {
+      id: 3,
+      slotName: "Sunday Closed",
+      days: "Thursday",
+      status: "Closed"
+    },
+    {
+      id: 3,
+      slotName: "Sunday Closed",
+      days: "Friday",
+      open: "09:00",
+      close: "14:00"
+    },
   ],
   capacity: {
     maxVehiclesPerDay: 10
