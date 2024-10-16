@@ -2,9 +2,14 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import SignUpComponents from "./UserTab/SignUpComponents";
 import GarageServiceProviderSignUp from "./garageTab/GarageSignUp";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 
-export default function SignupForm() {
+const SignupForm = () => {
+  const searchParams = useSearchParams()
+  const activeTab = searchParams.get("q")
+
 
   return (
     <div className="flex items-center justify-center col-span-2 lg:col-span-1 h-full py-12 px-4 sm:px-6 lg:px-8">
@@ -12,7 +17,7 @@ export default function SignupForm() {
         <h2 className="text-2xl font-bold text-center text-gray-900">Sign Up</h2>
 
         {/* Tabs for User/Provider */}
-        <Tabs defaultValue="user" className="space-y-4 shadow-md p-4" >
+        <Tabs defaultValue={activeTab ? "provider" : "user"} className="space-y-4 shadow-md p-4" >
           <TabsList>
             <TabsTrigger value="user" >
               Customer
@@ -36,3 +41,5 @@ export default function SignupForm() {
     </div>
   );
 }
+
+export default SignupForm 
