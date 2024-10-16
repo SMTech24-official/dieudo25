@@ -18,6 +18,9 @@ type Address = {
 };
 
 type GarageServiceProviderData = {
+    ownerName: string;
+    garageEmail: string;
+    garagePhone: string;
     password: string;
     confirmPassword: string;
     rememberMe: boolean;
@@ -45,6 +48,9 @@ const predefinedServices = [
 export default function GarageServiceProviderSignup() {
     const { control, handleSubmit, watch, formState: { errors }, setValue, getValues } = useForm<GarageServiceProviderData>({
         defaultValues: {
+            ownerName: '',
+            garageEmail: '',
+            garagePhone: '',
             password: '',
             confirmPassword: '',
             rememberMe: false,
@@ -60,7 +66,6 @@ export default function GarageServiceProviderSignup() {
         }
     });
 
-    // Local state for new opening hour and new service
     const [newOpeningHour, setNewOpeningHour] = useState<OpeningHours>({ day: '', start: '', end: '' });
     const [newService, setNewService] = useState('');
 
@@ -90,11 +95,24 @@ export default function GarageServiceProviderSignup() {
 
     const handleAddOpeningHour = () => {
         const currentOpeningHours = getValues("openingHours");
+        // Check if the selected day is already present
+        const isDayAlreadyAdded = currentOpeningHours.some(
+            (hour) => hour.day === newOpeningHour.day
+        );
+
+        if (isDayAlreadyAdded) {
+            // Show an error or just return to prevent duplicate day selection
+            alert("This day has already been selected. Please choose a different day.");
+            return;
+        }
+
+        // Proceed with adding the new opening hour if all fields are filled
         if (newOpeningHour.day && newOpeningHour.start && newOpeningHour.end) {
             setValue("openingHours", [...currentOpeningHours, newOpeningHour]);
             setNewOpeningHour({ day: '', start: '', end: '' });
         }
     };
+
 
     const handleRemoveOpeningHour = (index: number) => {
         const currentOpeningHours = getValues("openingHours");
@@ -103,11 +121,20 @@ export default function GarageServiceProviderSignup() {
 
     const handleAddCustomService = () => {
         const currentServices = getValues("servicesOffer");
-        if (newService && !currentServices.includes(newService)) {
+        console.log(newService);
+        // Check if the newService is non-empty and not already in the list
+        if (newService && currentServices.includes(newService)) {
+            // Provide feedback if the service is already in the list
+            alert("This service has already been selected.");
+
+        } else if (!currentServices.includes(newService)) {
+            // Add the new service to the list
             setValue("servicesOffer", [...currentServices, newService]);
-            setNewService('');
+            setNewService(''); 
         }
     };
+
+
 
     const handleRemoveService = (service: string) => {
         const currentServices = getValues("servicesOffer");
@@ -118,6 +145,47 @@ export default function GarageServiceProviderSignup() {
         <div className="flex items-center justify-center h-full w-full p-5">
             <div className="w-full max-w-2xl">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                    {/* Owner Information */}
+                    <div className="space-y-4">
+                        <h2 className="text-xl font-semibold">Owner Information</h2>
+                        <div>
+                            <Label htmlFor="ownerName">Owner Name</Label>
+                            <Controller
+                                name="ownerName"
+                                control={control}
+                                rules={{ required: "Owner name is required" }}
+                                render={({ field }) => <Input {...field} />}
+                            />
+                            {errors.ownerName && <p className="text-red-500 text-sm">{errors.ownerName.message}</p>}
+                        </div>
+                        <div>
+                            <Label htmlFor="garageEmail">Owner Email</Label>
+                            <Controller
+                                name="garageEmail"
+                                control={control}
+                                rules={{
+                                    required: "Owner email is required",
+                                    pattern: {
+                                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                        message: "Invalid email address"
+                                    }
+                                }}
+                                render={({ field }) => <Input type="email" {...field} />}
+                            />
+                            {errors.garageEmail && <p className="text-red-500 text-sm">{errors.garageEmail.message}</p>}
+                        </div>
+                        <div>
+                            <Label htmlFor="garagePhone">Garage Phone</Label>
+                            <Controller
+                                name="garagePhone"
+                                control={control}
+                                rules={{ required: "Owner phone is required" }}
+                                render={({ field }) => <Input type="tel" {...field} />}
+                            />
+                            {errors.garagePhone && <p className="text-red-500 text-sm">{errors.garagePhone.message}</p>}
+                        </div>
+                    </div>
+
                     {/* Garage Name field */}
                     <div>
                         <Label htmlFor="garageName">Garage Name</Label>
@@ -155,7 +223,6 @@ export default function GarageServiceProviderSignup() {
                                 </div>
                             ))}
                         </div>
-
                     </div>
 
                     {/* Password fields */}
@@ -185,23 +252,43 @@ export default function GarageServiceProviderSignup() {
                         </div>
                     </div>
 
-                    {/* Opening Hours */}
+                    {/* Garage Availability */}
                     <div className="space-y-4">
-                        <h2 className="text-xl font-semibold">Opening Hours</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <Select required
-                                onValueChange={(value) => setNewOpeningHour((prev) => ({ ...prev, day: value }))} value={newOpeningHour.day}>
-                                <SelectTrigger>
-                                    <SelectValue placeholder="Select day" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    {daysOfWeek.map(day => (
-                                        <SelectItem key={day} value={day}>{day}</SelectItem>
-                                    ))}
-                                </SelectContent>
-                            </Select>
-                            <Input type="time" value={newOpeningHour.start} onChange={(e) => setNewOpeningHour((prev) => ({ ...prev, start: e.target.value }))} placeholder="Start time" />
-                            <Input type="time" value={newOpeningHour.end} onChange={(e) => setNewOpeningHour((prev) => ({ ...prev, end: e.target.value }))} placeholder="End time" />
+                        <h2 className="text-xl font-semibold">Garage Availability</h2>
+                        <p className="text-sm text-gray-600">Set your garage&apos;s opening and closing times for each day of the week.</p>
+                        <div className="grid grid-cols-1 md:grid-cols-3 items-center gap-4">
+                            <div>
+                                <Label htmlFor="Day">Day</Label>
+                                <Select
+                                    onValueChange={(value) => setNewOpeningHour((prev) => ({ ...prev, day: value }))} value={newOpeningHour.day}>
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Select day" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {daysOfWeek.map(day => (
+                                            <SelectItem key={day} value={day}>{day}</SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                            <div>
+                                <Label htmlFor="openTime">Open Time</Label>
+                                <Input
+                                    id="openTime"
+                                    type="time"
+                                    value={newOpeningHour.start}
+                                    onChange={(e) => setNewOpeningHour((prev) => ({ ...prev, start: e.target.value }))}
+                                />
+                            </div>
+                            <div>
+                                <Label htmlFor="closeTime">Close Time</Label>
+                                <Input
+                                    id="closeTime"
+                                    type="time"
+                                    value={newOpeningHour.end}
+                                    onChange={(e) => setNewOpeningHour((prev) => ({ ...prev, end: e.target.value }))}
+                                />
+                            </div>
                         </div>
                         <Button type="button" onClick={handleAddOpeningHour} className="w-full bg-orange-500 hover:bg-orange-600 text-white">
                             Add Opening Hours
@@ -238,8 +325,18 @@ export default function GarageServiceProviderSignup() {
                             name="servicesOffer"
                             control={control}
                             render={({ field }) => (
-                                <Select 
-                                    onValueChange={(value) => field.onChange([...field.value, value])}
+                                <Select
+                                    onValueChange={(value) => {
+                                        // Check if the selected value is already in the array
+                                        if (!field.value.includes(value)) {
+                                            // Add the new value if it's not already in the array
+                                            field.onChange([...field.value, value]);
+                                        } else {
+                                            // Optionally show an alert or handle duplicate selections differently
+                                            alert("This service has already been selected.");
+                                        }
+                                    }}
+                                    // Show the last selected value or a placeholder
                                     value={field.value[field.value.length - 1]}
                                 >
                                     <SelectTrigger>
@@ -258,7 +355,7 @@ export default function GarageServiceProviderSignup() {
                             )}
                         />
                         <div className="flex gap-4">
-                            <Input  value={newService} onChange={(e) => setNewService(e.target.value)} placeholder="Enter a custom service" />
+                            <Input value={newService} onChange={(e) => setNewService(e.target.value)} placeholder="Enter a custom service" />
                             <Button type="button" onClick={handleAddCustomService} className="w-full bg-orange-500 hover:bg-orange-600 text-white">
                                 Add Custom Service
                             </Button>
@@ -291,6 +388,7 @@ export default function GarageServiceProviderSignup() {
                     {/* Additional fields */}
                     <div className="space-y-4">
                         <div>
+
                             <Label htmlFor="dailyCapacity">Daily Capacity</Label>
                             <Controller
                                 name="dailyCapacity"
@@ -316,7 +414,7 @@ export default function GarageServiceProviderSignup() {
                                     />
                                 )}
                             />
-                            <label htmlFor="timeSlotAvailability">Enable time slot availability</label>
+                            <label htmlFor="timeSlotAvailability">Emergency Service availability (Outside of Regular Hours)</label>
                         </div>
                         <div className="flex items-center space-x-2">
                             <Controller
