@@ -137,7 +137,7 @@ export default function TestimonialsSlider() {
       />
 
       <div
-        className="relative w-full h-[30vh]  lg:h-[30vh] overflow-hidden"
+        className="relative w-full h-[30vh] mt-4 lg:h-[30vh] overflow-hidden"
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}

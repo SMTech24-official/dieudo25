@@ -35,9 +35,9 @@ const ProblemAndSolution = () => {
                 title="Simplifying Vehicle Maintenance with LiftWork"
                 description="How LiftWork is Making Car Repairs Stress-Free and Transparent"
             />
-            <div className="container mx-auto grid lg:grid-cols-2 grid-cols-1 lg:gap-10 gap-4">
+            <div className="container mx-auto grid lg:grid-cols-2 grid-cols-1 lg:gap-10 gap-4 lg:mt-12">
                 {/* Left column - text section */}
-                <div className="flex flex-col space-y-4 max-h-screen overflow-visible pt-16">
+                <div className="flex flex-col space-y-4 max-h-screen overflow-visible pt-12">
                     {problemSolutionSection.map((section, index) => (
                         <Disclosure 
                             key={index} 

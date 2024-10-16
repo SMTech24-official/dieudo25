@@ -16,7 +16,7 @@ export default function SectionHeader({
   return (
     <div
       className={cn(
-        "text-center  flex flex-col items-center justify-center px-4   md:pb-padding_medium pb-[20px]",
+        "text-center  flex flex-col items-center justify-center px-4 md:pb-padding_medium pb-[12px]",
         className
       )}
     >

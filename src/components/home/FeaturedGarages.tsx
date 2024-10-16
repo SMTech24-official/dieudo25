@@ -14,7 +14,7 @@ export default function FeaturedGarages() {
         title="Featured Garages"
         description="Our Trusted Garages"
       />
-      <div className="container">
+      <div className="container mt-12">
         {/* Responsive Grid to display the garages */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {garagesData?.garages.slice(0,3).map((garages) => (
