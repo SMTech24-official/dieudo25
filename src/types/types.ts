@@ -97,3 +97,12 @@ export type Garage = {
     offers: string;
     garageBio: string;
 };
+
+export type QuoteData = {
+    garageName: string,
+    ownerName: string,
+    servicesRequested: string[],
+    tirePurchased: boolean,
+    status: string,
+    requestedTime: string,
+}

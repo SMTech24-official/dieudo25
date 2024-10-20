@@ -4,8 +4,8 @@ import React, { ReactNode } from "react";
 
 const layout = ({ children }: { children: ReactNode }) => {
     return (
-        <div className="bg-background  flex h-full">
-            <div className="sticky top-10 h-screen z-50">
+        <div className=" flex h-full">
+            <div className="sticky top-0 h-screen z-40 ">
                 <DashBoardNav />
             </div>
             <div className="w-full">

@@ -3,9 +3,8 @@
 import React, { useRef, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LayoutDashboard, BarChart2, Users, Mail, History, Settings, Package, Star, Home, Menu, X, Truck, Tag  } from 'lucide-react'
+import { LayoutDashboard, BarChart2, Users, Mail, History, Settings, Package, Star, Home, Menu, X, Truck, Tag } from 'lucide-react'
 import { cn } from "@/lib/utils"
-
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import Image from 'next/image'
@@ -32,9 +31,9 @@ const customerNavItems = [
     { name: 'Appointments', href: '/dashboard/appointments', icon: Users },  // Users Icon for Appointments
     { name: 'Messages', href: '/dashboard/messages', icon: Mail },           // Mail Icon for Messages (customer communication)
     { name: 'Service History', href: '/dashboard/service-history', icon: History }, // History Icon for Order History
-    { name: 'Feedback', href: '/dashboard/feedback', icon: Star }, 
+    { name: 'Feedback', href: '/dashboard/feedback', icon: Star },
     { name: 'Settings', href: '/dashboard/settings', icon: Settings }, // Settings Icon for Account Settings
-    { name: 'Home', href: '/', icon: Home },  
+    { name: 'Home', href: '/', icon: Home },
 ];
 
 const navItems = customerNavItems;
@@ -65,11 +64,11 @@ export default function DashboardNav() {
     }, [navRef])
 
     return (
-        <div ref={navRef} className="relative z-40">
+        <div ref={navRef} className="relative z-40 h-full">
             <Button
                 variant="ghost"
                 size="icon"
-                className="md:hidden fixed top-4 left-4 z-50"
+                className="md:hidden fixed flex items-center justify-end top-0 py-7 -left-2 z-30 w-full bg-white"
                 onClick={() => setIsOpen(!isOpen)}
             >
                 {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -78,11 +77,11 @@ export default function DashboardNav() {
 
             <div
                 className={cn(
-                    "fixed inset-y-0 left-0 z-40 w-64 md:w-56 lg:w-72 bg-white shadow-lg dark:bg-gray-800 transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0",
+                    "fixed inset-y-0 left-0 z-40 w-64 md:w-56 lg:w-72 h-full  shadow-lg dark:bg-gray-800 transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0",
                     isOpen ? "translate-x-0" : "-translate-x-full"
                 )}
             >
-                <div className="flex flex-col  h-screen lg:mt-6 md:mt-3">
+                <div className="flex flex-col lg:mt-6 md:mt-3">
                     <div className="flex items-center justify-center">
                         <Link href="/dashboard" className="flex items-center space-x-2">
                             <Image src={logo} alt='Company Logo' width={80} height={80} />
@@ -99,7 +98,7 @@ export default function DashboardNav() {
                                     className={cn(
                                         `flex group items-center space-x-3  px-3 py-2 ${poppins.className}`,
                                         pathname === item.href && "bg-gray-100 text-gray-900 dark:bg-gray-700 dark:text-gray-50",
-                                        
+
                                         activeNav === item.href && "text-secondary border-r-2 border-secondary group-hover:text-secondary" // Apply text-secondary for active nav
                                     )}
                                     onClick={() => setActiveNav(item.href)} // Update active nav on click
