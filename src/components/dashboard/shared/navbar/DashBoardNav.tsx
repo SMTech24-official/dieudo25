@@ -3,26 +3,41 @@
 import React, { useRef, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LayoutDashboard, BarChart2, Users, Mail, History, Settings, Package, Star, Home, Menu, X  } from 'lucide-react'
+import { LayoutDashboard, BarChart2, Users, Mail, History, Settings, Package, Star, Home, Menu, X, Truck, Tag  } from 'lucide-react'
 import { cn } from "@/lib/utils"
 
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import Image from 'next/image'
 import logo from "@/assets/newLogo2.png"
+import { poppins } from '@/fonts/fonts'
 
 
-const navItems = [
-    { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },       // Layout Dashboard Icon
-    { name: 'Quotes', href: '/dashboard/Quotes', icon: BarChart2 },          // Bar Chart Icon for Quotes
-    { name: 'Appointments', href: '/dashboard/Appointments', icon: Users },  // Users Icon for Appointments
-    { name: 'Communication', href: '/dashboard/Communication', icon: Mail }, // Mail Icon for Communication
-    { name: 'History', href: '/dashboard/History', icon: History },           // History Icon
-    { name: 'Settings', href: '/dashboard/Settings', icon: Settings },        // Settings Icon
-    { name: 'Additional Services', href: '/dashboard/additional-services', icon: Package }, // Package Icon for Additional Services
-    { name: 'Feedback', href: '/dashboard/Feedback', icon: Star },            // Star Icon for Feedback
+const garageNavItems = [
+    { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },        // Layout Dashboard Icon
+    { name: 'Quotes', href: '/dashboard/quotes', icon: BarChart2 },          // Bar Chart Icon for Quotes
+    { name: 'Appointments', href: '/dashboard/appointments', icon: Users },  // Users Icon for Appointments
+    { name: 'Communication', href: '/dashboard/communication', icon: Mail }, // Mail Icon for Communication
+    { name: 'Services and Pricing', href: '/dashboard/services-pricing', icon: Package }, // Package Icon for Additional Services
+    { name: 'Tire Orders', href: '/dashboard/tire-orders', icon: Truck },     // Truck Icon for Tire Orders
+    { name: 'History', href: '/dashboard/history', icon: History },           // History Icon
+    { name: 'Settings', href: '/dashboard/settings', icon: Settings },        // Settings Icon
     { name: 'Home', href: '/', icon: Home },                                  // Home Icon
 ];
+
+
+const customerNavItems = [
+    { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },        // Layout Dashboard Icon
+    { name: 'Quotes', href: '/dashboard/quotes', icon: BarChart2 },          // Bar Chart Icon for Quotes
+    { name: 'Appointments', href: '/dashboard/appointments', icon: Users },  // Users Icon for Appointments
+    { name: 'Messages', href: '/dashboard/messages', icon: Mail },           // Mail Icon for Messages (customer communication)
+    { name: 'Service History', href: '/dashboard/service-history', icon: History }, // History Icon for Order History
+    { name: 'Feedback', href: '/dashboard/feedback', icon: Star }, 
+    { name: 'Settings', href: '/dashboard/settings', icon: Settings }, // Settings Icon for Account Settings
+    { name: 'Home', href: '/', icon: Home },  
+];
+
+const navItems = customerNavItems;
 
 
 export default function DashboardNav() {
@@ -71,7 +86,7 @@ export default function DashboardNav() {
                     <div className="flex items-center justify-center">
                         <Link href="/dashboard" className="flex items-center space-x-2">
                             <Image src={logo} alt='Company Logo' width={80} height={80} />
-                            <span className="text-xl font-bold text-secondary">LiftWork</span>
+                            {/* <span className="text-xl font-bold text-secondary">LiftWork</span> */}
                         </Link>
                     </div>
 
@@ -82,8 +97,9 @@ export default function DashboardNav() {
                                     key={item.name}
                                     href={item.href}
                                     className={cn(
-                                        "flex group items-center space-x-3  px-3 py-2 text-gray-600 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50",
+                                        `flex group items-center space-x-3  px-3 py-2 ${poppins.className}`,
                                         pathname === item.href && "bg-gray-100 text-gray-900 dark:bg-gray-700 dark:text-gray-50",
+                                        
                                         activeNav === item.href && "text-secondary border-r-2 border-secondary group-hover:text-secondary" // Apply text-secondary for active nav
                                     )}
                                     onClick={() => setActiveNav(item.href)} // Update active nav on click
