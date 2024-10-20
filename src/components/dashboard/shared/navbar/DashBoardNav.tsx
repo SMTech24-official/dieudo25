@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import Image from 'next/image'
-import logo from "@/assets/newLogo2.png"
+import logo from "@/newlogo2.png"
 import { poppins } from '@/fonts/fonts'
 
 

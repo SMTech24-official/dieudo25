@@ -1,3 +1,5 @@
+
+
 import React from "react";
 import authImage from "@/assets/auth.jpg";
 import SignUpForm from "@/components/signUpForm/SignUpForm";

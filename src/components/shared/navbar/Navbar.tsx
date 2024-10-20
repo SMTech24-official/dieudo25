@@ -7,7 +7,7 @@ import TopBar from "./TopBar";
 import Mobile from "./Mobile";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import logo from "@/assets/newLogo2.png"
+import logo from "@/newlogo2.png"
 
 
 import {
