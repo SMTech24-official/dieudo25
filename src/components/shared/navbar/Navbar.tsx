@@ -7,7 +7,7 @@ import TopBar from "./TopBar";
 import Mobile from "./Mobile";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import logo from "@/assets/logo.jpg"
+import logo from "@/assets/newLogo2.png"
 
 
 import {
@@ -52,6 +52,7 @@ const Navbar = () => {
     { path: "/", name: "Home", icon: <Home className="h-4 w-4 inline-block mr-1" /> },
     { path: "./#how-it-works", name: "How it works", icon: <Info className="h-4 w-4 inline-block mr-1" /> },
     { path: "/garages", name: "Find Garages", icon: <Wrench className="h-4 w-4 inline-block mr-1" /> },
+    { path: "/dashboard", name: "Dashboard", icon: <Wrench className="h-4 w-4 inline-block mr-1" /> },
     { path: "/sign-up?q=true", name: "Register Your Garage", icon: <UserCheck className="h-4 w-4 inline-block mr-1" /> },
   ];
 
@@ -74,7 +75,7 @@ const Navbar = () => {
         <div className="max-w-[1700px] mx-auto px-4 flex items-center justify-between w-full">
           {/* Logo */}
           <Link href="/" className="text-xl font-bold">
-            <Image src={logo} alt="Company logo" width={60} height={50} />
+            <Image src={logo} alt="Company logo" width={80} height={80} />
           </Link>
 
           {/* Navigation Menu */}
