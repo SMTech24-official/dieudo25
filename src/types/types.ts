@@ -99,10 +99,17 @@ export type Garage = {
 };
 
 export type QuoteData = {
-    garageName: string,
-    ownerName: string,
-    servicesRequested: string[],
-    tirePurchased: boolean,
-    status: string,
-    requestedTime: string,
-}
+    id: string;
+    garageName: string;
+    ownerName: string;
+    services: {
+        name: string;
+        price?: number; // price is optional, since some services may not have a price provided
+    }[];
+    tirePurchased: boolean;
+    status: string;
+    requestDate: string;
+    requestedTime: string;
+    totalPrice: number;
+    estimatedCompletion: string;
+};

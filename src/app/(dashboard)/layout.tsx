@@ -8,7 +8,7 @@ const layout = ({ children }: { children: ReactNode }) => {
             <div className="sticky top-0 h-screen z-40 ">
                 <DashBoardNav />
             </div>
-            <div className="w-full">
+            <div className="w-full overflow-hidden">
                 {children}
             </div>
         </div>

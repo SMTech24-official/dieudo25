@@ -70,14 +70,14 @@ const config: Config = {
 
           // For medium screens (md)
           "@screen md": {
-            maxWidth: "720px", // Medium screen container width
+            maxWidth: "100%", // Medium screen container width
             padding: "2rem",   // Adjust padding for medium screens
           },
 
           // For large screens (lg)
           "@screen lg": {
             maxWidth: "100%", // Larger screen container width
-            padding: "3rem",   // More padding for large screens
+            padding: "3rem", 
           },
 
           // For extra-large screens (xl)

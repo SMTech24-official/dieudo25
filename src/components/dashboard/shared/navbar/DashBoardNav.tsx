@@ -77,7 +77,7 @@ export default function DashboardNav() {
 
             <div
                 className={cn(
-                    "fixed inset-y-0 left-0 z-40 w-64 md:w-56 lg:w-72 h-full  shadow-lg dark:bg-gray-800 transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0",
+                    "fixed inset-y-0 left-0 z-40 w-64 md:w-56 lg:w-72 h-full bg-white  shadow-2xl md:shadow-lg dark:bg-gray-800 transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0",
                     isOpen ? "translate-x-0" : "-translate-x-full"
                 )}
             >
