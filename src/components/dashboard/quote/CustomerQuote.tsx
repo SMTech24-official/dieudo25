@@ -8,7 +8,7 @@ import { FaToolbox } from 'react-icons/fa6';
 import { Separator } from '@radix-ui/react-select';
 
 
-const QuoteTable = ({ data, headings, month }: { data: QuoteData[], headings: string[], month: string }) => {
+const CustomerQuoteTable = ({ data, headings, month }: { data: QuoteData[], headings: string[], month: string }) => {
 
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,7 +21,7 @@ const QuoteTable = ({ data, headings, month }: { data: QuoteData[], headings: st
     console.log(selectedModalItem);
 
     const handleView = (name: string) => {
-        const selectedItem = data?.find(item => item?.garageName == name)
+        const selectedItem = data?.find(item => item?.id == name)
         if (selectedItem) {
             setSelectedModalItem(selectedItem);
             setIsModalOpen(true);
@@ -57,7 +57,7 @@ const QuoteTable = ({ data, headings, month }: { data: QuoteData[], headings: st
                                 <div className="flex items-center">
                                     <div className={`h-10 w-10 rounded-full flex items-center justify-center bg-opacity-60 group-even:bg-orange-100 group-odd:bg-blue-200`}>
                                         <span className="font-semibold text-xl">
-                                            {quote.ownerName.charAt(0)}
+                                            {quote.ownerName?.charAt(0)}
                                         </span>
                                     </div>
                                     <div className="ml-4">
@@ -69,10 +69,14 @@ const QuoteTable = ({ data, headings, month }: { data: QuoteData[], headings: st
                                 <p className=" px-4 py-1">{quote.garageName}</p>
                             </td>
                             <td className="px-6 py-4 text-sm text-gray-500 text-start">
-                                <p className=" px-4 py-1 w-64">{quote.services.map((data, idx) => data.name).join(', ')}</p>
+                                <td className="px-6 py-4 text-sm text-gray-500 text-start">
+                                    {
+                                        quote.services.length > 1 ? <p className='px-4 py-1 w-64'>{quote.services[0].name} and more</p> : <p className=' px-4 py-1 w-64'>{quote.services[0].name}</p>
+                                    }
+                                </td>
                             </td>
-                            <td className="px-6 py-4 flex justify-center">
-                                <div className=" p-2">
+                            <td className="px-6 py-4 ">
+                                <div className=" p-2 flex justify-center items-center">
                                     {quote.tirePurchased ? <CircleCheckBig className='stroke-green-700' /> : <CirclePlus className="rotate-45 stroke-red-700" />}
                                 </div>
                             </td>
@@ -90,7 +94,7 @@ const QuoteTable = ({ data, headings, month }: { data: QuoteData[], headings: st
                             </td>
                             <td className=" py-4  ">
                                 <div className='flex justify-center text-primary w-full'>
-                                    <button onClick={() => handleView(quote?.garageName)}>
+                                    <button onClick={() => handleView(quote.id)}>
                                         <Eye className='w-6 h-6' />
                                     </button>
                                 </div>
@@ -182,4 +186,4 @@ const QuoteTable = ({ data, headings, month }: { data: QuoteData[], headings: st
     );
 };
 
-export default QuoteTable;
+export default CustomerQuoteTable;

@@ -10,6 +10,8 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import Image from 'next/image'
 import logo from "@/newlogo2.png"
 import { poppins } from '@/fonts/fonts'
+import useUserRole from '@/hooks/useUserRole'
+import { NavData } from '@/types/types'
 
 
 const garageNavItems = [
@@ -36,14 +38,20 @@ const customerNavItems = [
     { name: 'Home', href: '/', icon: Home },
 ];
 
-const navItems = customerNavItems;
+
+
 
 
 export default function DashboardNav() {
+
+    const role = useUserRole();
+
     const [isOpen, setIsOpen] = useState(false)
     const [activeNav, setActiveNav] = useState('') // State to manage active nav
     const navRef = useRef<HTMLDivElement>(null)
     const pathname = usePathname()
+
+    const [navItems, setNavItems] = useState<null | NavData[]>(null)
 
     useEffect(() => {
         // Update active nav when the pathname changes
@@ -62,6 +70,15 @@ export default function DashboardNav() {
             document.removeEventListener("mousedown", handleClickOutside)
         }
     }, [navRef])
+
+    useEffect(() => {
+        if (role === "customer") {
+            setNavItems(customerNavItems)
+        }
+        if (role === "servicesProvider") {
+            setNavItems(garageNavItems)
+        }
+    }, [role])
 
     return (
         <div ref={navRef} className="relative z-40 h-full">
@@ -91,7 +108,7 @@ export default function DashboardNav() {
 
                     <ScrollArea className="flex-1 py-4">
                         <nav className="space-y-2 pl-4 ">
-                            {navItems.map((item) => (
+                            {navItems?.map((item) => (
                                 <Link
                                     key={item.name}
                                     href={item.href}

@@ -1,3 +1,5 @@
+import { LucideProps } from "lucide-react";
+
 export type TireService = {
     serviceName: string;
     description: string;
@@ -28,8 +30,8 @@ export type OpeningHour = {
     id: number;
     slotName: string;
     days: string;
-    open?: string;  
-    close?: string; 
+    open?: string;
+    close?: string;
     status?: string;
 };
 
@@ -100,8 +102,8 @@ export type Garage = {
 
 export type QuoteData = {
     id: string;
-    garageName: string;
-    ownerName: string;
+    garageName?: string;
+    ownerName?: string;
     services: {
         name: string;
         price?: number; // price is optional, since some services may not have a price provided
@@ -112,4 +114,11 @@ export type QuoteData = {
     requestedTime: string;
     totalPrice: number;
     estimatedCompletion: string;
+    customerName?: string
+    location?: string
 };
+
+
+export type NavData = {
+    name: string, href: string, icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>;
+}
