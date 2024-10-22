@@ -1,10 +1,11 @@
 "use client"
 
-import banner from "@/assets/banner.png";
+import banner from "@/assets/LiftWork - Homepage .png";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { Wrench } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { poppins } from "@/fonts/fonts";
 
 const Hero = () => {
 
@@ -18,14 +19,15 @@ const Hero = () => {
 
 
     return (
-        <div className="bg-primary pb-padding_small">
-            <div className=" max-w-[1700px] mx-auto px-4 text-white">
-                <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-0 md:gap-10 gap-4 items-center justify-center lg:p-10 md:py-8 py-5">
-                    <div className="space-y-8 ">
-                        <div className="space-y-2 ">
-                            <h2 className="text-2xl md:text-3xl lg:text-5xl font-bold lg:w-[700px]">
+        <div className="bg-primary lg:h-[85vh] pb-padding_small">
+            <div className="max-w-[1700px]  mx-auto px-4 flex items-center justify-between w-full h-full text-white">
+                <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-0 md:gap-10 gap-4  justify-center items-center w-full">
+                    <div className="flex flex-col justify-end items-start lg:h-[300px] space-y-8 px-4 relative 
+                    xl:-translate-y-[2.9vh] 2xl:-translate-y-[1.3vh]  lg:-translate-y-[2.8vh]">
+                        <div className={` ${poppins.className} lg:space-y-5 space-y-2 `}>
+                            <h2 className={`  text-2xl md:text-3xl xl:text-5xl font-bold  2xl:w-[700px] `}>
                                 Find trusted garages near you,
-                                in just a few clicks
+                                Right Away
                             </h2>
                             <h4 className="text-sm md:text-base">
                                 Get a quote or book a service from
@@ -33,7 +35,7 @@ const Hero = () => {
                                 tire or maintenance.
                             </h4>
                         </div>
-                        <form className="max-w-md" onSubmit={(e) => handleSearch(e)}>
+                        <form className="max-w-md " onSubmit={(e) => handleSearch(e)}>
                             <div className="flex items-center gap-2 relative">
                                 <label htmlFor="Search" className="md:text-xl">Search:</label>
                                 <input
@@ -44,10 +46,7 @@ const Hero = () => {
                                     className="w-full peer px-4 py-2 bg-gray-800 text-black placeholder-gray-400 bg-primary border-b border-primary outline-none focus:border-white"
                                     required
                                 />
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-map-pin absolute right-0 opacity-35 peer-focus:opacity-100">
-                                    <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
-                                    <circle cx="12" cy="10" r="3" />
-                                </svg>
+                                <Wrench className={cn("text-gray-600 transition flex items-center", "transition-all duration-300 group-hover:fill-white absolute right-0 opacity-35 peer-focus:opacity-100")} />
                             </div>
 
 
@@ -55,13 +54,11 @@ const Hero = () => {
                                 type="submit"
                                 className="mt-4 flex items-center gap-2 group bg-secondary hover:bg-secondary/80 active:scale-95 transition-all duration-300 w-full py-2 rounded text-white"
                             >
-                                <Wrench className={cn("text-gray-600 transition flex items-center", "transition-all duration-300 group-hover:fill-white ")} />
-
                                 <span>Find garages</span>
                             </Button>
                         </form>
                     </div>
-                    <div className="w-full h-[60vh] ">
+                    <div className="2xl:h-[660px] xl:h-[600px] lg:h-[600px] h-[50vh] w-full">
                         <Image
                             src={banner}
                             alt="Banner Image"

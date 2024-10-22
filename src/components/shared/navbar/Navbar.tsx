@@ -87,7 +87,7 @@ const Navbar = () => {
                 href={item.path}
                 scroll={true}
                 className={cn(
-                  "text-gray-600 transition flex items-center text-white",
+                  "text-gray-600 transition flex items-center text-white text-nowrap",
                   pathName === item.path ? "text-secondary" : "hover:text-secondary"
                 )}
               >
