@@ -88,7 +88,7 @@ function StepItem({
 }) {
     return (
         <div
-            className={`flex shadow-md h-28 items-start space-x-4 p-4 rounded-lg ${isNegative ? "bg-orange-50" : "bg-blue-50"
+            className={`flex shadow-md hover:shadow-lg h-28 items-start space-x-4 p-4 rounded-lg ${isNegative ? "bg-orange-50" : "bg-blue-50"
                 }`}
         >
             <div

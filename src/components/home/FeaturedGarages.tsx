@@ -3,25 +3,22 @@
 import SectionHeader from "../section/SectionHeader";
 import { garagesData } from "@/utils/garageData";
 import FeaturedGarage from "../services/FeaturedGarage";
+import PartnerCategories from "./Partners";
 
 
 
 export default function FeaturedGarages() {
   return (
-    <section className="py-padding_base px-padding_small">
+    <section className="py-padding_base px-padding_small bg-section">
       <SectionHeader
-        subTitle="Find your best garage partner"
-        title="Featured Garages"
-        description="Our Trusted Garages"
+        subTitle="Empowering Quality Service Through Strategic Partnerships"
+        title="Our Trusted Partners"
+        description="At LiftWork, we partner with leading suppliers and experts to provide high-quality parts, reliable insurance, and top tools. This ensures our garages offer excellent service, clear pricing, and peace of mind for all your vehicle needs."
       />
       <div className="container mt-12">
         {/* Responsive Grid to display the garages */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {garagesData?.garages.slice(0,3).map((garages) => (
-            <div key={garages.id}>
-              <FeaturedGarage {...garages} />
-            </div>
-          ))}
+        <div className="">
+          <PartnerCategories />
         </div>
       </div>
     </section>

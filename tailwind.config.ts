@@ -32,7 +32,7 @@ const config: Config = {
   			background: '#f5f7fd',
   			lightGray: '#8f8f8f',
   			borderColor: '#e4e9f9',
-  			gray: '#5d5d5d',
+  			section: '#F9F9F9',
   			light: '#eff2fd'
   		},
   		borderRadius: {
