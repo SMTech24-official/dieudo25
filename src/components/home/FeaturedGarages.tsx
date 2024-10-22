@@ -9,7 +9,7 @@ import PartnerCategories from "./Partners";
 
 export default function FeaturedGarages() {
   return (
-    <section className="py-padding_base px-padding_small bg-section">
+    <section className="section-gap bg-section">
       <SectionHeader
         subTitle="Empowering Quality Service Through Strategic Partnerships"
         title="Our Trusted Partners"

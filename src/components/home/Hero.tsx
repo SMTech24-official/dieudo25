@@ -43,10 +43,10 @@ const Hero = () => {
                                     name="search"
                                     type="search"
                                     placeholder="Search for any service..."
-                                    className="w-full peer px-4 py-2 bg-gray-800 text-black placeholder-gray-400 bg-primary border-b border-primary outline-none focus:border-white"
+                                    className="w-full peer px-4 py-2 text-black placeholder-gray-400 bg-primary border-b border-primary outline-none focus:border-white"
                                     required
                                 />
-                                <Wrench className={cn("text-gray-600 transition flex items-center", "transition-all duration-300 group-hover:fill-white absolute right-0 opacity-35 peer-focus:opacity-100")} />
+                                <Wrench className={cn(" transition flex items-center", "transition-all duration-300 group-hover:fill-white absolute right-0 opacity-35 peer-focus:opacity-100")} />
                             </div>
 
 

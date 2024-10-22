@@ -5,10 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
-import image1 from "@/assets/team-1.jpeg";
-import image2 from "@/assets/team-2.jpg";
-import image3 from "@/assets/team-3.jpg";
-import image4 from "@/assets/team-4.jpg";
+import image1 from "@/assets/testi1.jpg";
+import image2 from "@/assets/testi2.jpg";
+import image3 from "@/assets/testi3.jpg";
+import image4 from "@/assets/testi6.jpg";
 import SectionHeader from "../section/SectionHeader";
 import StarRating from "../ratings/Ratings";
 // import StarPicker from 'react-star-picker';
@@ -18,7 +18,7 @@ import StarRating from "../ratings/Ratings";
 const customers = [
   {
     id: 1,
-    name: "Emily Smith",
+    name: "Lukas Meier",
     rating: 5,
     description:
       "LiftWork made finding a reliable garage so easy! I was able to compare prices and book an appointment in minutes. The service was top-notch, and I felt confident in my choice.",
@@ -26,7 +26,7 @@ const customers = [
   },
   {
     id: 2,
-    name: "Robert Miller",
+    name: "Jonas Müller",
     rating: 4,
     description:
       "Great platform to book car services! I was able to quickly find a trustworthy garage with transparent pricing. The entire experience was hassle-free, and I'll definitely use LiftWork again.",
@@ -34,7 +34,7 @@ const customers = [
   },
   {
     id: 3,
-    name: "Keisha Davis",
+    name: "Fabian Weber",
     rating: 5,
     description:
       "I loved how easy it was to find a garage that met my needs. The reviews and pricing were clear, and the booking process was seamless. It took the stress out of car maintenance!",
@@ -42,20 +42,13 @@ const customers = [
   },
   {
     id: 4,
-    name: "Alex Johnson",
+    name: "David Fischer",
     rating: 5,
     description:
       "LiftWork was a game-changer for me. I was able to secure a same-day appointment, and the garage I chose was professional and affordable. I highly recommend this service!",
     image: image4,
-  },
-  {
-    id: 5,
-    name: "Michael Brown",
-    rating: 4,
-    description:
-      "Booking through LiftWork saved me time and gave me peace of mind. I was able to read real reviews and find a garage I could trust. The service was fast and efficient.",
-    image: image1,
-  },
+  }
+
 ];
 
 export default function TestimonialsSlider() {
@@ -129,7 +122,7 @@ export default function TestimonialsSlider() {
   };
 
   return (
-    <div className="py-padding_base px-padding_small">
+    <div className="section-gap">
       <SectionHeader
         subTitle="What Our Customers Say"
         title="Trusted by Many, Loved by All"

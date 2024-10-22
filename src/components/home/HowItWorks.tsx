@@ -145,9 +145,9 @@ export default function HowItWorks() {
       className={` py-padding_base px-padding_small`}
     >
       <SectionHeader
-        subTitle="How it Works"
-        title="Working Methodology"
-        description="The Best Way to Work"
+        subTitle="How LiftWork Helps You Get the Best Service"
+        title="How it Works"
+        description="Using LiftWork is simple and hassle-free. In just a few quick steps, you can find trusted garages, compare options, and book your car service."
       />
 
       <div

@@ -8,6 +8,7 @@ import TestimonialsSlider from "@/components/home/TestimonialsSlider";
 import WhyChooseLiftWork from "@/components/home/WhyChooseLiftWork";
 import FeaturedGarages from "@/components/home/FeaturedGarages";
 import NewProblemSolution from "@/components/home/newProblemSolution";
+import NewHowItWorks from "@/components/home/NewHowitWorks";
 
 
 const page = () => {
@@ -16,7 +17,8 @@ const page = () => {
       <Hero />
       <NewProblemSolution/>
       <WhyChooseLiftWork />
-      <HowItWorks />
+      {/* <HowItWorks /> */}
+      <NewHowItWorks />
       <FeaturedGarages />
       <TestimonialsSlider />
       <ActionBtnSection />

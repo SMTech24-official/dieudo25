@@ -10,79 +10,80 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-  	extend: {
-  		container: {
-  			center: 'true',
-  			padding: '2rem',
-  			screens: {
-  				sm: '100%',
-  				md: '100%',
-  				lg: '1024px',
-  				xl: '1280px'
-  			}
-  		},
-  		colors: {
-  			primary: '#003366',
-  			secondary: '#FF6600',
-  			hover_Color: '#eff2fd',
-  			foreground: 'var(--foreground)',
-  			coal: '#353535',
-  			lemon: '#dafb57',
-  			lilac: '#7e92e3',
-  			background: '#f5f7fd',
-  			lightGray: '#8f8f8f',
-  			borderColor: '#e4e9f9',
-  			section: '#F9F9F9',
-  			light: '#eff2fd'
-  		},
-  		borderRadius: {
-  			lg: 'var(--radius)',
-  			md: 'calc(var(--radius) - 2px)',
-  			sm: 'calc(var(--radius) - 4px)'
-  		},
-  		padding: {
-  			padding_base: '48px',
-  			padding_small: '16px',
-  			padding_medium: '32px',
-  			padding_extra: '80px',
-  			padding_extra_large: '160px',
-  			padding_top_bottom: '24px'
-  		},
-  		keyframes: {
-  			'accordion-down': {
-  				from: {
-  					height: '0'
-  				},
-  				to: {
-  					height: 'var(--radix-accordion-content-height)'
-  				}
-  			},
-  			'accordion-up': {
-  				from: {
-  					height: 'var(--radix-accordion-content-height)'
-  				},
-  				to: {
-  					height: '0'
-  				}
-  			}
-  		},
-  		animation: {
-  			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
-  		}
-  	}
+    extend: {
+      container: {
+		center: true,
+        padding: '2rem',
+        screens: {
+          sm: '100%',
+          md: '100%',
+          lg: '1024px',
+          xl: '1280px',
+        },
+      },
+      colors: {
+        primary: '#003366',
+        secondary: '#FF6600',
+        hover_Color: '#eff2fd',
+        foreground: 'var(--foreground)',
+        coal: '#353535',
+        lemon: '#dafb57',
+        lilac: '#7e92e3',
+        background: '#f5f7fd',
+        lightGray: '#8f8f8f',
+        borderColor: '#e4e9f9',
+        section: '#F9F9F9',
+        light: '#eff2fd',
+      },
+      borderRadius: {
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
+      },
+      padding: {
+        padding_base: '48px',
+        padding_small: '16px',
+        padding_medium: '32px',
+        padding_extra: '80px',
+        padding_extra_large: '160px',
+        padding_top_bottom: '24px',
+
+      },
+      keyframes: {
+        'accordion-down': {
+          from: {
+            height: '0',
+          },
+          to: {
+            height: 'var(--radix-accordion-content-height)',
+          },
+        },
+        'accordion-up': {
+          from: {
+            height: 'var(--radix-accordion-content-height)',
+          },
+          to: {
+            height: '0',
+          },
+        },
+      },
+      animation: {
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
+      },
+    },
   },
   plugins: [
     require("tailwindcss-animate"), // Existing animate plugin
     function ({ addComponents }: PluginAPI) {
       addComponents({
         ".dashboard-containers": {
-          maxWidth: "100%",  // Default for all screen sizes
-          paddingTop: "4rem",   // Default padding for all screen sizes
-          paddingBottom: "2rem",   // Default padding for all screen sizes
-          paddingRight: "1rem",   // Default padding for all screen sizes
-          paddingLeft: "1rem",   // Default padding for all screen sizes
-          margin: "0 auto",  // Center the container
+          maxWidth: "100%", // Default for all screen sizes
+          paddingTop: "4rem", // Default padding for all screen sizes
+          paddingBottom: "2rem", // Default padding for all screen sizes
+          paddingRight: "1rem", // Default padding for all screen sizes
+          paddingLeft: "1rem", // Default padding for all screen sizes
+          margin: "0 auto", // Center the container
 
           // For small screens (sm)
           "@screen sm": {
@@ -93,13 +94,13 @@ const config: Config = {
           // For medium screens (md)
           "@screen md": {
             maxWidth: "100%", // Medium screen container width
-            padding: "2rem",   // Adjust padding for medium screens
+            padding: "2rem", // Adjust padding for medium screens
           },
 
           // For large screens (lg)
           "@screen lg": {
             maxWidth: "100%", // Larger screen container width
-            padding: "3rem", 
+            padding: "3rem",
           },
 
           // For extra-large screens (xl)
@@ -108,6 +109,34 @@ const config: Config = {
             padding: "4rem",
           },
         },
+		".section-gap": {
+			paddingTop: "2rem",  // Default padding for all screen sizes
+			paddingBottom: "2rem", // Default padding for all screen sizes
+  
+			// For small screens (sm)
+			"@screen sm": {
+			  paddingTop: "4rem", // Adjust padding for small screens
+			  paddingBottom: "4rem",
+			},
+  
+			// For medium screens (md)
+			"@screen md": {
+			  paddingTop: "6rem", // Adjust padding for medium screens
+			  paddingBottom: "6rem",
+			},
+  
+			// For large screens (lg)
+			"@screen lg": {
+			  paddingTop: "8rem", // Adjust padding for large screens
+			  paddingBottom: "8rem",
+			},
+  
+			// For extra-large screens (xl)
+			"@screen xl": {
+			  paddingTop: "10rem", // Adjust padding for extra-large screens
+			  paddingBottom: "10rem",
+			},
+		  },
       });
     },
   ],

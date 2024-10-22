@@ -4,7 +4,7 @@ import { Search, DollarSign, Star, Clock, Check, X } from "lucide-react"
 
 export default function NewProblemSolution() {
     return (
-        <div className="bg-gradient-to-b from-gray-50 to-white py-12 px-4 sm:px-6 lg:px-8 mt-12">
+        <div className="bg-gradient-to-b from-gray-50 to-white  section-gap">
             <div className="mx-auto max-w-7xl">
                 <div className="grid md:grid-cols-2 gap-8">
                     <ProblemSection />
@@ -17,7 +17,7 @@ export default function NewProblemSolution() {
 
 function ProblemSection() {
     return (
-        <div className="space-y-8">
+        <div className="space-y-8 ">
             <h3 className="text-2xl font-semibold text-orange-600 mb-6">The Problem</h3>
             <StepItem
                 icon={Search}
