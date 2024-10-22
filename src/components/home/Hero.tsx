@@ -22,7 +22,7 @@ const Hero = () => {
         <div className="bg-primary lg:h-[85vh] pb-padding_small">
             <div className="max-w-[1700px]  mx-auto px-4 flex items-center justify-between w-full h-full text-white">
                 <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-0 md:gap-10 gap-4  justify-center items-center w-full">
-                    <div className="flex flex-col justify-end items-start lg:h-[300px] space-y-8 px-4 relative 
+                    <div className="flex flex-col justify-end items-start lg:h-[300px] space-y-8  relative 
                     xl:-translate-y-[2.9vh] 2xl:-translate-y-[1.3vh]  lg:-translate-y-[2.8vh]">
                         <div className={` ${poppins.className} lg:space-y-5 space-y-2 `}>
                             <h2 className={`  text-2xl md:text-3xl xl:text-5xl font-bold  2xl:w-[700px] `}>
@@ -35,7 +35,7 @@ const Hero = () => {
                                 tire or maintenance.
                             </h4>
                         </div>
-                        <form className="max-w-md " onSubmit={(e) => handleSearch(e)}>
+                        <form className="max-w-lg w-full" onSubmit={(e) => handleSearch(e)}>
                             <div className="flex items-center gap-2 relative">
                                 <label htmlFor="Search" className="md:text-xl">Search:</label>
                                 <input

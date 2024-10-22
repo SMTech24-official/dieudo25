@@ -10,45 +10,67 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {
-      container: {
-        center: true, // Centers the container by default
-        padding: "2rem", // Adds padding around the container
-        screens: {
-          sm: "100%", // Customize container width on small screens
-          md: "100%", // Customize container width on medium screens
-          lg: "1024px", // Set custom width for large screens
-          xl: "1280px", // Set custom width for extra-large screens
-        },
-      },
-      colors: {
-        primary: "#003366",
-        secondary: "#FF6600",
-        hover_Color: "#eff2fd",
-        foreground: "var(--foreground)",
-        coal: "#353535",
-        lemon: "#dafb57",
-        lilac: "#7e92e3",
-        background: "#f5f7fd",
-        lightGray: "#8f8f8f",
-        borderColor: "#e4e9f9",
-        gray: "#5d5d5d",
-        light: "#eff2fd",
-      },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-      },
-      padding: {
-        padding_base: "48px",
-        padding_small: "16px",
-        padding_medium: "32px",
-        padding_extra: "80px",
-        padding_extra_large: "160px",
-        padding_top_bottom: "24px",
-      },
-    },
+  	extend: {
+  		container: {
+  			center: 'true',
+  			padding: '2rem',
+  			screens: {
+  				sm: '100%',
+  				md: '100%',
+  				lg: '1024px',
+  				xl: '1280px'
+  			}
+  		},
+  		colors: {
+  			primary: '#003366',
+  			secondary: '#FF6600',
+  			hover_Color: '#eff2fd',
+  			foreground: 'var(--foreground)',
+  			coal: '#353535',
+  			lemon: '#dafb57',
+  			lilac: '#7e92e3',
+  			background: '#f5f7fd',
+  			lightGray: '#8f8f8f',
+  			borderColor: '#e4e9f9',
+  			gray: '#5d5d5d',
+  			light: '#eff2fd'
+  		},
+  		borderRadius: {
+  			lg: 'var(--radius)',
+  			md: 'calc(var(--radius) - 2px)',
+  			sm: 'calc(var(--radius) - 4px)'
+  		},
+  		padding: {
+  			padding_base: '48px',
+  			padding_small: '16px',
+  			padding_medium: '32px',
+  			padding_extra: '80px',
+  			padding_extra_large: '160px',
+  			padding_top_bottom: '24px'
+  		},
+  		keyframes: {
+  			'accordion-down': {
+  				from: {
+  					height: '0'
+  				},
+  				to: {
+  					height: 'var(--radix-accordion-content-height)'
+  				}
+  			},
+  			'accordion-up': {
+  				from: {
+  					height: 'var(--radix-accordion-content-height)'
+  				},
+  				to: {
+  					height: '0'
+  				}
+  			}
+  		},
+  		animation: {
+  			'accordion-down': 'accordion-down 0.2s ease-out',
+  			'accordion-up': 'accordion-up 0.2s ease-out'
+  		}
+  	}
   },
   plugins: [
     require("tailwindcss-animate"), // Existing animate plugin

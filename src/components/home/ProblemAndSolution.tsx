@@ -1,11 +1,10 @@
 "use client"
 
 import { useState } from 'react';
-import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
-import { AnimatePresence, motion } from 'framer-motion'
 import SectionHeader from "../section/SectionHeader";
 import Image from 'next/image';
 import SideImag from "@/assets/solution.png"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
 
 const ProblemAndSolution = () => {
     const easeOut = [0.42, 0, 0.58, 1];
@@ -30,75 +29,33 @@ const ProblemAndSolution = () => {
 
     return (
         <section className="py-padding_base px-padding_small">
-            <SectionHeader
-                subTitle="The Challenge of Reliable Garage Services"
-                title="Simplifying Vehicle Maintenance with LiftWork"
-                description="How LiftWork is Making Car Repairs Stress-Free and Transparent"
-            />
-            <div className="container mx-auto grid lg:grid-cols-2 grid-cols-1 lg:gap-10 gap-4 lg:mt-12">
+            <div className="container mx-auto lg:mt-12">
                 {/* Left column - text section */}
-                <div className="flex flex-col space-y-4 max-h-screen overflow-visible pt-12">
-                    {problemSolutionSection.map((section, index) => (
-                        <Disclosure 
-                            key={index} 
-                            as="div" 
-                            className="p-3 transition-all duration-300"
-                            defaultOpen={openIndex === index} 
+                <div className="container mx-auto " >
+                    <Accordion type="single" collapsible className="w-full">
+                        {problemSolutionSection.map((section, index) => (
+                            <AccordionItem
+                                value={`item-${index}`}
+                                key={index}
+                                className="p-3 transition-all duration-300"
 
-                        >
-                            <DisclosureButton 
-                                className="group flex w-full justify-between items-center py-3"
-                                onClick={() => setOpenIndex(openIndex === index ? null : index)} 
                             >
-                                <span className="font-bold  text-start w-full">
-                                    {section.title}
-                                </span>
-                                <svg 
-                                    xmlns="http://www.w3.org/2000/svg" 
-                                    width="24" 
-                                    height="24" 
-                                    viewBox="0 0 24 24" 
-                                    fill="none" 
-                                    stroke="currentColor" 
-                                    strokeWidth="2" 
-                                    strokeLinecap="round" 
-                                    strokeLinejoin="round" 
-                                    className={`lucide lucide-chevron-down transition-transform duration-500 ease-in-out ${openIndex === index ? 'rotate-180' : ''}`}
+                                <AccordionTrigger
+                                    className="group flex w-full justify-between items-center py-3 text-lg"
                                 >
-                                    <path d="m6 9 6 6 6-6"/>
-                                </svg>
-                            </DisclosureButton>
-                            <AnimatePresence>
-                                {openIndex === index && (
-                                    <DisclosurePanel static>
-                                        <motion.div
-                                            initial={{ opacity: 0, y: -24 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            exit={{ opacity: 0, y: -24 }}
-                                            transition={{ duration: 0.5, ease: easeOut }} // Slower transition
-                                            className="origin-top pt-2"
-                                        >
-                                            {section.content}
-                                        </motion.div>
-                                    </DisclosurePanel>
-                                )}
-                            </AnimatePresence>
-                        </Disclosure>
-                    ))}
-                </div>
-                
-                {/* Right column - image section */}
-                <div className="relative w-full h-[60vh]">
-                    <Image
-                        src={SideImag}
-                        alt='Side Image'
-                        layout="fill"
-                        objectFit='cover'
-                        className="rounded-lg"
-                    />
+                                    <span className="font-bold  text-start w-full text-lg">
+                                        {section.title}
+                                    </span>
+                                </AccordionTrigger>
+                                <AccordionContent>
+                                    {section.content}
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
+                    </Accordion>
                 </div>
             </div>
-        </section>
+        </section >
     );
 };
 
