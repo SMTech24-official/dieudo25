@@ -69,10 +69,10 @@ const Navbar = () => {
     <nav>
       <TopBar />
       <div
-        className={`sticky top-0 z-50 bg-white transition-all duration-300 ${isSticky ? "shadow-md py-2" : "py-4"
+        className={`sticky top-0 z-50 bg-primary transition-all duration-300 ${isSticky ? "shadow-md py-2" : "py-4"
           }`}
       >
-        <div className="max-w-[1700px] mx-auto px-4 flex items-center justify-between w-full">
+        <div className="max-w-[1700px]  mx-auto px-4 flex items-center justify-between w-full">
           {/* Logo */}
           <Link href="/" className="text-xl font-bold">
             <Image src={logo} alt="Company logo" width={80} height={80} />
@@ -87,8 +87,8 @@ const Navbar = () => {
                 href={item.path}
                 scroll={true}
                 className={cn(
-                  "text-gray-600 transition flex items-center",
-                  pathName === item.path ? "text-primary" : "hover:text-primary"
+                  "text-gray-600 transition flex items-center text-white",
+                  pathName === item.path ? "text-secondary" : "hover:text-secondary"
                 )}
               >
                 {item.icon}
@@ -99,7 +99,7 @@ const Navbar = () => {
             {/* Dropdown Menu */}
             <div className="relative" ref={dropdownRef}>
               <button
-                className="text-gray-600 hover:text-primary"
+                className="text-gray-600 hover:text-secondary text-white"
                 onClick={handleToggleDropdown}
               >
                 More

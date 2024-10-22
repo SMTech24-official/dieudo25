@@ -41,7 +41,7 @@ const Mobile = ({ navLinks }: { navLinks: { name: string; path: string; icon: JS
             asChild
             variant="ghost"
             size="icon"
-            className="lg:hidden"
+            className="lg:hidden text-white"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle mobile menu"
           >
