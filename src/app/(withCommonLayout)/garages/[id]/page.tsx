@@ -30,7 +30,8 @@ export default function GarageDetailsPage({ params }: { params: { slug: string }
     realTimeAvailability,
     tireDelivery,
     specialRequests,
-    garageBio
+    garageBio,
+    offers
   } = garage;
 
 
@@ -55,7 +56,7 @@ export default function GarageDetailsPage({ params }: { params: { slug: string }
       />
 
       <div className="flex flex-col lg:flex-row gap-8 mt-8">
-        <StickySide images={images} owner={owner} capacity={capacity} openingHours={openingHours} pricing={pricing} ratings={ratings} realTimeAvailability={realTimeAvailability} timeSlotAvailability={timeSlotAvailability}/>
+        <StickySide images={images} owner={owner} capacity={capacity} openingHours={openingHours && openingHours} pricing={pricing} ratings={ratings} realTimeAvailability={realTimeAvailability} timeSlotAvailability={timeSlotAvailability} />
 
         <div className="lg:flex-1">
 
@@ -69,7 +70,9 @@ export default function GarageDetailsPage({ params }: { params: { slug: string }
           </Card>
 
           <div className="mb-8">
-            <Offer />
+            {
+              offers && <Offer offer={offers}/>
+            }
           </div>
 
           <ServicesOffered servicesOffered={servicesOffered} />

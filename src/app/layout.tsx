@@ -18,9 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`antialiased bg-background ${
-          isPoppinsFont ? poppins.className : openSans.className
-        }`}
+        className={`antialiased bg-background ${openSans.className}`}
       >
         {children}
       </body>

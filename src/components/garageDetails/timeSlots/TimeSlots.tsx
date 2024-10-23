@@ -5,7 +5,7 @@ const TimeSlots = ({ data }: { data: OpeningHour }) => {
     return (
         <div className='flex items-center justify-between'>
             <p>{data.days}</p>
-            <div className='flex items-center gap-1'>
+            <div className='flex items-center gap-1 text-secondary'>
                 <p>{data.open}</p>
                 <p>{data.status ? '' : "-"}</p>
                 <p>{data.close}</p>
