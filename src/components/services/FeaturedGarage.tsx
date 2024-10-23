@@ -43,7 +43,7 @@ export default function FeaturedGarage({
                             height={50}
                             src={images.profile}
                             alt={`image of ${owner.name}`}
-                            className="rounded-full"
+                            className="rounded-full w-10 h-10 object-cover"
                         />
                         <div>
                             <h3 className="font-semibold text-lg">{garageName}</h3>
