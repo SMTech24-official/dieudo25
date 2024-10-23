@@ -5,7 +5,7 @@ import { Search, DollarSign, Star, Clock, Check, X } from "lucide-react"
 export default function NewProblemSolution() {
     return (
         <div className="bg-gradient-to-b from-gray-50 to-white  section-gap">
-            <div className="mx-auto max-w-7xl">
+            <div className="container">
                 <div className="grid md:grid-cols-2 gap-8">
                     <ProblemSection />
                     <SolutionSection />
@@ -88,7 +88,7 @@ function StepItem({
 }) {
     return (
         <div
-            className={`flex shadow-md hover:shadow-lg h-28 items-start space-x-4 p-4 rounded-lg ${isNegative ? "bg-orange-50" : "bg-blue-50"
+            className={`flex shadow-md hover:shadow-lg md:h-32 lg:h-28 items-start space-x-4 p-4 rounded-lg ${isNegative ? "bg-orange-50" : "bg-blue-50"
                 }`}
         >
             <div

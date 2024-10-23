@@ -24,7 +24,7 @@ export default function SectionHeader({
         <p className="sm:text-base text-sm font-medium text-lilac sm:mb-2 mb-1">{subTitle && subTitle}</p>
       )}
       <h2 className="md:text-5xl text-3xl font-medium text-gray-900 sm:mb-2 mb-1">{title}</h2>
-      {description && <p className="text-gray-600 sm:text-base text-sm max-w-2xl w-full">{description}</p>}
+      {description && <p className="text-gray-600 sm:text-base text-xs md:text-sm max-w-2xl w-full">{description}</p>}
     </div>
   );
 }

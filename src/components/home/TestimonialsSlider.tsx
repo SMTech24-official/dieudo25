@@ -130,7 +130,7 @@ export default function TestimonialsSlider() {
       />
 
       <div
-        className="relative w-full h-[30vh] mt-4 lg:h-[30vh] overflow-hidden"
+        className="relative w-full h-[30vh] mt-12 lg:h-[30vh] overflow-hidden container"
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
@@ -151,7 +151,7 @@ export default function TestimonialsSlider() {
                 className={`absolute hover:bg-[#eff2fd] transition-all duration-300 origin-top-left  ease-in-out group-hover:scale-100 ${offset === 0
                   ? "z-20 scale-100 opacity-100"
                   : Math.abs(offset) === 1
-                    ? "z-10 scale-75 opacity-60"
+                    ? "z-10 scale-75 opacity-80"
                     : "z-0 scale-50 opacity-30"
                   } ${offset < 0
                     ? "-translate-x-1/2"
@@ -163,8 +163,8 @@ export default function TestimonialsSlider() {
 
                 <CardContent className="p-6 xl:w-[800px] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[300px] ">
 
-                  <h3 className="md:text-lg text-sm font-semibold mb-5 group-hover:text-primary transition-all ease-out duration-300">
-                    &quot;{freelancer.description}&quot;
+                  <h3 className="md:text-lg text-sm font-semibold mb-5 group-hover:text-primary transition-all ease-out duration-300 tracking-wide">
+                    <span className="text-yellow-400 text-xl">&quot;</span> {freelancer.description} <span className="text-yellow-400 text-xl">&quot;</span>
                   </h3>
 
                   <div className="flex gap-4 items-center">
@@ -195,24 +195,6 @@ export default function TestimonialsSlider() {
             );
           })}
         </div>
-        <Button
-          variant="outline"
-          size="icon"
-          className="absolute left-0 top-1/2 -translate-y-1/2"
-          onClick={prevSlide}
-          aria-label="Previous freelancer"
-        >
-          <ChevronLeft className="h-4 w-4" />
-        </Button>
-        <Button
-          variant="outline"
-          size="icon"
-          className="absolute right-0 top-1/2 -translate-y-1/2"
-          onClick={nextSlide}
-          aria-label="Next freelancer"
-        >
-          <ChevronRight className="h-4 w-4" />
-        </Button>
       </div>
     </div>
   );

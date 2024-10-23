@@ -65,7 +65,7 @@ export default function NewHowItWorks() {
                 title="How it Works"
                 description="Using LiftWork is simple and hassle-free. In just a few quick steps, you can find trusted garages, compare options, and book your car service."
             />
-            <div className="container mx-auto " >
+            <div className="container mx-auto mt-12" >
                 <Accordion type="single" collapsible className="w-full">
                     {steps.map((section, index) => (
                         <AccordionItem
@@ -75,9 +75,9 @@ export default function NewHowItWorks() {
 
                         >
                             <AccordionTrigger
-                                className="group flex w-full justify-between items-center py-3 text-lg"
+                                className="group flex w-full justify-between items-center py-3 text-lg !border-0"
                             >
-                                <span className="font-bold flex items-center text-start gap-2 w-full text-lg">
+                                <span className="font-bold flex items-center text-start gap-2 w-full text-lg !border-0">
                                     {section.icon}{section.title}
                                 </span>
                             </AccordionTrigger>
