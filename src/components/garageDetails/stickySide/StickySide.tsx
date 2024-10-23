@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useState } from "react";
 import Image from "next/image";
-import { Clipboard, MapPin, Package, ShoppingCart, Battery, Cog, Wrench, Zap, Stethoscope, ShieldCheck, Cpu, Paintbrush, Truck, AlertTriangle, Car, Plus, Gauge } from "lucide-react";
+import { Clipboard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -12,7 +12,64 @@ import TimeSlots from "@/components/timeSlots/TimeSlots";
 
 
 
-const StickySide = ({ images, owner, ratings, openingHours, realTimeAvailability, capacity, pricing, timeSlotAvailability }) => {
+interface ImageType {
+    profile: string;
+  }
+  
+  interface OwnerType {
+    name: string;
+    contact: {
+      phone: string;
+      email: string;
+    };
+  }
+  
+  interface RatingsType {
+    rating: number;
+    total: number;
+  }
+  
+  interface OpeningHoursType {
+    id: number;
+    slotName: string;
+    days: string;
+    open?: string; // Optional for days with a 'Closed' status
+    close?: string;
+    status?: string;
+  }
+  
+  interface CapacityType {
+    maxVehiclesPerDay: number;
+  }
+  
+  interface PricingType {
+    currency: string;
+    price: {
+      min_price: number;
+      max_price: number;
+    };
+  }
+  
+  interface TimeSlotAvailabilityType {
+    emergencyService: boolean;
+  }
+  
+  interface StickySideProps {
+    images: ImageType;
+    owner: OwnerType;
+    ratings: RatingsType;
+    openingHours: OpeningHoursType[];
+    realTimeAvailability: boolean;
+    capacity: CapacityType;
+    pricing: PricingType;
+    timeSlotAvailability: TimeSlotAvailabilityType;
+  }
+
+
+
+
+
+const StickySide : React.FC<StickySideProps> = ({ images, owner, ratings, openingHours, realTimeAvailability, capacity, pricing, timeSlotAvailability }) => {
 
 
 

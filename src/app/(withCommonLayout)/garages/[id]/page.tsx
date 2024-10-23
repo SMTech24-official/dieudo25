@@ -1,27 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
-import { Clipboard, MapPin, Package, ShoppingCart, Battery, Cog, Wrench, Zap, Stethoscope, ShieldCheck, Cpu, Paintbrush, Truck, AlertTriangle, Car, Plus, Gauge } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { poppins } from "@/fonts/fonts";
 import { garage } from "@/utils/garageData";
-import { reviews } from "@/utils/review";
 import BookingModal from "@/components/bookingModal/BookingModal";
 import ImageGrid from "@/components/imageGrid/ImageGrid";
 import ResponsiveSwiper from "@/components/responsiveSwiper/ResponsiveSwiper";
-import StarRating from "@/components/ratings/Ratings";
-import TimeSlots from "@/components/timeSlots/TimeSlots";
-import ReviewCard from "@/components/reviewCard/ReviewCard";
 import Offer from "@/components/garageDetails/garageOffer/Offer";
-import { PiTireDuotone, PiEngineThin } from "react-icons/pi";
-import { RiOilLine } from "react-icons/ri";
-import { GiAutoRepair, GiCarWheel } from "react-icons/gi";
-import { SiJfrogpipelines } from "react-icons/si";
-import { GoArrowUpRight } from "react-icons/go";
-import CancellationPolicyModal from "@/components/garageDetails/cancelPolicy/CancelPolicy";
 import AdditionalInformation from "@/components/garageDetails/additionalInfo/AdditionalInformation";
 import Reviews from "@/components/garageDetails/reviews/Reviews";
 import ServicesOffered from "@/components/garageDetails/servicesOfferd/ServicesOfferd";
