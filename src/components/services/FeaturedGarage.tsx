@@ -92,12 +92,12 @@ export default function FeaturedGarage({
 
                                 <span className="text-sm">{ratings.rating} / {ratings.total}</span>
                             </div>
-                            <span className="text-sm font-medium">From {pricing.currency} {pricing.price.min_price} - {pricing.currency} {pricing.price.max_price}</span>
+                            <span className="text-sm font-medium">CHF {pricing.price.min_price} / hour</span>
                         </div>
                     </div>
                 </Link>
             </div>
-
+ 
         </div>
     );
 }

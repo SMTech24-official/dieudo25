@@ -7,6 +7,7 @@ import { PaginationPage } from "@/components/services/PaginationPage";
 import ServiceCard from "@/components/services/ServiceCard";
 import { garagesData } from "@/utils/garageData";
 import FeaturedGarage from "@/components/services/FeaturedGarage";
+import SectionHeader from "@/components/section/SectionHeader";
 
 export default function ServicesPage() {
   const [services, setServices] = useState([]);
@@ -24,23 +25,36 @@ export default function ServicesPage() {
   //     fetchServices(page, query);
   //   }, [page, query]);
 
-  return (
-    <div className="container mx-auto px-padding_small py-padding_medium">
-      {/* Service Cards */}
-      <SearchBar onSearch={setQuery} />
-      <FilterOptions />
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {garagesData?.garages.map((garages) => (
-          <div key={garages.id}>
-            <FeaturedGarage {...garages} />
-          </div>
-        ))}
-      </div>
 
-      {/* Pagination */}
-      <div className="flex justify-center items-center mt-6 container px-5">
-        <PaginationPage />
+
+
+
+  return (
+    <section className="container mx-auto px-padding_small py-padding_medium">
+
+      <SectionHeader
+        subTitle="Your One-Stop Solution for All Auto Care Needs"
+        title="Find Garages"
+        description="From tire services to comprehensive vehicle maintenance, find and book trusted garages effortlessly. Get a quote or schedule your service in just a few clicks."
+      />
+
+      <div className="mt-12">
+        {/* Service Cards */}
+        <SearchBar onSearch={setQuery} />
+        <FilterOptions />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {garagesData?.garages.map((garages) => (
+            <div key={garages.id}>
+              <FeaturedGarage {...garages} />
+            </div>
+          ))}
+        </div>
+
+        {/* Pagination */}
+        <div className="flex justify-center items-center mt-6 container px-5">
+          <PaginationPage />
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -34,13 +34,15 @@ const BookingModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   const [bookedTimes, setBookedTimes] = useState<string[]>([
     "09:00 AM", // Mock booked time for testing
   ]);
+
   const [error, setError] = useState<string>("");
   const [locationCoords, setLocationCoords] = useState<{
     latitude: number;
     longitude: number;
   } | null>(null);
-  const [humanReadableLocation, setHumanReadableLocation] =
-    useState<string>("");
+
+
+
 
   const timeSlots = [
     "09:00 AM",
@@ -84,17 +86,8 @@ const BookingModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     checkAvailability();
   }, [date, bookedTimes, setValue]);
 
-  const getLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const { latitude, longitude } = position.coords;
-        setLocationCoords({ latitude, longitude });
-        fetchHumanReadableLocation(latitude, longitude); // Fetch the human-readable address
-      });
-    } else {
-      console.error("Geolocation is not supported by this browser.");
-    }
-  };
+
+  const [humanReadableLocation, setHumanReadableLocation] = useState<string>("");
 
   const fetchHumanReadableLocation = async (
     latitude: number,
@@ -111,6 +104,21 @@ const BookingModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
       console.error("Error fetching location:", error);
     }
   };
+
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const { latitude, longitude } = position.coords;
+        setLocationCoords({ latitude, longitude });
+        fetchHumanReadableLocation(latitude, longitude); // Fetch the human-readable address
+      });
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+    }
+  };
+
+
+
 
   const onSubmit = (data: FormData) => {
     if (!date) {
