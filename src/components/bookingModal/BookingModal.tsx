@@ -150,7 +150,7 @@ const BookingModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
       isOpen={isOpen}
       onClose={onClose}
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto p-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto lg:p-6 p-4">
         {/* Left Side: Calendar */}
         <div className="flex justify-center">
           <Calendar
@@ -238,10 +238,7 @@ const BookingModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 
           {error && <p className="text-red-500">{error}</p>}
 
-          <Button
-            type="submit"
-            className="bg-blue-500 text-white p-2 rounded w-full"
-          >
+          <Button className="bg-secondary hover:bg-secondary/80 active:scale-95 transition-all duration-300 w-full py-2 rounded-md text-white group">
             Book Now
           </Button>
         </form>
