@@ -5,7 +5,7 @@ import React, { ReactNode } from "react";
 
 const layout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="bg-background overflow-x-hidden">
+    <div className="bg-background">
       <Navbar />
       {children}
       <Footer />

@@ -14,8 +14,6 @@ import { garage } from "@/utils/garageData";
 import TimeSlots from "@/components/timeSlots/TimeSlots";
 import { isGarageOpen } from "@/helper/openStatus";
 import Image from "next/image";
-// import StarPicker from "react-star-picker";
-// import 'react-star-picker/styles.css';
 import wheel from "@/assets/wheel.png"
 import { Clipboard } from "lucide-react";
 import StarRating from "@/components/ratings/Ratings";
@@ -61,7 +59,10 @@ export default function Page({ params }: { params: { slug: string } }) {
 
 
   return (
-    <main className="container  py-padding_base   pb-0 px-padding_small w-full h-full">
+    <section className="container  py-padding_base pb-0 px-padding_small">
+
+
+
 
       {/* name  */}
       <h2 className={`${poppins.className} lg:text-2xl md:text-xl text-lg md:mb-2 mb-1 font-semibold flex items-center gap-2`}>
@@ -82,11 +83,10 @@ export default function Page({ params }: { params: { slug: string } }) {
         additionalClasses="md:hidden block" // Add any additional classes you want
       />
 
-      <div className="flex md:flex-row flex-col-reverse gap-6 w-full  lg:mt-10">
+      <div className="flex lg:gap-10 md:gap-4 w-full h-full">
         {/* Left Side (Scrollable Content) */}
-
-        <div className="h-fit md:w-[30%] top-0 sticky">
-          <div className="bg-white h-full w-full p-4 shadow-md">
+        <div className="xl:w-[25vw] lg:w-[35vw] w-[70vw]  h-[65vh]  sticky top-20 p-4 hidden md:block xl:mb-28 lg:mb-80 md:mb-80 mb-4">
+          <div className="bg-white h-[70vh] sticky top-10  border w-full p-4 shadow-md">
             {/* owner  */}
             <div className="flex items-center gap-4">
               <div className="flex rounded-full overflow-hidden">
@@ -161,7 +161,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 
 
         {/* Right Side (Sticky Content) */}
-        <div className="flex-1 md:h-screen overflow-y-scroll garage_Details">
+        <div className="lg:flex-1 lg:pb-10 md:pb-8 pb-4">
           {/* address  */}
           <div className="lg:mt-6 md:mt-6 mt-4  md:space-y-2 space-y-1">
             <h2 className={`${poppins.className} lg:text-lg font-semibold flex items-center gap-2`}>
@@ -312,7 +312,7 @@ export default function Page({ params }: { params: { slug: string } }) {
         </div>
         {/* End Right Side (Sticky Content) */}
       </div>
-    </main>
+    </section>
   );
 }
 

@@ -6,6 +6,7 @@ import FilterOptions from "@/components/services/FilterOptions";
 import { PaginationPage } from "@/components/services/PaginationPage";
 import ServiceCard from "@/components/services/ServiceCard";
 import { garagesData } from "@/utils/garageData";
+import FeaturedGarage from "@/components/services/FeaturedGarage";
 
 export default function ServicesPage() {
   const [services, setServices] = useState([]);
@@ -31,7 +32,7 @@ export default function ServicesPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {garagesData?.garages.map((garages) => (
           <div key={garages.id}>
-            <ServiceCard {...garages} />
+            <FeaturedGarage {...garages} />
           </div>
         ))}
       </div>
