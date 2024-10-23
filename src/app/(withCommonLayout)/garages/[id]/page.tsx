@@ -17,6 +17,7 @@ import Image from "next/image";
 import wheel from "@/assets/wheel.png"
 import { Clipboard } from "lucide-react";
 import StarRating from "@/components/ratings/Ratings";
+import Offer from "@/components/garageOffer/Offer";
 
 
 
@@ -36,7 +37,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   };
 
   const [isOpen, setIsOpen] = useState(false);
-  console.log(params);
+
 
 
   const {
@@ -60,10 +61,6 @@ export default function Page({ params }: { params: { slug: string } }) {
 
   return (
     <section className="container  py-padding_base pb-0 px-padding_small">
-
-
-
-
       {/* name  */}
       <h2 className={`${poppins.className} lg:text-2xl md:text-xl text-lg md:mb-2 mb-1 font-semibold flex items-center gap-2`}>
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-warehouse"><path d="M22 8.35V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.35A2 2 0 0 1 3.26 6.5l8-3.2a2 2 0 0 1 1.48 0l8 3.2A2 2 0 0 1 22 8.35Z" /><path d="M6 18h12" /><path d="M6 14h12" /><rect width="12" height="12" x="6" y="10" /></svg>
@@ -83,10 +80,10 @@ export default function Page({ params }: { params: { slug: string } }) {
         additionalClasses="md:hidden block" // Add any additional classes you want
       />
 
-      <div className="flex lg:gap-10 md:gap-4 w-full h-full">
+      <div className="flex flex-col lg:flex-row lg:gap-10 md:gap-4 w-full h-full">
         {/* Left Side (Scrollable Content) */}
-        <div className="xl:w-[25vw] lg:w-[35vw] w-[70vw]  h-[65vh]  sticky top-20 p-4 hidden md:block xl:mb-28 lg:mb-80 md:mb-80 mb-4">
-          <div className="bg-white h-[70vh] sticky top-10  border w-full p-4 shadow-md">
+        <div className="lg:w-[20vw] w-full h-full lg:h-[65vh]  lg:sticky top-5 mt-4 lg:mb-36 mb-4">
+          <div className="bg-white lg:h-[70vh] h-full w-full p-4 shadow-md">
             {/* owner  */}
             <div className="flex items-center gap-4">
               <div className="flex rounded-full overflow-hidden">
@@ -206,13 +203,14 @@ export default function Page({ params }: { params: { slug: string } }) {
             {/* End Bio */}
 
 
-            <div className="lg:mt-10 md:mt-7 mt-5  shadow-md rounded-md flex items-center justify-center gap-2 md:p-6 p-3 bg-hover_Color animate-pulse">
+            <div className="lg:mt-10 md:mt-7 mt-5 rounded-md flex items-center justify-center">
 
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-tags fill-secondary"><path d="m15 5 6.3 6.3a2.4 2.4 0 0 1 0 3.4L17 19" /><path d="M9.586 5.586A2 2 0 0 0 8.172 5H3a1 1 0 0 0-1 1v5.172a2 2 0 0 0 .586 1.414L8.29 18.29a2.426 2.426 0 0 0 3.42 0l3.58-3.58a2.426 2.426 0 0 0 0-3.42z" /><circle cx="6.5" cy="9.5" r=".5" fill="currentColor" /></svg>
+              {/* <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-tags fill-secondary"><path d="m15 5 6.3 6.3a2.4 2.4 0 0 1 0 3.4L17 19" /><path d="M9.586 5.586A2 2 0 0 0 8.172 5H3a1 1 0 0 0-1 1v5.172a2 2 0 0 0 .586 1.414L8.29 18.29a2.426 2.426 0 0 0 3.42 0l3.58-3.58a2.426 2.426 0 0 0 0-3.42z" /><circle cx="6.5" cy="9.5" r=".5" fill="currentColor" /></svg>
 
               <p className="md:text-lg">
                 {offers}
-              </p>
+              </p> */}
+              <Offer />
             </div>
 
 
