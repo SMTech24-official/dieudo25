@@ -7,18 +7,10 @@ import { Wrench } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { poppins } from "@/fonts/fonts";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const GarageHero = () => {
-
-    const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const search = (e.target as HTMLFormElement).search.value;
-        console.log(search);
-        // handle form submission logic here
-        alert(`Search with: ${search}`);
-    };
-
-
+    const router = useRouter()
     return (
         <div className="bg-primary lg:h-[85vh] pb-padding_small">
             <div className="max-w-[1700px]  mx-auto px-4 flex items-center justify-between w-full h-full text-white">
@@ -33,29 +25,14 @@ const GarageHero = () => {
                                 Join LiftWork and connect with more customers, streamline your bookings, and grow your business effortlessly
                             </h4>
                         </div>
-                        <form className="max-w-lg w-full" onSubmit={(e) => handleSearch(e)}>
-                            <div className="flex items-center gap-2 relative">
-                                <label htmlFor="Search" className="md:text-xl">Register:</label>
-                                <input
-                                    id="Search"
-                                    name="search"
-                                    type="search"
-                                    placeholder="Search for any service..."
-                                    className="w-full peer px-4 py-2 text-black placeholder-gray-400 bg-primary border-b border-primary outline-none focus:border-white"
-                                    required
-                                />
-                                <Wrench className={cn(" transition flex items-center", "transition-all duration-300 group-hover:fill-white absolute right-0 opacity-35 peer-focus:opacity-100")} />
-                            </div>
-
-
-                            <Button
-                                type="submit"
-                                className="mt-4 flex items-center gap-2 group bg-secondary hover:bg-secondary/80 active:scale-95 transition-all duration-300 w-full py-2 rounded text-white"
-                            >
-                                <span>Register Your Garage</span>
-                            </Button>
-                            <p className="text-center mt-2 md:text-lg">Already Have an Account ! <Link href={"sign-in"} className="text-secondary hover:underline">Login</Link> </p>
-                        </form>
+                        <Button
+                            onClick={() => router.push("/sign-up?q=true")}
+                            type="submit"
+                            className="mt-4 flex max-w-lg w-full items-center gap-2 group bg-secondary hover:bg-secondary/80 active:scale-95 transition-all duration-300  py-2 rounded text-white"
+                        >
+                            <span>Register Your Garage</span>
+                        </Button>
+                        <p className="text-center mt-2 md:text-lg">Already Have an Account ! <Link href={"sign-in"} className="text-secondary hover:underline">Login</Link> </p>
                     </div>
                     <div className="2xl:h-[660px] xl:h-[600px] lg:h-[600px] h-[50vh] w-full">
                         <Image
@@ -67,7 +44,7 @@ const GarageHero = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
 
     );
 };
