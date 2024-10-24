@@ -1,155 +1,511 @@
-"use client";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+'use client'
 
-import { Input } from "../ui/input";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
-import { Button } from "../ui/button";
-import { Checkbox } from "../ui/checkbox";
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import * as z from 'zod'
+import { format } from 'date-fns'
+import { Calendar as CalendarIcon, CheckCircle, Upload } from 'lucide-react'
 
-export default function RequestQuoteForm() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { register, handleSubmit, setValue, formState: { errors } } = useForm();
-  const [tireBudgetVisible, setTireBudgetVisible] = useState(false); // For showing tire budget options
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Checkbox } from "@/components/ui/checkbox"
+import Calendar from "react-calendar";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onSubmit = (data:any) => {
-    console.log("Quote request submitted", data);
-  };
+const formSchema = z.object({
+  fullName: z.string().min(2, { message: "Full name must be at least 2 characters." }),
+  email: z.string().email({ message: "Invalid email address." }),
+  phone: z.string().min(10, { message: "Phone number must be at least 10 digits." }),
+  address: z.string().min(10, { message: "Please enter your full address." }),
+  vehicleMake: z.string().min(2, { message: "Please enter your vehicle make." }),
+  vehicleModel: z.string().min(2, { message: "Please enter your vehicle model." }),
+  yearOfManufacture: z.number().min(1900).max(new Date().getFullYear()),
+  licensePlate: z.string().min(2, { message: "Please enter your license plate number." }),
+  registrationItem24: z.string().optional(),
+  fuelType: z.enum(["Diesel", "Petrol", "Electric", "Hybrid"]),
+  tireSize: z.string().optional(),
+  tireYearOfManufacture: z.number().optional(),
+  tireBrand: z.string().optional(),
+  serviceType: z.array(z.string()).nonempty({ message: "Please select at least one service." }),
+  otherService: z.string().optional(),
+  comments: z.string().optional(),
+  budget: z.enum(["CHF100-250", "CHF250-450", "CHF450-700", "CHF700-1000", "Other"]),
+  otherBudget: z.string().optional(),
+  preferredDate: z.date(),
+})
+
+export default function QuoteRequestForm() {
+  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [file, setFile] = useState<File | null>(null)
+  const [date, setDate] = useState<Date | null>(null);
+
+
+
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      fullName: "",
+      email: "",
+      phone: "",
+      address: "",
+      vehicleMake: "",
+      vehicleModel: "",
+      yearOfManufacture: new Date().getFullYear(),
+      licensePlate: "",
+      registrationItem24: "",
+      fuelType: "Diesel",
+      tireSize: "",
+      tireYearOfManufacture: new Date().getFullYear(),
+      tireBrand: "",
+      serviceType: [],
+      otherService: "",
+      comments: "",
+      budget: "CHF100-250",
+      otherBudget: "",
+      preferredDate: new Date(),
+    },
+  })
+
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log(values)
+    setIsSubmitted(true)
+  }
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFile(e.target.files[0])
+    }
+  }
+
+  if (isSubmitted) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-gray-100">
+        <Card className="w-full max-w-2xl p-6 mx-auto bg-white shadow-lg rounded-lg">
+          <CardHeader className="text-center">
+            <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-4" />
+            <CardTitle className="text-xl font-semibold">Quote Request Submitted</CardTitle>
+            <CardDescription className="text-gray-600 mt-2">
+              Your quote request has been successfully submitted. You will receive a response within 24 hours. We will notify you as soon as your quote is ready.
+            </CardDescription>
+          </CardHeader>
+        </Card>
+      </div>
+    )
+  }
 
   return (
-    <div className="max-w-xl mx-auto space-y-6">
-      <h2 className="text-2xl font-bold text-gray-900">Request a Quote</h2>
+    <Card className="w-full max-w-6xl mx-auto lg:my-20 ">
+      <CardHeader>
+        <CardTitle>Vehicle Service Quote Request</CardTitle>
+        <CardDescription>Please fill out the form below to request a quote for your vehicle service.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="gap-4 lg:gap-10 grid grid-cols-1">
+            <div>
+              <h3 className="text-lg font-semibold">1. Basic Information</h3>
+              <div className="gap-4 grid grid-cols-1 lg:grid-cols-2 lg:mt-4">
+                <FormField
+                  control={form.control}
+                  name="fullName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Full Name</FormLabel>
+                      <FormControl>
+                        <Input placeholder="John Doe" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email Address</FormLabel>
+                      <FormControl>
+                        <Input type="email" placeholder="john@example.com" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="phone"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Phone Number</FormLabel>
+                      <FormControl>
+                        <Input type="tel" placeholder="+41 XX XXX XX XX" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="address"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Full Address</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Enter your full address, including postal code and city" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold">2. Vehicle Information</h3>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-        {/* 1. Pre-Filled Personal Information */}
-        <fieldset className="space-y-2">
-          <legend className="text-lg font-bold">Personal Information (Pre-filled)</legend>
-          <Input type="text" value="Jean Dupont" readOnly />
-          <Input type="email" value="jean.dupont@gmail.com" readOnly />
-          <Input type="tel" value="+33 6 12 34 56 78" readOnly />
-          <Input type="text" value="12 Rue des Pneu, 75000 Paris" readOnly />
-        </fieldset>
+              <div className="gap-4 grid grid-cols-1 lg:grid-cols-2 lg:mt-4">
+                <FormField
+                  control={form.control}
+                  name="vehicleMake"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Vehicle Make</FormLabel>
+                      <FormControl>
+                        <Input placeholder="e.g., Renault" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="vehicleModel"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Vehicle Model</FormLabel>
+                      <FormControl>
+                        <Input placeholder="e.g., Clio IV" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="yearOfManufacture"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Year of Manufacture</FormLabel>
+                      <FormControl>
+                        <Input type="number" {...field} onChange={e => field.onChange(parseInt(e.target.value))} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="licensePlate"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>License Plate Number</FormLabel>
+                      <FormControl>
+                        <Input {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="registrationItem24"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Item 24 of Vehicle Registration Document</FormLabel>
+                      <FormControl>
+                        <Input {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="fuelType"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Fuel Type</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select fuel type" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="Diesel">Diesel</SelectItem>
+                          <SelectItem value="Petrol">Petrol</SelectItem>
+                          <SelectItem value="Electric">Electric</SelectItem>
+                          <SelectItem value="Hybrid">Hybrid</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
 
-        {/* 2. Vehicle Information */}
-        <fieldset className="space-y-2">
-          <legend className="text-lg font-bold">Vehicle Information</legend>
-          <Select {...register("vehicle")}>
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select Vehicle" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectItem value="Renault Clio IV">Renault Clio IV, 2018, Gasoline</SelectItem>
-                <SelectItem value="Another Vehicle">Another Vehicle</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-          <Input type="text" placeholder="Vehicle Make and Model" {...register("vehicleMakeModel")} />
-          <Input type="text" placeholder="Year of Manufacture" {...register("yearOfManufacture")} />
-          <Input type="text" placeholder="License Plate Number" {...register("licensePlateNumber")} />
-          <Select {...register("fuelType")}>
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Fuel Type" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectItem value="Gasoline">Gasoline</SelectItem>
-                <SelectItem value="Diesel">Diesel</SelectItem>
-                <SelectItem value="Electric">Electric</SelectItem>
-                <SelectItem value="Hybrid">Hybrid</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-        </fieldset>
+            <div>
+              <h3 className="text-lg font-semibold">3. Current Tire Information</h3>
 
-        {/* 3. Type of Service Requested */}
-        <fieldset className="space-y-2">
-          <legend className="text-lg font-bold">Type of Service Requested</legend>
-          <Checkbox {...register("services")} value="Tire Installation">Tire Installation</Checkbox>
-          <Checkbox {...register("services")} value="Wheel Balancing">Wheel Balancing</Checkbox>
-          <Checkbox {...register("services")} value="Wheel Alignment">Wheel Alignment</Checkbox>
-          <Checkbox {...register("services")} value="Tire Storage">Tire Storage</Checkbox>
-          <div className="flex items-center space-x-2">
-            <Checkbox {...register("services")} value="Other">Other</Checkbox>
-            <Input type="text" placeholder="Specify Other Service" {...register("otherService")} />
-          </div>
-        </fieldset>
+              <div className="gap-4 grid grid-cols-1 lg:grid-cols-2 lg:mt-4">
+                <FormField
+                  control={form.control}
+                  name="tireSize"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Current Tire Size</FormLabel>
+                      <FormControl>
+                        <Input placeholder="e.g., 195/65 R15" {...field} />
+                      </FormControl>
+                      <FormDescription>You can find this on your tire&apos;s sidewall. Not sure? No problem, the garage can help!</FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="tireYearOfManufacture"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Tire Year of Manufacture</FormLabel>
+                      <FormControl>
+                        <Input type="number" {...field} onChange={e => field.onChange(parseInt(e.target.value))} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="tireBrand"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Current Tire Brand</FormLabel>
+                      <FormControl>
+                        <Input placeholder="e.g., Michelin, Pirelli" {...field} />
+                      </FormControl>
+                      <FormDescription>You can find this on your tire&apos;s sidewall. Not sure? No problem, the garage can help!</FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
 
-        {/* 4. Tire Information */}
-        <fieldset className="space-y-2">
-          <legend className="text-lg font-bold">Tire Information</legend>
-          <Input type="text" placeholder="Current Tire Size (Width/Height/Diameter)" {...register("tireSize")} />
-          <div className="flex items-center space-x-2">
-            <Checkbox {...register("tireType")} value="Winter">Winter</Checkbox>
-            <Checkbox {...register("tireType")} value="Summer">Summer</Checkbox>
-            <Checkbox {...register("tireType")} value="All-Season">All-Season</Checkbox>
-            <Input type="text" placeholder="Other Tire Type" {...register("otherTireType")} />
-          </div>
-          <Select {...register("brandPreference")}>
-            <SelectTrigger>
-              <SelectValue placeholder="Brand Preference (Optional)" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectItem value="Michelin">Michelin</SelectItem>
-                <SelectItem value="Goodyear">Goodyear</SelectItem>
-                <SelectItem value="Bridgestone">Bridgestone</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-          <div className="flex items-center space-x-2">
-            <Checkbox {...register("purchaseTires")} onClick={() => setTireBudgetVisible(!tireBudgetVisible)}>
-              Yes, I want the garage to buy the tires for me
-            </Checkbox>
-            <Checkbox {...register("purchaseTires")}>No, I already have my tires</Checkbox>
-          </div>
-          {tireBudgetVisible && (
-            <Select {...register("tireBudget")} >
-              <SelectTrigger>
-                <SelectValue placeholder="Tire Budget (per tire)" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectItem value="CHF50-75">CHF50-75</SelectItem>
-                  <SelectItem value="CHF75-100">CHF75-100</SelectItem>
-                  <SelectItem value="CHF100-150">CHF100-150</SelectItem>
-                  <SelectItem value="Other">Other</SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-          )}
-        </fieldset>
-
-        {/* 5. Preferred Date and Time for Service */}
-        <fieldset className="space-y-2">
-          <legend className="text-lg font-bold">Preferred Date and Time</legend>
-          <Checkbox {...register("preferredDate")} value="As Soon as Possible">As Soon as Possible</Checkbox>
-          <Checkbox {...register("preferredDate")} value="Within a Week">Within a Week</Checkbox>
-          <Checkbox {...register("preferredDate")} value="In 2 Weeks or More">In 2 Weeks or More</Checkbox>
-          <div className="flex space-x-4">
-            <Checkbox {...register("preferredTime")} value="Morning">Morning (8 AM - 12 PM)</Checkbox>
-            <Checkbox {...register("preferredTime")} value="Afternoon">Afternoon (12 PM - 5 PM)</Checkbox>
-            <Checkbox {...register("preferredTime")} value="Evening">Evening (5 PM - 7 PM)</Checkbox>
-            <Checkbox {...register("preferredTime")} value="Flexible">Flexible</Checkbox>
-          </div>
-        </fieldset>
-
-        {/* 6. Comments or Specific Requests */}
-        <fieldset className="space-y-2">
-          <legend className="text-lg font-bold">Comments or Specific Requests</legend>
-          <Input
-            type="text"
-            placeholder="Comments or Special Requests"
-            {...register("comments")}
-          />
-        </fieldset>
-
-        {/* 7. Confirmation and Submission */}
-        <Button type="submit" className="w-full bg-lemon/80 hover:bg-lemon active:scale-95 transition text-coal font-medium">
-          Request my quote
-        </Button>
-      </form>
-    </div>
-  );
+            <div>
+              <h3 className="text-lg font-semibold">4. Service Request</h3>
+              <div className="gap-4 grid grid-cols-1 lg:grid-cols-2 lg:mt-4">
+                <div className='space-y-3'>
+                  <FormField
+                    control={form.control}
+                    name="serviceType"
+                    render={() => (
+                      <FormItem>
+                        <div className="mb-4">
+                          <FormLabel className="text-base">Type of Service</FormLabel>
+                          <FormDescription>
+                            Select the services you need a quote for.
+                          </FormDescription>
+                        </div>
+                        {['Tire Change', 'Oil Change', 'Brake Service', 'Engine Tune-up', 'Other'].map((item) => (
+                          <FormField
+                            key={item}
+                            control={form.control}
+                            name="serviceType"
+                            render={({ field }) => {
+                              return (
+                                <FormItem
+                                  key={item}
+                                  className="flex flex-row items-start space-x-3 space-y-0"
+                                >
+                                  <FormControl>
+                                    <Checkbox
+                                      checked={field.value?.includes(item)}
+                                      onCheckedChange={(checked) => {
+                                        return checked
+                                          ? field.onChange([...field.value, item])
+                                          : field.onChange(
+                                            field.value?.filter(
+                                              (value) => value !== item
+                                            )
+                                          )
+                                      }}
+                                    />
+                                  </FormControl>
+                                  <FormLabel className="font-normal">
+                                    {item}
+                                  </FormLabel>
+                                </FormItem>
+                              )
+                            }}
+                          />
+                        ))}
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="otherService"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Other Service (if applicable)</FormLabel>
+                        <FormControl>
+                          <Input {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className="space-y-3">
+                  <FormField
+                    control={form.control}
+                    name="comments"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Comments or Specific Requests</FormLabel>
+                        <FormControl>
+                          <Textarea placeholder="Enter any additional details or requests" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormItem>
+                    <FormLabel>Attach a Photo (optional)</FormLabel>
+                    <FormControl>
+                      <div className="flex items-center space-x-2">
+                        <Input id="picture" type="file" onChange={handleFileChange} accept=".jpg,.png,.pdf" />
+                        <Button type="button" size="sm" className="ml-auto">
+                          <Upload className="mr-2 h-4 w-4" />
+                          Upload
+                        </Button>
+                      </div>
+                    </FormControl>
+                    <FormDescription>
+                      Upload one or more photos to help us better understand your need (accepted formats: .jpg, .png, .pdf).
+                    </FormDescription>
+                  </FormItem>
+                </div>
+                <FormField
+                  control={form.control}
+                  name="budget"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Budget</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select your budget range" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="CHF100-250">CHF100-250</SelectItem>
+                          <SelectItem value="CHF250-450">CHF250-450</SelectItem>
+                          <SelectItem value="CHF450-700">CHF450-700</SelectItem>
+                          <SelectItem value="CHF700-1000">CHF700-1000</SelectItem>
+                          <SelectItem value="Other">Other</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="otherBudget"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Other Budget (if applicable)</FormLabel>
+                      <FormControl>
+                        <Input {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="preferredDate"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col">
+                      <FormLabel>Preferred Date for Service</FormLabel>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              variant={"outline"}
+                              className={`w-[240px] pl-3 text-left font-normal ${!field.value && "text-muted-foreground"}`}
+                            >
+                              {field.value ? (
+                                format(field.value, "PPP")
+                              ) : (
+                                <span>Pick a date</span>
+                              )}
+                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <Calendar
+                            onChange={(value, event) => {
+                              if (value instanceof Date) {
+                                setDate(value); // Only set the date if it's a valid Date object
+                              }
+                            }}
+                            value={date}
+                            className="rounded-lg border border-gray-300 shadow-lg overflow-hidden"
+                            minDate={new Date()} // Disable previous dates
+                          />
+                        </PopoverContent>
+                      </Popover>
+                      <FormDescription>
+                        Select your preferred date for the service (up to 3 months in advance).
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
+            <Button
+              type='submit'
+              className="bg-secondary hover:bg-secondary/80 active:scale-95 transition-all duration-300 w-full py-2 rounded-md text-white group"
+            >
+              Request a Quote
+            </Button>
+          </form>
+        </Form>
+      </CardContent>
+    </Card>
+  )
 }

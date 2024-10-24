@@ -1,3 +1,4 @@
+import LocationModal from "@/components/locationModal/LocationModal";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -11,8 +12,8 @@ import { TfiWorld } from "react-icons/tfi";
 
 const TopBar = () => {
   return (
-    <div className="bg-coal">
-      <div className="text-white max-w-6xl mx-auto px-4 py-2 flex justify-between items-center">
+    <div className="bg-coal ">
+      <div className="text-white max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
         <div className="flex items-center space-x-2">
           <Briefcase className="h-5 w-5" />
           <span className="text-sm hidden sm:inline">
@@ -21,12 +22,9 @@ const TopBar = () => {
         </div>
         <div className="flex items-center space-x-3">
           {/* CTA Button */}
-          <Link href="/request-quote">
-            <Button className="bg-secondary hover:bg-secondary/80 active:scale-95 transition-all duration-300 w-full py-2 rounded-md text-white group">
-              <Clipboard className="h-4 w-4 inline-block mr-1 group-hover:fill-white" />
-              Request a Quote
-            </Button>
-          </Link>
+          <LocationModal />
+
+          
           <div className="flex items-center gap-1">
             <TfiWorld />
             <DropdownMenu>

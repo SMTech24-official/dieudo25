@@ -141,13 +141,13 @@ export default function TestimonialsSlider() {
         ref={sliderRef}
       >
         <div className="flex items-center justify-center h-full relative">
-          {[-2, -1, 0, 1, 2].map((offset) => {
+          {[-2, -1, 0, 1, 2].map((offset, idx) => {
             const index =
               (currentIndex + offset + customers.length) % customers.length;
             const freelancer = customers[index];
             return (
               <Card
-                key={freelancer.id}
+                key={idx}
                 className={`absolute hover:bg-[#eff2fd] transition-all duration-300 origin-top-left  ease-in-out group-hover:scale-100 ${offset === 0
                   ? "z-20 scale-100 opacity-100"
                   : Math.abs(offset) === 1
