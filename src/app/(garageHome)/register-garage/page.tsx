@@ -1,13 +1,10 @@
 import GarageHero from "@/components/garageHome/garageHero";
+import GarageHowItWorks from "@/components/garageHome/garageHowItWorks";
 import GarageProblemSolution from "@/components/garageHome/garageProbandSolution";
 import GarageWhyChooseLiftWork from "@/components/garageHome/garageWhyChoose";
 import ActionBtnSection from "@/components/home/ActionBtnSection";
 import FeaturedGarages from "@/components/home/FeaturedGarages";
-import Hero from "@/components/home/Hero";
-import NewHowItWorks from "@/components/home/NewHowitWorks";
-import NewProblemSolution from "@/components/home/newProblemSolution";
 import TestimonialsSlider from "@/components/home/TestimonialsSlider";
-import WhyChooseLiftWork from "@/components/home/WhyChooseLiftWork";
 
 
 const page = () => {
@@ -16,7 +13,7 @@ const page = () => {
       <GarageHero />
       <GarageProblemSolution/>
       <GarageWhyChooseLiftWork />
-      <NewHowItWorks />
+      <GarageHowItWorks />
       <FeaturedGarages />
       <TestimonialsSlider />
       <ActionBtnSection />
