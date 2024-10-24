@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useState } from "react"
+import RegistrationStatusModal from "../regModal/UserRegModal"
 
 type SignupData = {
   fullName: string;
@@ -47,6 +49,7 @@ export default function SignUpComponents() {
 
   const onSubmit = (data: SignupData) => {
     console.log('Form submitted:', data);
+    window.scrollTo(0, 0) 
     reset()
   };
 
@@ -64,6 +67,11 @@ export default function SignUpComponents() {
         /[!@#$%^&*(),.?":{}|<>]/.test(value) || "Password must contain at least one special character",
     },
   };
+
+
+  
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const closeModal = () => setIsModalOpen(false);
 
   return (
     <div className="flex items-center justify-center h-full w-full p-5">
@@ -241,7 +249,7 @@ export default function SignUpComponents() {
               <Controller
                 name="tireBrand"
                 control={control}
-                render={({ field }) => <Input {...field} placeholder="Enter preferred brands" />}
+                render={({ field }) => <Input {...field} placeholder=" e.g.. Michelin, Pirelli, etc." />}
               />
             </div>
           </div>
@@ -272,11 +280,12 @@ export default function SignUpComponents() {
             </div>
           </div>
 
-          <Button type="submit" className="w-full bg-orange-500 hover:bg-orange-600 text-white">
+          <Button onClick={() => setIsModalOpen(true)} type="submit" className="w-full bg-orange-500 hover:bg-orange-600 text-white">
             Sign Up
           </Button>
         </form>
       </div>
+      <RegistrationStatusModal closeModal={closeModal} isModalOpen={isModalOpen} isSuccess={true}/>
     </div>
   )
 }

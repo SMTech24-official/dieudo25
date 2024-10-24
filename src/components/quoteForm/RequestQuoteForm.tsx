@@ -28,6 +28,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import Modal from '../modal/Modal'
 
 const formSchema = z.object({
   fullName: z.string().min(2, { message: "Full name must be at least 2 characters." }),
@@ -52,9 +53,11 @@ const formSchema = z.object({
 })
 
 export default function QuoteRequestForm() {
-  const [isSubmitted, setIsSubmitted] = useState(false)
   const [file, setFile] = useState<File | null>(null)
   const [date, setDate] = useState<Date | null>(null);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const closeModal = () => setIsModalOpen(false);
 
 
 
@@ -86,7 +89,8 @@ export default function QuoteRequestForm() {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values)
-    setIsSubmitted(true)
+    window.scrollTo(0, 0)
+    setIsModalOpen(true)
   }
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -95,21 +99,7 @@ export default function QuoteRequestForm() {
     }
   }
 
-  if (isSubmitted) {
-    return (
-      <div className="flex justify-center items-center min-h-screen bg-gray-100">
-        <Card className="w-full max-w-2xl p-6 mx-auto bg-white shadow-lg rounded-lg">
-          <CardHeader className="text-center">
-            <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-4" />
-            <CardTitle className="text-xl font-semibold">Quote Request Submitted</CardTitle>
-            <CardDescription className="text-gray-600 mt-2">
-              Your quote request has been successfully submitted. You will receive a response within 24 hours. We will notify you as soon as your quote is ready.
-            </CardDescription>
-          </CardHeader>
-        </Card>
-      </div>
-    )
-  }
+
 
   return (
     <Card className="w-full max-w-6xl mx-auto lg:my-20 ">
@@ -506,6 +496,17 @@ export default function QuoteRequestForm() {
           </form>
         </Form>
       </CardContent>
+      <Modal isOpen={isModalOpen} onClose={closeModal} className=' max-w-xl  mx-3'>
+          <Card className="w-full  p-6 mx-auto bg-white  rounded-lg">
+            <CardHeader className="text-center">
+              <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-4" />
+              <CardTitle className="text-xl font-semibold">Quote Request Submitted</CardTitle>
+              <CardDescription className="text-gray-600 mt-2">
+                Your quote request has been successfully submitted. You will receive a response within 24 hours. We will notify you as soon as your quote is ready.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+      </Modal>
     </Card>
   )
 }
