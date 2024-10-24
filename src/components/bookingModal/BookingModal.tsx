@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-// /components/BookingModal.tsx
+
 
 "use client"; // Ensure this component is client-side
 import React, { useState, useEffect } from "react";
@@ -72,6 +71,7 @@ const BookingModal: React.FC<ModalProps> = ({ isOpen, onClose, openingHours }) =
     },
   });
 
+
   useEffect(() => {
     const checkAvailability = () => {
       if (date) {
@@ -91,10 +91,9 @@ const BookingModal: React.FC<ModalProps> = ({ isOpen, onClose, openingHours }) =
         setAvailableTimes([]); // Clear available times if no date selected
       }
     };
-
     checkAvailability();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [date, bookedTimes, setValue]);
-
 
   const [humanReadableLocation, setHumanReadableLocation] = useState<string>("");
 

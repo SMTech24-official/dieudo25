@@ -87,7 +87,7 @@ const Navbar = () => {
                 href={item.path}
                 scroll={true}
                 className={cn(
-                  "text-gray-600 transition flex items-center text-white text-nowrap",
+                  " transition flex items-center text-white text-nowrap",
                   pathName === item.path ? "text-secondary" : "hover:text-secondary"
                 )}
               >
@@ -99,7 +99,7 @@ const Navbar = () => {
             {/* Dropdown Menu */}
             <div className="relative" ref={dropdownRef}>
               <button
-                className="text-gray-600 hover:text-secondary text-white"
+                className=" hover:text-secondary text-white"
                 onClick={handleToggleDropdown}
               >
                 More
