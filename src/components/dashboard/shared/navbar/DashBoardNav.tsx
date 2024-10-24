@@ -18,7 +18,7 @@ const garageNavItems = [
     { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },        // Layout Dashboard Icon
     { name: 'Quotes', href: '/dashboard/quotes', icon: BarChart2 },          // Bar Chart Icon for Quotes
     { name: 'Appointments', href: '/dashboard/appointments', icon: Users },  // Users Icon for Appointments
-    { name: 'Communication', href: '/dashboard/communication', icon: Mail }, // Mail Icon for Communication
+    { name: 'Communication', href: '/dashboard/messages', icon: Mail }, // Mail Icon for Communication
     { name: 'Services and Pricing', href: '/dashboard/services-pricing', icon: Package }, // Package Icon for Additional Services
     { name: 'Tire Orders', href: '/dashboard/tire-orders', icon: Truck },     // Truck Icon for Tire Orders
     { name: 'History', href: '/dashboard/history', icon: History },           // History Icon
