@@ -1,4 +1,5 @@
 import GarageHero from "@/components/garageHome/garageHero";
+import GarageProblemSolution from "@/components/garageHome/garageProbandSolution";
 import ActionBtnSection from "@/components/home/ActionBtnSection";
 import FeaturedGarages from "@/components/home/FeaturedGarages";
 import Hero from "@/components/home/Hero";
@@ -12,7 +13,7 @@ const page = () => {
   return (
     <>
       <GarageHero />
-      <NewProblemSolution/>
+      <GarageProblemSolution/>
       <WhyChooseLiftWork />
       <NewHowItWorks />
       <FeaturedGarages />
