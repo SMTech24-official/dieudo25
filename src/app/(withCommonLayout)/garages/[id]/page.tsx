@@ -75,7 +75,7 @@ export default function GarageDetailsPage({ params }: { params: { slug: string }
             }
           </div>
 
-          <ServicesOffered servicesOffered={servicesOffered} />
+          <ServicesOffered openingHours={openingHours && openingHours} servicesOffered={servicesOffered} />
 
           <Reviews />
 

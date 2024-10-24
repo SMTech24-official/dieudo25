@@ -21,7 +21,7 @@ type Hours = {
   id: number;
   slotName: string;
   days: string;
-  open?: string; 
+  open?: string;
   close?: string;
   status?: string;
 }
@@ -152,7 +152,7 @@ const BookingModal: React.FC<ModalProps> = ({ isOpen, onClose, openingHours }) =
     onClose(); // Close modal after booking
   };
 
-  const disableGarageClosedDays = ({ date} : {date : Date}) => {
+  const disableGarageClosedDays = ({ date }: { date: Date }) => {
     console.log(date);
     const dayOfWeek = date.getDay(); // getDay() returns 0 for Sunday, 1 for Monday, etc.
 
@@ -165,6 +165,8 @@ const BookingModal: React.FC<ModalProps> = ({ isOpen, onClose, openingHours }) =
     return dayData?.status === 'Closed';
   };
 
+  const prev_date = new Date();
+  prev_date.setDate(prev_date.getDate() - 1);
 
   return (
     <Modal

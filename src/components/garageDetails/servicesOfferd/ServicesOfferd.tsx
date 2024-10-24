@@ -17,11 +17,22 @@ interface ServiceOffered {
   averageTime: string;
 }
 
-interface ServicesOfferedProps {
-  servicesOffered: ServiceOffered[];
+type Hours = {
+  id: number;
+  slotName: string;
+  days: string;
+  open?: string;
+  close?: string;
+  status?: string;
 }
 
-const ServicesOffered: React.FC<ServicesOfferedProps> = ({ servicesOffered }) => {
+
+interface ServicesOfferedProps {
+  servicesOffered: ServiceOffered[];
+  openingHours: Hours[]
+}
+
+const ServicesOffered: React.FC<ServicesOfferedProps> = ({ servicesOffered, openingHours}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   // Function to get the corresponding service icon
@@ -126,7 +137,7 @@ const ServicesOffered: React.FC<ServicesOfferedProps> = ({ servicesOffered }) =>
         </div>
       </CardContent>
 
-      <BookingModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      <BookingModal isOpen={isOpen} onClose={() => setIsOpen(false)} openingHours={openingHours && openingHours}/>
     </Card>
   );
 };
