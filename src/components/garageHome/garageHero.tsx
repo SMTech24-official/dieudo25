@@ -50,3 +50,4 @@ const GarageHero = () => {
 };
 
 export default GarageHero;
+

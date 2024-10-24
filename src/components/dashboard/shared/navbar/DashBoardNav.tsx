@@ -100,7 +100,7 @@ export default function DashboardNav() {
             >
                 <div className="flex flex-col lg:mt-6 md:mt-3">
                     <div className="flex items-center justify-center">
-                        <Link href="/dashboard" className="flex items-center space-x-2">
+                        <Link href="/" className="flex items-center space-x-2">
                             <Image src={logo} alt='Company Logo' width={80} height={80} />
                             {/* <span className="text-xl font-bold text-secondary">LiftWork</span> */}
                         </Link>
