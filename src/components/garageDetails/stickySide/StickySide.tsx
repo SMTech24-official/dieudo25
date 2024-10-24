@@ -168,7 +168,7 @@ const StickySide: React.FC<StickySideProps> = ({ images, owner, ratings, opening
                     </TabsContent>
                 </Tabs>
             </CardContent>
-            <BookingModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+            <BookingModal isOpen={isOpen} onClose={() => setIsOpen(false)} openingHours={openingHours && openingHours}/>
 
         </Card>
     );

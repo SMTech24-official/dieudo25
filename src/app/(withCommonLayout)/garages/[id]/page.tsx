@@ -76,6 +76,7 @@ export default function GarageDetailsPage({ params }: { params: { slug: string }
           </div>
 
           <ServicesOffered servicesOffered={servicesOffered} />
+
           <Reviews />
 
           <AdditionalInformation owner={owner} location={location} />
@@ -83,7 +84,7 @@ export default function GarageDetailsPage({ params }: { params: { slug: string }
         </div>
       </div>
 
-      <BookingModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      <BookingModal isOpen={isOpen} onClose={() => setIsOpen(false)} openingHours={openingHours && openingHours} />
     </section>
   );
 }

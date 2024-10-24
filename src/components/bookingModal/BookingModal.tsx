@@ -17,9 +17,18 @@ import {
 import { Button } from "@/components/ui/button"; // ShadCN button component
 import Modal from "../modal/Modal"; // Import your Modal component
 
+type Hours = {
+  id: number;
+  slotName: string;
+  days: string;
+  open?: string; 
+  close?: string;
+  status?: string;
+}
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void | null;
+  openingHours: Hours[]
 }
 
 interface FormData {
@@ -28,7 +37,7 @@ interface FormData {
   mobile: string;
 }
 
-const BookingModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+const BookingModal: React.FC<ModalProps> = ({ isOpen, onClose, openingHours }) => {
   const [date, setDate] = useState<Date | null>(null);
   const [availableTimes, setAvailableTimes] = useState<string[]>([]);
   const [bookedTimes, setBookedTimes] = useState<string[]>([
@@ -143,6 +152,20 @@ const BookingModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     onClose(); // Close modal after booking
   };
 
+  const disableGarageClosedDays = ({ date} : {date : Date}) => {
+    console.log(date);
+    const dayOfWeek = date.getDay(); // getDay() returns 0 for Sunday, 1 for Monday, etc.
+
+    // Find the corresponding day in openingHours
+    const dayData = openingHours?.find(
+      (slot) => new Date(date).toLocaleString('en-US', { weekday: 'long' }) === slot.days
+    );
+
+    // Disable the day if status is "Closed"
+    return dayData?.status === 'Closed';
+  };
+
+
   return (
     <Modal
       className="max-w-5xl "
@@ -160,6 +183,7 @@ const BookingModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
               }
             }}
             value={date}
+            tileDisabled={disableGarageClosedDays}
             className="rounded-lg border border-gray-300 shadow-lg overflow-hidden"
             minDate={new Date()} // Disable previous dates
           />
