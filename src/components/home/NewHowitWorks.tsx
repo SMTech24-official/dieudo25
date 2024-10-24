@@ -3,6 +3,7 @@
 import { CheckCircle, ClipboardList, UserCheck, Star, Shield, Clock, ChevronLeft, ChevronRight } from "lucide-react";
 import SectionHeader from "../section/SectionHeader";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
+import Video from "./video/Video";
 
 
 
@@ -65,7 +66,7 @@ export default function NewHowItWorks() {
                 title="How it Works"
                 description="Using LiftWork is simple and hassle-free. In just a few quick steps, you can find trusted garages, compare options, and book your car service."
             />
-            <div className="container mx-auto mt-12" >
+            <div className="container flex flex-col items-center md:flex-row gap-8 mx-auto mt-12" >
                 <Accordion type="single" collapsible className="w-full">
                     {steps.map((section, index) => (
                         <AccordionItem
@@ -87,6 +88,7 @@ export default function NewHowItWorks() {
                         </AccordionItem>
                     ))}
                 </Accordion>
+                <Video/>
             </div>
         </div>
     );

@@ -3,7 +3,8 @@
 import { CheckCircle, ClipboardList, UserCheck, Star, Shield, Clock, UserPlus, Mail, ClipboardCheck, DollarSign } from "lucide-react";
 import SectionHeader from "../section/SectionHeader";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
-
+import Image from "next/image";
+import newImage from "@/assets/banner.png"
 
 
 const steps = [
@@ -49,7 +50,7 @@ export default function GarageHowItWorks() {
                 title="How it Works"
                 description="Using LiftWork is simple and hassle-free. In just a few quick steps, you can find trusted garages, compare options, and book your car service."
             />
-            <div className="container mx-auto mt-12" >
+            <div className="container flex flex-col items-center md:flex-row gap-8 mx-auto mt-12" >
                 <Accordion type="single" collapsible className="w-full">
                     {steps.map((section, index) => (
                         <AccordionItem
@@ -71,6 +72,14 @@ export default function GarageHowItWorks() {
                         </AccordionItem>
                     ))}
                 </Accordion>
+                <div>
+                    <Image
+                        src={newImage}
+                        alt="Banner Image"
+                        objectFit="cover"
+                        className="rounded-lg !w-full !h-full object-cover "
+                    />
+                </div>
             </div>
         </div>
     );
