@@ -1,3 +1,4 @@
+import GarageActionBtnSection from "@/components/garageHome/garageActionButton";
 import GarageHero from "@/components/garageHome/garageHero";
 import GarageHowItWorks from "@/components/garageHome/garageHowItWorks";
 import GarageProblemSolution from "@/components/garageHome/garageProbandSolution";
@@ -14,9 +15,7 @@ const page = () => {
       <GarageProblemSolution/>
       <GarageWhyChooseLiftWork />
       <GarageHowItWorks />
-      <FeaturedGarages />
-      <TestimonialsSlider />
-      <ActionBtnSection />
+      <GarageActionBtnSection />
     </>
   );
 };
